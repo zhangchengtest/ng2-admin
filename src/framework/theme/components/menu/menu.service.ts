@@ -44,6 +44,9 @@ export interface NgaMenuOptions {
 
 export const ngaMenuOptionsToken = new InjectionToken<NgaMenuOptions>('NGA_MENU_OPTIONS');
 
+// TODO: getSelected method
+// TODO: cannot push elements in constructor
+
 @Injectable()
 export class NgaMenuService {
 
