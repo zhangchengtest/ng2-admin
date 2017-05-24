@@ -7,8 +7,7 @@
 import { Component } from '@angular/core';
 import { List } from 'immutable';
 
-import { NgaMenuService } from '../../src/framework/theme/components/menu/menu.service';
-import { NgaMenuItem } from '../../src/framework/theme/components/menu/menu.options';
+import { NgaMenuService, NgaMenuItem } from '../../src/framework/theme';
 import { NgdAppService } from './app.service';
 
 import 'style-loader!./app.theme.default.scss';
@@ -38,7 +37,7 @@ export class NgdAppComponent {
   ngOnInit() {
     this.structure = this.service.getPreparedStructure();
     this.menuItems = this.service.getPreparedMenu();
-    
+
     //console.log(this.menuItems);
     //this.menuService.addItems(this.menuItems, 'leftMenu');
   }

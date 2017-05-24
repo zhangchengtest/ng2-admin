@@ -2008,7 +2008,7 @@ etag@~1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.0.tgz#6f631aef336d6c46362b51764044ce216be3c051"
 
-event-stream@~3.3.0:
+event-stream@^3.3.4, event-stream@~3.3.0:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/event-stream/-/event-stream-3.3.4.tgz#4ab4c9a0f5a54db9338b4c34d86bfce8f4b35571"
   dependencies:
@@ -2670,6 +2670,13 @@ gulp-sourcemaps@2.6.0:
     strip-bom-string "1.X"
     through2 "2.X"
     vinyl "1.X"
+
+gulp-typedoc@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/gulp-typedoc/-/gulp-typedoc-2.0.2.tgz#5d8034cfd3b46f5f4e1b3d4a6feddca155569953"
+  dependencies:
+    event-stream "^3.3.4"
+    gulp-util "^3.0.8"
 
 gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.8:
   version "3.0.8"

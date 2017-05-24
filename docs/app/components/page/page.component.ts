@@ -41,7 +41,7 @@ export class NgdPageComponent {
   currentItem: any;
 
   constructor(private menuService: NgaMenuService) {
-    this.menuService.getSelectedItem().subscribe((event: {tag: string, item: any}) => {
+    this.menuService.onItemSelect().subscribe((event: {tag: string, item: any}) => {
       // TODO: check the tag
       if (event && event.item && event.item.data) {
         this.currentItem = event.item.data;

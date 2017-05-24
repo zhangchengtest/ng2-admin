@@ -49,6 +49,7 @@ export class NgdAppService {
       menuItem['title'] = item.name;
       menuItem['link'] = `${parent ? parent.link : ''}/${item.name.replace(/\s/, '-').toLowerCase()}`;
       menuItem['data'] = item;
+      menuItem['pathMath'] = 'full';
       // TODO: not the best check
       if (item.children && item.children[0] && item.children[0].type === 'page') {
         menuItem['children'] = this.prepareMenu(item.children, menuItem);
