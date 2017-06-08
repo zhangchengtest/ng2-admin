@@ -4,6 +4,9 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
+@import '../core/functions';
+@import '../core/mixins';
+
 // default the base theme
 $theme: (
   color-default: #2f2e66,
@@ -14,9 +17,7 @@ $theme: (
   background: #20274f,
   foreground-inverse: color-secondary,
 
-  shadow-color: rgba(37, 26, 75, 0.68),
-
-  shadow: 0 8px 20px 0 shadow-color,
+  shadow: 0 8px 20px 0 rgba(37, 26, 75, 0.68),
 
   layout-padding: 2.5rem,
   header-height: 4.725rem,
@@ -35,4 +36,4 @@ $theme: (
 );
 
 // register the theme
-$themes: nga-register-theme($theme, cosmic, default);
+$nga-themes: nga-register-theme($theme, cosmic, default);

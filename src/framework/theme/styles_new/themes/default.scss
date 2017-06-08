@@ -4,6 +4,9 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
+@import '../core/functions';
+@import '../core/mixins';
+
 // define the base theme (empty for default)
 $theme: (
   font-weight-thin: 100,
@@ -80,8 +83,7 @@ $theme: (
   social-color-behance: #0093fa,
 
   border-color: color-gray,
-  shadow-color: rgba(33, 57, 161, 0.08),
-  shadow: 0 4px 12px 0 shadow-color, // TODO
+  shadow: 0 4px 12px 0 rgba(33, 57, 161, 0.08),
 
   link-color-active: #285eb8,
 
@@ -366,4 +368,4 @@ $theme: (
 );
 
 // register the theme
-$themes: nga-register-theme($theme, default);
+$nga-themes: nga-register-theme($theme, default);

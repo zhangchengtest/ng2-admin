@@ -12,17 +12,14 @@
 @import 'core/mixins';
 @import 'core/functions';
 
-$themes: () !global;
-$themes-non-processed: () !global;
+$nga-themes: () !global;
+$nga-themes-non-processed: () !global;
 
-@function map-set($map, $key, $value) {
-  $new: ($key: $value);
-  @return map-merge($map, $new);
-}
 
 @function nga-theme($key) {
   @return map-get($theme, $key);
 }
+
 @function nga-get-value($theme, $key, $value) {
   @if (type-of($value) == 'string') {
     $tmp: map-get($theme, $value);
@@ -35,12 +32,13 @@ $themes-non-processed: () !global;
   @return map-get($theme, $key);
 }
 
-@function nga-register-theme($theme, $name,  $default: null) {
+@function nga-register-theme($theme, $name, $default: null) {
 
-  $themes-non-processed: map-set($themes-non-processed, $name, $theme) !global;
+  $nga-themes-non-processed: map-set($nga-themes-non-processed, $name, $theme) !global;
 
   @if ($default != null) {
-    $theme: map-merge(map-get($themes-non-processed, $default), $theme);
+    $theme: map-merge(map-get($nga-themes-non-processed, $default), $theme);
+    $nga-themes-non-processed: map-set($nga-themes-non-processed, $name, $theme) !global;
   }
 
   $theme-parsed: ();
@@ -48,11 +46,11 @@ $themes-non-processed: () !global;
     $theme-parsed: map-set($theme-parsed, $key, nga-get-value($theme, $key, $value));
   }
 
-  @return map-set($themes, $name, $theme-parsed);
+  @return map-set($nga-themes, $name, $theme-parsed);
 }
 
 @mixin nga-install-component() {
-  @each $theme-name, $theme in $themes {
+  @each $theme-name, $theme in $nga-themes {
     :host-context(.nga-theme-#{$theme-name}) {
       $theme: $theme !global;
       @debug $theme;
@@ -62,11 +60,17 @@ $themes-non-processed: () !global;
 }
 
 @mixin nga-install-global() {
-  @each $theme-name, $theme in $themes {
+  @each $theme-name, $theme in $nga-themes {
     .nga-theme-#{$theme-name} {
       $theme: $theme !global;
 
       @content;
     }
+  }
+}
+
+@mixin nga-install() {
+  @include nga-install-global() {
+    @include nga-theme-global();
   }
 }

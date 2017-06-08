@@ -31,62 +31,62 @@
 
 @mixin btn-shape() {
   .btn-rectangle {
-    border-radius: $btn-rectangle-bd-radius;
+    border-radius: nga-theme(rectangle-bd-radius);
   }
 
   .btn-semi-round {
-    border-radius: $btn-semi-round-bd-radius;
+    border-radius: nga-theme(semi-round-bd-radius);
   }
 
   .btn-round {
-    border-radius: $btn-round-bd-radius;
+    border-radius: nga-theme(round-bd-radius);
   }
 }
 
 @mixin btn-size() {
   .btn-lg {
-    line-height: $btn-line-height-lg;
+    line-height: nga-theme(line-height-lg);
 
-    @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
+    @include button-size(nga-theme(padding-y-lg), nga-theme(padding-x-lg), nga-theme(font-size-lg), nga-theme(border-radius-lg));
   }
 
   .btn-md {
-    line-height: $btn-line-height-md;
+    line-height: nga-theme(line-height-md);
 
-    @include button-size($btn-padding-y-md, $btn-padding-x-md, $btn-font-size-md, $btn-border-radius-md);
+    @include button-size(nga-theme(padding-y-md), nga-theme(padding-x-md), nga-theme(font-size-md), nga-theme(border-radius-md));
   }
 
   .btn-sm {
-    line-height: $btn-line-height-sm;
+    line-height: nga-theme(line-height-sm);
 
-    @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
+    @include button-size(nga-theme(padding-y-sm), nga-theme(padding-x-sm), nga-theme(font-size-sm), nga-theme(border-radius-sm));
   }
 
   .btn-tn {
-    line-height: $btn-line-height-tn;
+    line-height: nga-theme(line-height-tn);
 
-    @include button-size($btn-padding-y-tn, $btn-padding-x-tn, $btn-font-size-tn, $btn-border-radius-tn);
+    @include button-size(nga-theme(padding-y-tn), nga-theme(padding-x-tn), nga-theme(font-size-tn), nga-theme(border-radius-tn));
   }
 }
 
 @mixin primary-gradient() {
-  @include nga-right-gradient($nga-color-gradient-primary-left, $nga-color-gradient-primary-right);
+  @include nga-right-gradient(nga-theme(color-gradient-primary-left), nga-theme(color-gradient-primary-right));
 }
 
 @mixin warning-gradient() {
-  @include nga-right-gradient($nga-color-gradient-warning-left, $nga-color-gradient-warning-right);
+  @include nga-right-gradient(nga-theme(color-gradient-warning-left), nga-theme(color-gradient-warning-right));
 }
 
 @mixin success-gradient() {
-  @include nga-right-gradient($nga-color-gradient-success-left, $nga-color-gradient-success-right);
+  @include nga-right-gradient(nga-theme(color-gradient-success-left), nga-theme(color-gradient-success-right));
 }
 
 @mixin info-gradient() {
-  @include nga-right-gradient($nga-color-gradient-info-left, $nga-color-gradient-info-right);
+  @include nga-right-gradient(nga-theme(color-gradient-info-left), nga-theme(color-gradient-info-right));
 }
 
 @mixin danger-gradient() {
-  @include nga-right-gradient($nga-color-gradient-danger-left, $nga-color-gradient-danger-right);
+  @include nga-right-gradient(nga-theme(color-gradient-danger-left), nga-theme(color-gradient-danger-right));
 }
 
 @mixin btn-box-shadow($height, $bevel, $shadow, $glow) {
@@ -97,48 +97,48 @@
 
 @mixin btn-hero() {
   .btn-hero {
-    @include btn-box-shadow($btn-default-bevel-bd-height, $btn-default-bevel-bd, $btn-default-shadow, $btn-default-glow);
+    @include btn-box-shadow(nga-theme(default-bevel-bd-height), nga-theme(default-bevel-bd), nga-theme(default-shadow), nga-theme(default-glow));
 
-    text-shadow: 0 $btn-hero-text-shadow-y $btn-hero-text-shadow-radius $btn-hero-text-shadow;
+    text-shadow: 0 nga-theme(hero-text-shadow-y) nga-theme(hero-text-shadow-radius) nga-theme(hero-text-shadow);
   }
 
   .btn-hero.btn-primary {
     @include primary-gradient();
-    @include btn-box-shadow($btn-primary-bevel-bd-height, $btn-primary-bevel-bd, $btn-primary-shadow, $btn-primary-glow);
+    @include btn-box-shadow(nga-theme(primary-bevel-bd-height), nga-theme(primary-bevel-bd), nga-theme(primary-shadow), nga-theme(primary-glow));
   }
 
   .btn-hero.btn-warning {
     @include warning-gradient();
-    @include btn-box-shadow($btn-warning-bevel-bd-height, $btn-warning-bevel-bd, $btn-warning-shadow, $btn-warning-glow);
+    @include btn-box-shadow(nga-theme(warning-bevel-bd-height), nga-theme(warning-bevel-bd), nga-theme(warning-shadow), nga-theme(warning-glow));
   }
 
   .btn-hero.btn-success {
     @include success-gradient();
-    @include btn-box-shadow($btn-success-bevel-bd-height, $btn-success-bevel-bd, $btn-success-shadow, $btn-success-glow);
+    @include btn-box-shadow(nga-theme(success-bevel-bd-height), nga-theme(success-bevel-bd), nga-theme(success-shadow), nga-theme(success-glow));
   }
 
   .btn-hero.btn-info {
     @include info-gradient();
-    @include btn-box-shadow($btn-info-bevel-bd-height, $btn-info-bevel-bd, $btn-info-shadow, $btn-info-glow);
+    @include btn-box-shadow(nga-theme(info-bevel-bd-height), nga-theme(info-bevel-bd), nga-theme(info-shadow), nga-theme(info-glow));
   }
 
   .btn-hero.btn-danger {
     @include danger-gradient();
-    @include btn-box-shadow($btn-danger-bevel-bd-height, $btn-danger-bevel-bd, $btn-danger-shadow, $btn-danger-glow);
+    @include btn-box-shadow(nga-theme(danger-bevel-bd-height), nga-theme(danger-bevel-bd), nga-theme(danger-shadow), nga-theme(danger-glow));
   }
 }
 
 @mixin nga-b-buttons-theme() {
 
   .btn {
-    color: $btn-default-color;
-    border: $btn-default-border-width solid $btn-default-border;
+    color: nga-theme(default-color);
+    border: nga-theme(default-border-width) solid nga-theme(default-border);
     text-transform: uppercase;
-    letter-spacing: $btn-letter-spacing;
-    font-weight: $nga-font-weight-bolder;
-    font-family: $btn-font-family;
+    letter-spacing: nga-theme(letter-spacing);
+    font-weight: nga-theme(font-weight-bolder);
+    font-family: nga-theme(font-family);
 
-    @include btn($btn-default-bg, $btn-default-bg-hover-focus, $btn-default-bg-active);
+    @include btn(nga-theme(default-bg), nga-theme(default-bg-hover-focus), nga-theme(default-bg-active));
   }
 
   @include btn-shape();
@@ -150,30 +150,30 @@
   .btn-primary {
     border: none;
 
-    @include btn($btn-primary-bg, $btn-primary-bg-hover-focus, $btn-primary-bg-active);
+    @include btn(nga-theme(primary-bg), nga-theme(primary-bg-hover-focus), nga-theme(primary-bg-active));
   }
 
   .btn-warning {
     border: none;
 
-    @include btn($btn-warning-bg, $btn-warning-bg-hover-focus, $btn-warning-bg-active);
+    @include btn(nga-theme(warning-bg), nga-theme(warning-bg-hover-focus), nga-theme(warning-bg-active));
   }
 
   .btn-info {
     border: none;
 
-    @include btn($btn-info-bg, $btn-info-bg-hover-focus, $btn-info-bg-active);
+    @include btn(nga-theme(info-bg), nga-theme(info-bg-hover-focus), nga-theme(info-bg-active));
   }
 
   .btn-success {
     border: none;
 
-    @include btn($btn-success-bg, $btn-success-bg-hover-focus, $btn-success-bg-active);
+    @include btn(nga-theme(success-bg), nga-theme(success-bg-hover-focus), nga-theme(success-bg-active));
   }
 
   .btn-danger {
     border: none;
 
-    @include btn($btn-danger-bg, $btn-danger-bg-hover-focus, $btn-danger-bg-active);
+    @include btn(nga-theme(danger-bg), nga-theme(danger-bg-hover-focus), nga-theme(danger-bg-active));
   }
 }

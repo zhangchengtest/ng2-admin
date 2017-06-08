@@ -4,36 +4,33 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-// @nga/theme module styles
-//$nga-background-inverse: #5f1eff;
-//$nga-header-foreground: #ce55bd;
-//$nga-card-background: #cfe8ff;
-//$nga-card-foreground: #747bde;
-//$nga-card-separator: red;
-//$nga-radius: 0;
-//$nga-color-primary: red;
-//
-//@import '../framework/theme/styles/themes/default/theme';
-//@include nga-theme-install('blue') {
-//
-//  // here you can override theme styles
-//  nga-card-header {
-//    color: red!important;
-//    text-transform: capitalize!important;
-//    text-decoration: underline;
-//  }
+
+// here you can override theme styles
+//nga-card-header {
+  // TODO!!!! it should be possible to specify specific styles for a theme, probably in register theme
+  //color: nga-theme(color-primary) !important;
+  //text-transform: capitalize !important;
+  //text-decoration: underline;
 //}
-//
-//@import '../framework/auth/styles/themes/default/theme';
-//@include nga-auth-install('blue');
+
 
 // define global maps
-@import '../framework/theme/styles_new/theming';
+@import '../framework/theme/styles_new/all';
 
-// import all vars
-@import '../framework/theme/styles_new/themes';
-@import '../framework/theme/styles_new/globals';
+$nga-themes: nga-register-theme((
+  background-inverse: #5f1eff,
+  header-foreground: #ce55bd,
+  card-background: #cfe8ff,
+  card-foreground: #747bde,
+  card-separator: red,
+  radius: 0,
+  color-primary: red,
 
-@include nga-install-global() {
-  @include nga-theme-global();
-}
+), blue, cosmic);
+
+$nga-themes: nga-register-theme((
+  header-foreground: #76ff81,
+
+), blue1, blue);
+
+@include nga-install();
