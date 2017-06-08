@@ -6,7 +6,7 @@
 
 @import '~angular2-toaster/toaster';
 
-@mixin nga-components-toaster-theme($theme-name) {
+@mixin nga-components-toaster-theme() {
 
   .toast-close-button {
     position: absolute;

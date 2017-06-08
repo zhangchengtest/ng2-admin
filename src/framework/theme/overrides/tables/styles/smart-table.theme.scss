@@ -5,7 +5,7 @@
  */
 
 // TODO: refactor these styles
-@mixin nga-tables-smart-table-theme($theme-name) {
+@mixin nga-tables-smart-table-theme() {
 
   ng2-smart-table {
     th,

@@ -1,0 +1,38 @@
+/**
+ * @license
+ * Copyright Akveo. All Rights Reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ */
+
+// default the base theme
+$theme: (
+  color-default: #2f2e66,
+  color-secondary: #a1a1e6,
+  color-inverse: white,
+
+  foreground: color-inverse,
+  background: #20274f,
+  foreground-inverse: color-secondary,
+
+  shadow-color: rgba(37, 26, 75, 0.68),
+
+  shadow: 0 8px 20px 0 shadow-color,
+
+  layout-padding: 2.5rem,
+  header-height: 4.725rem,
+  header-padding: 1.25rem,
+
+  footer-height: header-height,
+
+  sidebar-width: 16.25rem,
+  sidebar-width-compact: 3.45rem,
+  sidebar-padding: 0,
+
+  card-background: color-default,
+  card-separator: color-default,
+  card-foreground: foreground-inverse,
+  card-header-foreground: foreground,
+);
+
+// register the theme
+$themes: nga-register-theme($theme, cosmic, default);

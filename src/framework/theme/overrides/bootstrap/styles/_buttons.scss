@@ -128,7 +128,7 @@
   }
 }
 
-@mixin nga-b-buttons-theme($theme-name) {
+@mixin nga-b-buttons-theme() {
 
   .btn {
     color: $btn-default-color;
