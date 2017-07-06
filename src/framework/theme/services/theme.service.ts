@@ -13,6 +13,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/publish';
 
 import { ngaThemeOptionsToken } from '../theme.options';
+import { NgaThemeConfig } from './themeConfig.service';
 
 @Injectable()
 export class NgaThemeService {
@@ -25,7 +26,8 @@ export class NgaThemeService {
   private appendLayoutClass$ = new Subject();
   private removeLayoutClass$ = new Subject();
 
-  constructor(@Inject(ngaThemeOptionsToken) protected options: any) {
+  constructor(@Inject(ngaThemeOptionsToken) protected options: any,
+              private themeConfig: NgaThemeConfig) {
     if (options && options.name) {
       this.changeTheme(options.name);
     }
@@ -41,6 +43,12 @@ export class NgaThemeService {
     this.appendToLayoutTop$.next({ component, listener: observable });
 
     return observable.asObservable();
+  }
+
+  getConfig(): Observable<any> {
+    return this.onThemeChange().map((theme: any) => {
+      return Observable.of(this.themeConfig.get(theme.name));
+    });
   }
 
   clearLayoutTop(): Observable<any> {
