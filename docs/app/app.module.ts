@@ -3,7 +3,7 @@
  * Copyright Akveo. All Rights Reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -71,7 +71,10 @@ import { ReactFooterComponent } from './components/footer/react-footer.component
     ReactFooterComponent,
 
   ],
-  providers: [DocsService],
+  providers: [
+    DocsService,
+    Title
+  ],
   entryComponents: [
   ],
   bootstrap: [NgdAppComponent],

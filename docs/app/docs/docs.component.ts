@@ -14,6 +14,7 @@ import { NgaMenuService, NgaMenuItem } from '@akveo/nga-theme';
 import { NgaMenuInternalService } from '@akveo/nga-theme/components/menu/menu.service';
 
 import 'rxjs/add/operator/filter';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'react-docs',
@@ -31,56 +32,34 @@ import 'rxjs/add/operator/filter';
       <nga-layout-column>
         <router-outlet></router-outlet>
       </nga-layout-column>
-      <!--<nga-sidebar right *ngIf="demoUrl">-->
-        <!--<react-phone-block [demoUrl]="demoUrl"></react-phone-block> -->
-      <!--</nga-sidebar>-->
     </nga-layout>
   `,
 })
-export class ReactDocsComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ReactDocsComponent implements OnDestroy {
 
   structure: any;
   menuItems: List<NgaMenuItem> = List([]);
-  // demoUrl: string;
   private menuItemSubscription: Subscription;
   private routerSubscription: Subscription;
 
   constructor(private service: DocsService,
               private router: Router,
-              private menuInternalService: NgaMenuInternalService,
-              private menuService: NgaMenuService) {
-  }
+              private menuInternalService: NgaMenuInternalService) {
 
-  ngOnInit() {
     this.menuItems = this.service.getPreparedMenu();
     this.structure = this.service.getPreparedStructure();
-  }
-
-	ngAfterViewInit() {
-    this.menuItemSubscription = this.menuService.getSelectedItem().subscribe((data) => {
-      if (data.item) this.menuInternalService.itemSelect(data.item);
-    });
 
     this.routerSubscription = this.router.events
-      .filter(event => event instanceof NavigationEnd && event['url'] === '/docs')
       .subscribe((event) => {
-        let firstMenuItem = this.menuItems.get(0).children.get(0);
-        this.menuInternalService.itemSelect(firstMenuItem);
-        this.router.navigateByUrl(firstMenuItem.link);
+        if (event['url'] === '/docs') {
+          let firstMenuItem = this.menuItems.get(0).children.get(0);
+          this.menuInternalService.itemSelect(firstMenuItem);
+          this.router.navigateByUrl(firstMenuItem.link, { replaceUrl: true });
+        }
       });
-
-    // this.menuService.onItemSelect().subscribe((event: {tag: string, item: any}) => {
-    //   if (event && event.item && event.item.data && event.item.data.demogif) {
-    //     this.demoUrl = event.item.data.demogif;
-    //     this.demoUrl = require(`../../assets/gif/${this.demoUrl}`);
-    //   } else {
-    //     this.demoUrl = '';
-    //   }
-    // });
   }
 
   ngOnDestroy() {
     this.routerSubscription.unsubscribe();
-    this.menuItemSubscription.unsubscribe();
   }
 }

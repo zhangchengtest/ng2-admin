@@ -24,7 +24,7 @@ export class ReactExamplesBlockComponent {
   @Input() title: any = 'Usage';
   @Input() klass: any;
 
-  static getContent(str) {
+  getContent(str) {
     return Prism.highlight(str.trim(), Prism.languages.jsx);
   }
 }
