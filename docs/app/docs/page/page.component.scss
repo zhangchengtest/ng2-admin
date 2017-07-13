@@ -34,6 +34,10 @@
       background: nga-theme(code-snippets-bg);
     }
 
+    .block-container {
+      margin-bottom: nga-theme(block-margin);
+    }
+
     ngd-code-highlighter {
       display: none;
       .code-title {

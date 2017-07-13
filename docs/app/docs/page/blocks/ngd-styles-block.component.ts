@@ -7,7 +7,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'react-styles-block',
+  selector: 'ngd-styles-block',
   template: `
     <div class="block-container" *ngFor="let style of classData.styles">
       <p class="block-title">{{ style.shortDescription }}</p>
@@ -31,7 +31,7 @@ import { Component, Input } from '@angular/core';
     </div>
 `,
 })
-export class ReactStylesBlockComponent {
+export class NgdStylesBlockComponent {
 
   @Input() classData: any;
 

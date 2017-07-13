@@ -71,7 +71,11 @@ export const STRUCTURE = [
             block: 'methods',
             classData: 'NgaLayoutComponent',
           },
-
+          {
+            type: 'block',
+            block: 'styles',
+            classData: 'NgaLayoutComponent',
+          },
           // we may have a couple of custom components like header, text, html (or do we?)
           {
             type: 'type',

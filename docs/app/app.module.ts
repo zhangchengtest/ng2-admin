@@ -30,10 +30,8 @@ import { NgdDescriptionDirective } from './docs/utils/ngd-description.directive'
 
 import { NgdHighlighterComponent } from './docs/utils/code-highlighter.component';
 import { NgdHeaderComponent } from './components/header/ngd-header.component';
-import { ReactFooterComponent } from './components/footer/ngd-footer.component';
-
-
-// import { ReactDemoPhoneComponent } from './docs/page/blocks/react-demo-phone.component';
+import { NgdFooterComponent } from './components/footer/ngd-footer.component';
+import { NgdStylesBlockComponent } from './docs/page/blocks/ngd-styles-block.component';
 
 
 @NgModule({
@@ -64,7 +62,8 @@ import { ReactFooterComponent } from './components/footer/ngd-footer.component';
     NgdDescriptionDirective,
     NgdHighlighterComponent,
     NgdHeaderComponent,
-    ReactFooterComponent,
+    NgdFooterComponent,
+    NgdStylesBlockComponent
 
   ],
   providers: [
