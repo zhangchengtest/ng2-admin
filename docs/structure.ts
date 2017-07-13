@@ -48,46 +48,46 @@ export const STRUCTURE = [
         children: [
           {
             type: 'block',
-            block: 'description',
-            classData: 'NgaLayoutComponent',
-          },
-          {
-            type: 'block',
-            block: 'props',
+            block: 'component',
             classData: 'NgaLayoutComponent',
           },
           // {
           //   type: 'block',
-          //   block: 'class-outputs',
+          //   block: 'props',
           //   classData: 'NgaLayoutComponent',
           // },
-          {
-            type: 'block',
-            block: 'examples',
-            classData: 'NgaLayoutComponent',
-          },
-          {
-            type: 'block',
-            block: 'methods',
-            classData: 'NgaLayoutComponent',
-          },
-          {
-            type: 'block',
-            block: 'styles',
-            classData: 'NgaLayoutComponent',
-          },
-          // we may have a couple of custom components like header, text, html (or do we?)
-          {
-            type: 'type',
-            block: 'header',
-            text: 'Children components containers',
-          },
-          // tag: component will render all of the above (description, inputs, outputs, examples, runnable examples)
-          {
-            type: 'block',
-            block: 'class-component',
-            classData: 'NgaLayoutColumnComponent',
-          },
+          // // {
+          // //   type: 'block',
+          // //   block: 'class-outputs',
+          // //   classData: 'NgaLayoutComponent',
+          // // },
+          // {
+          //   type: 'block',
+          //   block: 'examples',
+          //   classData: 'NgaLayoutComponent',
+          // },
+          // {
+          //   type: 'block',
+          //   block: 'methods',
+          //   classData: 'NgaLayoutComponent',
+          // },
+          // {
+          //   type: 'block',
+          //   block: 'styles',
+          //   classData: 'NgaLayoutComponent',
+          // },
+          // // we may have a couple of custom components like header, text, html (or do we?)
+          // {
+          //   type: 'type',
+          //   block: 'header',
+          //   text: 'Children components containers',
+          // },
+          // // tag: component will render all of the above (description, inputs, outputs, examples, runnable examples)
+          // {
+          //   type: 'block',
+          //   block: 'class-component',
+          //   classData: 'NgaLayoutColumnComponent',
+          // },
         ],
       },
       {
@@ -96,57 +96,74 @@ export const STRUCTURE = [
         children: [
           {
             type: 'block',
-            block: 'description',
+            block: 'component',
             classData: 'NgaSidebarComponent',
           },
           {
             type: 'block',
-            block: 'props',
-            classData: 'NgaSidebarComponent',
-          },
-          {
-            type: 'block',
-            block: 'methods',
-            classData: 'NgaSidebarComponent',
-          },
-          {
-            type: 'block',
-            block: 'examples',
-            classData: 'NgaSidebarComponent',
-          },
-          {
-            type: 'block',
-            block: 'styles',
-            classData: 'NgaSidebarComponent',
-          },
-
-          // we may have a couple of custom components like header, text, html (or do we?)
-          {
-            type: 'block',
-            block: 'header',
-            text: 'Children components',
-          },
-          // tag: component will render all of the above (description, inputs, outputs, examples, runnable examples)
-          {
-            type: 'block',
-            block: 'class-description',
+            block: 'component',
             classData: 'NgaSidebarHeaderComponent',
           },
           {
             type: 'block',
-            block: 'class-description',
+            block: 'component',
             classData: 'NgaSidebarFooterComponent',
           },
           {
             type: 'block',
-            block: 'class-description',
+            block: 'component',
             classData: 'NgaSidebarService',
           },
-          {
-            type: 'block',
-            block: 'class-methods',
-            classData: 'NgaSidebarService',
-          },
+
+
+          // {
+          //   type: 'block',
+          //   block: 'props',
+          //   classData: 'NgaSidebarComponent',
+          // },
+          // {
+          //   type: 'block',
+          //   block: 'methods',
+          //   classData: 'NgaSidebarComponent',
+          // },
+          // {
+          //   type: 'block',
+          //   block: 'examples',
+          //   classData: 'NgaSidebarComponent',
+          // },
+          // {
+          //   type: 'block',
+          //   block: 'styles',
+          //   classData: 'NgaSidebarComponent',
+          // },
+					//
+          // // we may have a couple of custom components like header, text, html (or do we?)
+          // {
+          //   type: 'block',
+          //   block: 'header',
+          //   text: 'Children components',
+          // },
+          // // tag: component will render all of the above (description, inputs, outputs, examples, runnable examples)
+          // {
+          //   type: 'block',
+          //   block: 'class-description',
+          //   classData: 'NgaSidebarHeaderComponent',
+          // },
+          // {
+          //   type: 'block',
+          //   block: 'class-description',
+          //   classData: 'NgaSidebarFooterComponent',
+          // },
+          // {
+          //   type: 'block',
+          //   block: 'class-description',
+          //   classData: 'NgaSidebarService',
+          // },
+          // {
+          //   type: 'block',
+          //   block: 'class-methods',
+          //   classData: 'NgaSidebarService',
+          // },
         ],
       },
 

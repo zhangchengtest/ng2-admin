@@ -38,6 +38,12 @@
       margin-bottom: nga-theme(block-margin);
     }
 
+    .class-name {
+      color: nga-theme(color-primary);
+      font-size: nga-theme(class-name-font-size);
+      font-weight: bold;
+    }
+
     ngd-code-highlighter {
       display: none;
       .code-title {
