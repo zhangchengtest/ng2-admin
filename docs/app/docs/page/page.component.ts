@@ -24,11 +24,6 @@ import { Title } from '@angular/platform-browser';
             
             <ngd-markdown-block *ngSwitchCase="'markdown'" [block]="item"></ngd-markdown-block>
             <ngd-component-block *ngSwitchCase="'component'" [classData]="item.classData"></ngd-component-block>
-            <!--<ngd-description-block *ngSwitchCase="'description'" [classData]="item.classData"></ngd-description-block>-->
-            <!--<ngd-examples-block *ngSwitchCase="'examples'" [classData]="item.classData"></ngd-examples-block>-->
-            <!--<ngd-props-block *ngSwitchCase="'props'" [classData]="item.classData"></ngd-props-block>-->
-            <!--<ngd-methods-block *ngSwitchCase="'methods'" [classData]="item.classData"></ngd-methods-block>            -->
-            <!--<ngd-styles-block *ngSwitchCase="'styles'" [classData]="item.classData"></ngd-styles-block>-->
             
           </ng-container>
         </ng-container>
