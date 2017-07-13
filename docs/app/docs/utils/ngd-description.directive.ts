@@ -1,11 +1,11 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, AfterViewInit } from '@angular/core';
 import 'prismjs/components/prism-jsx.js';
 import * as marked from 'marked';
 
 @Directive({
-    selector: '[reactDescription]',
+    selector: '[ngdDescription]',
 })
-export class ReactDescriptionDirective {
+export class NgdDescriptionDirective implements AfterViewInit {
 
   constructor(private el: ElementRef) {
   }

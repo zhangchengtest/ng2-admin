@@ -7,7 +7,7 @@
 import { Routes } from '@angular/router';
 import { ReactHomepageComponent } from './homepage/homepage.component';
 import { NgdPageComponent } from './docs/page/page.component';
-import { ReactDocsComponent } from './docs/docs.component';
+import { NgdDocsComponent } from './docs/docs.component';
 
 export const routes: Routes = [
   {
@@ -21,7 +21,7 @@ export const routes: Routes = [
   },
   {
     path: 'docs',
-    component: ReactDocsComponent,
+    component: NgdDocsComponent,
     children: [{
       path: ':page',
       component: NgdPageComponent,

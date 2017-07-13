@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'react-styles-block',
   template: `
-    <div class="block-container" *ngFor="let style of klass.styles">
+    <div class="block-container" *ngFor="let style of classData.styles">
       <p class="block-title">{{ style.shortDescription }}</p>
       <table class="table">
         <thead>
@@ -22,8 +22,8 @@ import { Component, Input } from '@angular/core';
           <tr *ngFor="let item of style.styles">
             <td>{{ item.name}}</td>
             <td>
-              <p *ngIf="item.shortDescription" reactDescription>{{ item.shortDescription}}</p>
-              <p *ngIf="item.description" reactDescription>{{ item.description }}</p>
+              <p *ngIf="item.shortDescription" ngdDescription>{{ item.shortDescription}}</p>
+              <p *ngIf="item.description" ngdDescription>{{ item.description }}</p>
             </td>
           </tr>
         </tbody>
@@ -33,6 +33,6 @@ import { Component, Input } from '@angular/core';
 })
 export class ReactStylesBlockComponent {
 
-  @Input() klass: any;
+  @Input() classData: any;
 
 }

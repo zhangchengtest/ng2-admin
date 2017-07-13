@@ -7,11 +7,11 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'react-props-block',
-  template: `
+  selector: 'ngd-props-block',
+  template: `    
     <div class="block-container">
       <p class="block-title">Props</p>
-      <table class="table" *ngIf="klass.props.length > 0">
+      <table class="table" *ngIf="classData.props.length > 0">
        <thead>
          <tr>
            <td>Name</td>
@@ -20,12 +20,12 @@ import { Component, Input } from '@angular/core';
          </tr>
        </thead>
        <tbody>
-         <tr *ngFor="let prop of klass?.props">
+         <tr *ngFor="let prop of classData?.props">
            <td>{{ prop.name }}</td>
            <td><code>{{ prop.type }}</code></td>
            <td>
-              <p *ngIf="!!prop.shortDescription" reactDescription>{{ prop.shortDescription }}</p>
-              <p *ngIf="!!prop.description" reactDescription>{{ prop.description }}</p>
+              <p *ngIf="!!prop.shortDescription" ngdDescription>{{ prop.shortDescription }}</p>
+              <p *ngIf="!!prop.description" ngdDescription>{{ prop.description }}</p>
            </td>
          </tr>
        </tbody>
@@ -33,8 +33,8 @@ import { Component, Input } from '@angular/core';
     </div>
   `,
 })
-export class ReactPropsBlockComponent {
+export class NgdPropsBlockComponent {
 
-  @Input() klass: any;
+  @Input() classData: any;
 
 }

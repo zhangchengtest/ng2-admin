@@ -3,7 +3,7 @@ import * as Prism from 'prismjs';
 import 'prismjs/components/prism-jsx.js';
 
 @Component({
-  selector: 'react-code-highlighter',
+  selector: 'ngd-code-highlighter',
   template: `
     <div *ngIf="isHideEnable" class="code-title" (click)="showCode()">
       Example Code
@@ -13,7 +13,7 @@ import 'prismjs/components/prism-jsx.js';
     <pre [hidden]="!isCodeShown"><code [innerHtml]="code"></code></pre>
 `
 })
-export class CodeHighlighterComponent {
+export class NgdHighlighterComponent {
   @Input() code: string;
   isCodeShown: boolean = true;
   isHideEnable: boolean = false;

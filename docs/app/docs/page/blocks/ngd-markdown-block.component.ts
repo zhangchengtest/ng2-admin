@@ -4,10 +4,10 @@ import 'prismjs/components/prism-jsx.js';
 import * as marked from 'marked';
 
 @Component({
-  selector: 'react-markdown-block',
-  template: `<div reactDescription [innerHtml]="markdown"></div>`,
+  selector: 'ngd-markdown-block',
+  template: `<div ngdDescription [innerHtml]="markdown"></div>`,
 })
-export class ReactMarkdownComponent implements OnInit {
+export class NgdMarkdownComponent implements OnInit {
 
   @Input() block: any;
   markdown: string;

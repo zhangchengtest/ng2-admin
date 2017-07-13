@@ -12,7 +12,7 @@
   .socio {
     a, a:hover, a:focus, a:active {
       font-size: 41px;
-      color: #ff2825;
+      color: nga-theme(color-primary);
       &:first-child {
         margin-right: 10px;
       }

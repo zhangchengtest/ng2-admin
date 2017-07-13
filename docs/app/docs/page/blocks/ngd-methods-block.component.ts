@@ -7,11 +7,11 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'react-methods-block',
+  selector: 'ngd-methods-block',
   template: `
     <p class="block-title">Methods</p>
     
-    <table class="table" *ngIf="klass?.methods?.length > 0">
+    <table class="table" *ngIf="classData?.methods?.length > 0">
       <thead>
         <tr>
           <td>Name</td>
@@ -19,7 +19,7 @@ import { Component, Input } from '@angular/core';
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let method of klass?.methods">
+        <tr *ngFor="let method of classData?.methods">
           <td>{{ method.name }}</td>
           <td>
           <div class="method-signature">
@@ -33,23 +33,21 @@ import { Component, Input } from '@angular/core';
               <code>{{ method.type.join(",\\n") }}</code>
             </div>
           </div>
-          <div reactDescription>
+          <div ngdDescription>
             {{method.shortDescription}} <br> {{ method.description }} 
           </div>
           </td>
         </tr>
       </tbody>
     </table>
-    <div *ngFor="let method of klass?.methods">
+    <div *ngFor="let method of classData?.methods">
       <div *ngIf="method.examples.length > 0">
-        <react-examples-block  [klass]="method" [title]="'Examples of usage ' + method.name"></react-examples-block>
+        <ngd-examples-block  [classData]="method" [title]="'Examples of usage ' + method.name"></ngd-examples-block>
       </div>
     </div>  
 `,
 })
-export class ReactMethodsBlockComponent {
-
+export class NgdMethodsBlockComponent {
   @Input() block: any;
-  @Input() klass: any;
-
+  @Input() classData: any;
 }

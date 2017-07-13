@@ -15,6 +15,7 @@
     "start:aot": "ng serve --aot",
     "start:wp:aot": "npm run start:aot -- --app playground-wp",
     "docs:serve": "ng serve --app docs",
+    "docs:parse": "prsr -g typedoc -f angular -i docs/docs.json -o docs/output.json",
     "build": "rimraf dist && ng build",
     "build:prod": "npm run build -- --prod",
     "build:prod:aot": "npm run build:prod -- --aot",

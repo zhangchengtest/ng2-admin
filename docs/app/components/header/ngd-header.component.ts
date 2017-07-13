@@ -5,8 +5,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { DocsService } from '../../docs/docs.service';
 
 @Component({
-  selector: 'react-header',
-  styleUrls: ['react-header.component.scss'],
+  selector: 'ngd-header',
+  styleUrls: ['ngd-header.component.scss'],
   template: `
     <div class="logo-container ui-kitten">
       <a routerLink="/">
@@ -22,11 +22,11 @@ import { DocsService } from '../../docs/docs.service';
       <a class="contact-us" href="mailto:contact@akveo.com"><b>contact@akveo.com</b></a>
     </span>
     <i class="menu-icon ion-navicon" (click)="toggleMenu()"></i>
-    <nga-menu class="mobile-menu" [class.active]="isMenuActive" [items]="menuItems"></nga-menu>
+    <!--<nga-menu class="mobile-menu" [class.active]="isMenuActive" [items]="menuItems" tag="mobileMenu"></nga-menu>-->
   `,
 })
 
-export class ReactHeaderComponent implements OnInit, OnDestroy {
+export class NgdHeaderComponent implements OnInit, OnDestroy {
 
   isMenuActive: boolean = false;
   menuItems: List<NgaMenuItem> = List([]);
@@ -56,8 +56,9 @@ export class ReactHeaderComponent implements OnInit, OnDestroy {
     ]);
     this.structure = this.service.getPreparedStructure();
     this.menuSubscription = this.menuService.onItemSelect().subscribe(event => {
-      if (this.isMenuActive)
+      if (this.isMenuActive) {
         this.toggleMenu();
+      }
     });
   }
 

@@ -10,7 +10,29 @@ export const STRUCTURE = [
           {
             type: 'block',
             block: 'markdown',
-            source: 'pages/installation.md'
+            source: 'index.md'
+          }
+        ]
+      },
+      {
+        type: 'page',
+        name: 'Customization',
+        children: [
+          {
+            type: 'block',
+            block: 'markdown',
+            source: 'customization.md'
+          }
+        ]
+      },
+      {
+        type: 'page',
+        name: 'Theme',
+        children: [
+          {
+            type: 'block',
+            block: 'markdown',
+            source: 'theme.md'
           }
         ]
       }
@@ -26,23 +48,28 @@ export const STRUCTURE = [
         children: [
           {
             type: 'block',
-            block: 'class-description',
-            klass: 'NgaLayoutComponent',
+            block: 'description',
+            classData: 'NgaLayoutComponent',
           },
           {
             type: 'block',
-            block: 'class-inputs',
-            klass: 'NgaLayoutComponent',
+            block: 'props',
+            classData: 'NgaLayoutComponent',
+          },
+          // {
+          //   type: 'block',
+          //   block: 'class-outputs',
+          //   classData: 'NgaLayoutComponent',
+          // },
+          {
+            type: 'block',
+            block: 'examples',
+            classData: 'NgaLayoutComponent',
           },
           {
             type: 'block',
-            block: 'class-outputs',
-            klass: 'NgaLayoutComponent',
-          },
-          {
-            type: 'block',
-            block: 'class-examples',
-            klass: 'NgaLayoutComponent',
+            block: 'methods',
+            classData: 'NgaLayoutComponent',
           },
 
           // we may have a couple of custom components like header, text, html (or do we?)
@@ -55,7 +82,7 @@ export const STRUCTURE = [
           {
             type: 'block',
             block: 'class-component',
-            klass: 'NgaLayoutColumnComponent',
+            classData: 'NgaLayoutColumnComponent',
           },
         ],
       },
@@ -65,28 +92,28 @@ export const STRUCTURE = [
         children: [
           {
             type: 'block',
-            block: 'class-description',
-            klass: 'NgaSidebarComponent',
+            block: 'description',
+            classData: 'NgaSidebarComponent',
           },
           {
             type: 'block',
-            block: 'class-inputs',
-            klass: 'NgaSidebarComponent',
+            block: 'props',
+            classData: 'NgaSidebarComponent',
           },
           {
             type: 'block',
-            block: 'class-outputs',
-            klass: 'NgaSidebarComponent',
+            block: 'methods',
+            classData: 'NgaSidebarComponent',
           },
           {
             type: 'block',
-            block: 'class-examples',
-            klass: 'NgaSidebarComponent',
+            block: 'examples',
+            classData: 'NgaSidebarComponent',
           },
           {
             type: 'block',
-            block: 'class-theme',
-            klass: 'NgaSidebarComponent',
+            block: 'styles',
+            classData: 'NgaSidebarComponent',
           },
 
           // we may have a couple of custom components like header, text, html (or do we?)
@@ -99,22 +126,22 @@ export const STRUCTURE = [
           {
             type: 'block',
             block: 'class-description',
-            klass: 'NgaSidebarHeaderComponent',
+            classData: 'NgaSidebarHeaderComponent',
           },
           {
             type: 'block',
             block: 'class-description',
-            klass: 'NgaSidebarFooterComponent',
+            classData: 'NgaSidebarFooterComponent',
           },
           {
             type: 'block',
             block: 'class-description',
-            klass: 'NgaSidebarService',
+            classData: 'NgaSidebarService',
           },
           {
             type: 'block',
             block: 'class-methods',
-            klass: 'NgaSidebarService',
+            classData: 'NgaSidebarService',
           },
         ],
       },

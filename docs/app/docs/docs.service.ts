@@ -34,8 +34,8 @@ export class DocsService {
 
   protected prepareStructure(structure, preparedDocs ) {
     structure.map((item: any) => {
-      if (item.type === 'block' && typeof item.klass === 'string') {
-        item.klass = this.getKlass(item.klass, preparedDocs.classes);
+      if (item.type === 'block' && typeof item.classData === 'string') {
+        item.classData = this.getClassData(item.classData, preparedDocs.classes);
       }
       if (item.children) {
         item.children = this.prepareStructure(item.children, preparedDocs);
@@ -44,7 +44,7 @@ export class DocsService {
     return structure;
   }
 
-  protected getKlass(name: string, items: any): Object {
+  protected getClassData(name: string, items: any): Object {
     return items.find((item) => item.name === name );
   }
 

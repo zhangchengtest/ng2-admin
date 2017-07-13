@@ -4,8 +4,8 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component, OnDestroy } from '@angular/core';
+import { Router }  from '@angular/router';
 import { List } from 'immutable';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -14,15 +14,14 @@ import { NgaMenuService, NgaMenuItem } from '@akveo/nga-theme';
 import { NgaMenuInternalService } from '@akveo/nga-theme/components/menu/menu.service';
 
 import 'rxjs/add/operator/filter';
-import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'react-docs',
+  selector: 'ngd-docs',
   styleUrls: ['docs.component.scss'],
   template: `
      <nga-layout>
       <nga-layout-header fixed>
-        <react-header></react-header>
+        <ngd-header></ngd-header>
       </nga-layout-header>
       <nga-sidebar>
         <nga-sidebar-content>
@@ -35,11 +34,10 @@ import { Title } from '@angular/platform-browser';
     </nga-layout>
   `,
 })
-export class ReactDocsComponent implements OnDestroy {
+export class NgdDocsComponent implements OnDestroy {
 
   structure: any;
   menuItems: List<NgaMenuItem> = List([]);
-  private menuItemSubscription: Subscription;
   private routerSubscription: Subscription;
 
   constructor(private service: DocsService,
@@ -58,7 +56,6 @@ export class ReactDocsComponent implements OnDestroy {
         }
       });
   }
-
   ngOnDestroy() {
     this.routerSubscription.unsubscribe();
   }

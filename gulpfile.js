@@ -6,6 +6,7 @@ const rename = require('gulp-rename');
 const resolve = require('rollup-plugin-node-resolve');
 const semver = require('semver');
 const bump = require('gulp-bump');
+var typedoc = require('gulp-typedoc');
 
 const VERSION = require('./package.json').version;
 
@@ -275,4 +276,25 @@ function bundle(config) {
     })))
     .pipe(rename(config.output))
     .pipe(gulp.dest(config.dest));
+}
+
+gulp.task('generate-doc-json', generateDocJson);
+
+function generateDocJson() {
+  return gulp
+    .src(['src/framework/**/*.ts', '!src/framework/theme/**/node_modules{,/**}'])
+    .pipe(typedoc({
+      module: 'commonjs',
+      target: 'ES6',
+      // TODO: ignoreCompilerErrors, huh?
+      ignoreCompilerErrors: true,
+      includeDeclarations: true,
+      emitDecoratorMetadata: true,
+      experimentalDecorators: true,
+      excludeExternals: true,
+      exclude: 'node_modules/**/*',
+      json: 'docs/docs.json',
+      version: true,
+      noLib: true
+    }));
 }
