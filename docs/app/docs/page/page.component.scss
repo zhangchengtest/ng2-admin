@@ -10,6 +10,39 @@
       }
     }
 
+    .block-title {
+      font-size: nga-theme(block-title-font-size);
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+
+    ngd-code-highlighter {
+      display: none;
+      .code-title {
+        background: nga-theme(code-snippets-bg);
+        padding: 0.75rem 1rem;
+        border-radius: 3px;
+        border-bottom: 1px solid rgb(224, 225, 235);
+        position: relative;
+        i {
+          position: absolute;
+          right: 1rem;
+          color: rgb(224, 225, 235);
+        }
+      }
+    }
+
+    @media screen and (max-width: 700px) {
+      ngd-examples-block {
+        & > div > pre {
+          display: none;
+        }
+        ngd-code-highlighter {
+          display: block;
+        }
+      }
+    }
+
     //nga-card-header {
     //  font-size: nga-theme(font-size-lg);
     //  font-weight: bold;
@@ -20,11 +53,6 @@
 
     //nga-card-body {
     //  font-family: nga-theme(font-main);
-    //  .block-title {
-    //    font-size: nga-theme(font-size-lg);
-    //    font-weight: bold;
-    //    margin-bottom: 2rem;
-    //  }
     //  .block-subtitle {
     //    font-size: 1.25rem;
     //    font-weight: bold;
@@ -61,21 +89,7 @@
     //      color: nga-theme(color-fg);
     //    }
     //  }
-    //  react-code-highlighter {
-    //    display: none;
-    //    .code-title {
-    //      background: nga-theme(code-snippets-bg);
-    //      padding: 0.75rem 1rem;
-    //      border-radius: 3px;
-    //      border-bottom: 1px solid rgb(224, 225, 235);
-    //      position: relative;
-    //      i {
-    //        position: absolute;
-    //        right: 1rem;
-    //        color: rgb(224, 225, 235);
-    //      }
-    //    }
-    //  }
+
     //
     //  react-methods-block {
     //    .method-signature {
@@ -96,24 +110,8 @@
     //  //  }
     //  //}
     //
-    //  //@media screen and (max-width: 700px) {
-    //  //  react-examples-block {
-    //  //    & > div > pre {
-    //  //      display: none;
-    //  //    }
-    //  //    react-code-highlighter {
-    //  //      display: block;
-    //  //    }
-    //  //  }
-    //  //}
+
     //}
   }
 }
-
-
-
-
-
-
-
 
