@@ -22,7 +22,7 @@ import { DocsService } from '../../docs/docs.service';
       <a class="contact-us" href="mailto:contact@akveo.com"><b>contact@akveo.com</b></a>
     </span>
     <i class="menu-icon ion-navicon" (click)="toggleMenu()"></i>
-    <!--<nga-menu class="mobile-menu" [class.active]="isMenuActive" [items]="menuItems" tag="mobileMenu"></nga-menu>-->
+    <nga-menu inverse class="mobile-menu" [class.active]="isMenuActive" [items]="menuItems" tag="mobileMenu"></nga-menu>
   `,
 })
 
@@ -33,9 +33,6 @@ export class NgdHeaderComponent implements OnInit, OnDestroy {
 
   private structure: any;
   private menuSubscription: Subscription;
-
-  @HostBinding('class.transparent')
-  private transparent: boolean = true;
 
   constructor(private service: DocsService,
               private menuService: NgaMenuService,

@@ -20,61 +20,23 @@ $nga-enabled-themes: (default);
 
 $nga-themes: nga-register-theme((
 
-  //just my vars
   kitten-font: unquote('Righteous, cursive'),
   layout-content-padding: 0 1rem,
   color-fg-active: rgba(255, 40, 36, 0.87),
-
-  header-menu-width: 320px,
   color-fg-inverse: white,
-
-  right-sidebar-width: 17.5rem,
-  code-snippets-bg: rgb(245, 246, 252),
-  menu-submenu-padding: 0,
-
   block-title-font-size: font-size-lg,
   block-subtitle-font-size: font-size,
   block-margin: 3rem,
   class-name-font-size: font-size-lg,
+  code-snippets-bg: rgb(245, 246, 252),
   inline-code-color: color-fg-active,
+  content-width: 100%,//for fixed width just define it
+  section-padding: 2rem 0 5rem,
 
-
-  //////////////////////////////////////////////////////////////////////
-  //only needed for proper componentsw display vars:
   header-height: 80px,
   header-line-height: header-height,
   header-padding: 0,
   layout-padding: 0, //layout-column padding actualy, content padding
-  layout-content-width: 1312px,//Useless in framework styles, make contents centered and with fixedwidth in docs.component.scss
   color-fg: rgba(0, 0, 0, 0.87),
 
-  //docs-content-margin-top: 1.5rem,
-  //content-width: 1312px,
-  //font-main: unquote('Roboto, sans-serif'),
-  //font-secondary: font-main,
-  //color-bg: white,
-  //color-primary: #ff241f,
-  //header-bg: white,
-  //header-fg: rgba(black, 0.75),
-  //shadow: none,
-
-  //menu-font-size: 1.25rem,
-  //menu-fg: color-fg,
-  //card-line-height: 1.25,
-  //sidebar-width: 12rem,
-  //menu-active-bg: color-bg,
-  //menu-active-fg: color-fg-active,
-  //menu-submenu-active-fg: color-fg-active,
-  //menu-submenu-active-bg: color-bg,
-  //footer-height: 100px,
-  //footer-bg: color-bg,
-  //footer-fg: color-fg,
-  //footer-padding: 1rem,
-  //layout-line-height: 1.5,
-  //sidebar-bg: color-bg,
-  //card-font-weight: 400,
-  //card-padding: 1rem,
-  //font-size-lg: 2rem,
-  //sidebar-padding: 0.5rem,
-  //footer-separator: rgba(0, 0, 0, 0.1),
 ), default, default);

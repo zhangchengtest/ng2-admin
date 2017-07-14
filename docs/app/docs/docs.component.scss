@@ -7,63 +7,26 @@
   }
 
   /deep/ .layout-container {
-    //max-width: nga-theme(content-width);
-    //width: 100%;
-    //margin-left:auto;
-    //margin-right: auto;
-    //padding: nga-theme(layout-content-padding);
+    max-width: nga-theme(content-width);
+    width: 100%;
+    margin-left:auto;
+    margin-right: auto;
     .content {
       min-width: 0;
       nga-layout-column {
         min-width: 0;
-        //padding: 0 0 0 1rem;
       }
     }
 
     nga-sidebar {
       z-index: auto; // Really need it to make sidebar content visible in ie
     }
-    //  .scrollable {
-    //    height: calc(100vh - #{nga-theme(header-height)} - #{nga-theme(docs-content-margin-top)});
-    //  }
-		//
-    //  nga-menu {
-    //    & > ul > li {
-    //      padding: 0.5rem 0;
-    //      & > a:first-child {
-    //        font-weight: bold;
-    //        cursor: default;
-    //      }
-    //    }
-    //    a {
-    //      padding-left: 0;
-    //      font-weight: 400;
-    //      &.active {
-    //        font-weight: bold;
-    //      }
-    //    }
-    //    i {
-    //      display: none;
-    //    }
-    //    .menu-collapsed {
-    //      visibility: visible;
-    //      opacity: 1;
-    //      height: 100%;
-    //    }
-    //  }
-    //}
+
   }
 
   @media screen and (max-width: 900px) {
     nga-sidebar {
       display: none;
     }
-    ///deep/ .layout-container {
-    //  padding: 0;
-    //  .content nga-layout-column {
-    //    padding: 0;
-    //  }
-    //}
   }
-
 }

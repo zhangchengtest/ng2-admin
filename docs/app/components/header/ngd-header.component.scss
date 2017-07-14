@@ -14,15 +14,6 @@
       align-items: center;
     }
 
-    .logo {
-      display: inline-block;
-      background-size: contain;
-      vertical-align: middle;
-      width: 65px;
-      height: 44px;
-      margin-right: 12px;
-    }
-
     .svg-logo {
       width: 65px;
       height: 44px;
@@ -31,7 +22,6 @@
   }
 
   .menu {
-    width: nga-theme(header-menu-width);
     margin: auto;
     font-size: 20px;
     font-weight: bold;
@@ -40,7 +30,7 @@
       position: relative;
       display: inline-block;
       height: nga-theme(header-height);
-      padding: 0 20px;
+      padding: 0 1rem;
 
       &.active-link::before {
         position: absolute;
@@ -69,35 +59,6 @@
     overflow: hidden;
     background: nga-theme(color-bg);
     transition: height 0.3s ease-out;
-    a, a:hover {
-      color: nga-theme(color-fg);
-      font-weight: bold;
-      padding: 0.375rem 1rem;
-    }
-    & > ul > li {
-      padding: 0.25rem 0;
-      & > a:first-child {
-        &:not([ng-reflect-router-link]) {
-          pointer-events: none;
-        }
-      }
-    }
-    i {
-      display: none;
-    }
-    .menu-collapsed, .menu-expanded {
-      visibility: visible;
-      opacity: 1;
-      height: 100%;
-      a {
-        padding-left: 1rem;
-        font-weight: normal;
-        &.active {
-          font-weight: bold;
-          color: nga-theme(color-fg-active);
-        }
-      }
-    }
   }
 
   @media screen and (max-width: 1500px) and (min-width: 900px) {
