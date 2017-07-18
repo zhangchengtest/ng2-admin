@@ -4,8 +4,8 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, OnDestroy } from '@angular/core';
-import { Router }  from '@angular/router';
+import { Component, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
+import { Router, ActivatedRoute }  from '@angular/router';
 import { List } from 'immutable';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -42,7 +42,9 @@ export class NgdDocsComponent implements OnDestroy {
 
   constructor(private service: DocsService,
               private router: Router,
-              private menuInternalService: NgaMenuInternalService) {
+              private route: ActivatedRoute,
+              private menuInternalService: NgaMenuInternalService,
+              private elementRef: ElementRef) {
 
     this.menuItems = this.service.getPreparedMenu();
     this.structure = this.service.getPreparedStructure();
@@ -56,6 +58,21 @@ export class NgdDocsComponent implements OnDestroy {
         }
       });
   }
+
+  ngAfterViewInit() {
+    this.route.fragment
+      .delay(50)
+      .subscribe((fr) => {
+        if (fr) {
+          let el = this.elementRef.nativeElement.querySelector(`#${fr}`);
+          el.scrollIntoView();
+          window.scrollBy(0, -80);
+        } else {
+          window.scrollTo(0, 0);
+        }
+      })
+  }
+
   ngOnDestroy() {
     this.routerSubscription.unsubscribe();
   }

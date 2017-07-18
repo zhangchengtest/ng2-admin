@@ -33,6 +33,7 @@ import { NgdHeaderComponent } from './components/header/ngd-header.component';
 import { NgdFooterComponent } from './components/footer/ngd-footer.component';
 import { NgdStylesBlockComponent } from './docs/page/blocks/basic-blocks/ngd-styles-block.component';
 import { NgdComponentBlockComponent } from './docs/page/blocks/ngd-component-block.component';
+import { NgdFragmentDirective } from './docs/utils/ngd-fragment';
 
 
 @NgModule({
@@ -65,8 +66,8 @@ import { NgdComponentBlockComponent } from './docs/page/blocks/ngd-component-blo
     NgdHeaderComponent,
     NgdFooterComponent,
     NgdStylesBlockComponent,
-    NgdComponentBlockComponent
-
+    NgdComponentBlockComponent,
+    NgdFragmentDirective
   ],
   providers: [
     DocsService,

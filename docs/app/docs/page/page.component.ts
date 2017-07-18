@@ -39,29 +39,24 @@ export class NgdPageComponent implements OnDestroy, OnInit {
 
   constructor(private menuService: NgaMenuService,
               private router: Router,
-              private renderer: Renderer2,
-              private titleService: Title) {  }
+              private titleService: Title){ }
 
   ngOnInit() {
-    this.initialRouterSubscription = this.menuService.getSelectedItem()
+    this.initialRouterSubscription = this.menuService.getSelectedItem('leftMenu')
       .subscribe((event: {tag: string, item: any}) => {
         if (event && event.item && event.item.data) {
           this.currentItem = event.item.data;
           this.titleService.setTitle(`NGA Documentation - ${event.item.data.name}`);
-
-          this.renderer.setProperty(document.body, 'scrollTop', 0);
         }
       });
 
     this.routerSubscription = this.router.events
       .filter(event => event instanceof NavigationEnd)
-      .switchMap(event => this.menuService.getSelectedItem())
+      .switchMap(event => this.menuService.getSelectedItem('leftMenu'))
       .subscribe((event: {tag: string, item: any}) => {
-        if (event &&  event.item && event.item.data) {
+        if (event && event.item && event.item.data) {
           this.currentItem = event.item.data;
           this.titleService.setTitle(`NGA Documentation - ${event.item.data.name}`);
-
-          this.renderer.setProperty(document.body, 'scrollTop', 0);
         }
       });
   }

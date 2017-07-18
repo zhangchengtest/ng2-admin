@@ -58,7 +58,7 @@ export class DocsService {
       }
 
       menuItem['data'] = item;
-      menuItem['pathMath'] = 'full';
+      menuItem['pathMath'] = 'false';
       menuItem['title'] = item.name;
 
       if (item.children && item.children[0] && item.children[0].type === 'page') {
