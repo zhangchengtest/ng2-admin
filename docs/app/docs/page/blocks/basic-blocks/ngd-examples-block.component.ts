@@ -11,8 +11,8 @@ import 'prismjs/components/prism-jsx.js';
 @Component({
   selector: 'ngd-examples-block',
   template: `
-    <p class="block-title">{{ title }}</p>
-    <div class="block-container" *ngFor="let example of classData.examples">
+    <p class="block-title"><a [routerLink]="" fragment="{{className}}Examples" ngdFragment> <i class="ion-link"></i></a> {{ title }}</p>
+    <div class="block-container" *ngFor="let example of classExamples">
       <p class="block-subtitle">{{example.shortDescription}}</p>
       <p ngdDescription>{{example.description}}</p>
       <ngd-code-highlighter [code]="example.code.trim()"></ngd-code-highlighter>
@@ -21,8 +21,16 @@ import 'prismjs/components/prism-jsx.js';
 `,
 })
 export class NgdExamplesBlockComponent {
+
+  classExamples: any;
+  className: string;
+
   @Input() title: any = 'Usage';
-  @Input() classData: any;
+  @Input('classData')
+  set setProps(classData: any) {
+    this.classExamples = classData.examples;
+    this.className = classData.name;
+  }
 
   getContent(str) {
     return Prism.highlight(str.trim(), Prism.languages.jsx);

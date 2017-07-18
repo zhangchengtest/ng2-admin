@@ -2,6 +2,7 @@
 
 @include nga-install-component {
   /deep/ nga-card {
+
     a {
       color: nga-theme(color-fg-active);
 
@@ -14,6 +15,17 @@
       font-size: nga-theme(block-title-font-size);
       font-weight: bold;
       margin-bottom: 2rem;
+    }
+
+
+    .fragment {
+      opacity: 0;
+      font-size: 2rem;
+      vertical-align: middle;
+    }
+
+    .class-name:hover > .fragment, .block-title:hover > .fragment {
+      opacity: 1;
     }
 
     .block-subtitle {

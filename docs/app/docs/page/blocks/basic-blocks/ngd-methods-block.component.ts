@@ -9,9 +9,9 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'ngd-methods-block',
   template: `
-    <p class="block-title">Methods</p>
+    <p class="block-title"><a [routerLink]="" fragment="{{className}}Methods" ngdFragment> <i class="ion-link"></i></a> Methods</p>
     
-    <table class="table" *ngIf="classData?.methods?.length > 0">
+    <table class="table" *ngIf="classMethods?.length > 0">
       <thead>
         <tr>
           <td>Name</td>
@@ -19,7 +19,7 @@ import { Component, Input } from '@angular/core';
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let method of classData?.methods">
+        <tr *ngFor="let method of classMethods">
           <td>{{ method.name }}</td>
           <td>
           <div class="method-signature">
@@ -40,7 +40,7 @@ import { Component, Input } from '@angular/core';
         </tr>
       </tbody>
     </table>
-    <div *ngFor="let method of classData?.methods">
+    <div *ngFor="let method of classMethods">
       <div *ngIf="method.examples.length > 0">
         <ngd-examples-block  [classData]="method" [title]="'Examples of usage ' + method.name"></ngd-examples-block>
       </div>
@@ -48,6 +48,14 @@ import { Component, Input } from '@angular/core';
 `,
 })
 export class NgdMethodsBlockComponent {
+
+  classMethods: any;
+  className: string;
+
   @Input() block: any;
-  @Input() classData: any;
+  @Input('classData')
+  set setProps(classData: any) {
+    this.classMethods = classData.methods;
+    this.className = classData.name;
+  };
 }

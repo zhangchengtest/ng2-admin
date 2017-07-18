@@ -9,8 +9,8 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'ngd-styles-block',
   template: `
-    <div class="block-container" *ngFor="let style of classData.styles">
-      <p class="block-title">{{ style.shortDescription }}</p>
+    <div class="block-container" *ngFor="let style of classStyles">
+      <p class="block-title"><a [routerLink]="" fragment="{{className}}Styles" ngdFragment> <i class="ion-link"></i></a> {{ style.shortDescription }}</p>
       <table class="table">
         <thead>
           <tr>
@@ -33,6 +33,13 @@ import { Component, Input } from '@angular/core';
 })
 export class NgdStylesBlockComponent {
 
-  @Input() classData: any;
+  classStyles: any;
+  className: string;
+
+  @Input('classData')
+  set setProps(classData: any) {
+    this.classStyles = classData.styles;
+    this.className = classData.name;
+  };
 
 }
