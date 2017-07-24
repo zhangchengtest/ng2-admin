@@ -24,6 +24,7 @@ import { Title } from '@angular/platform-browser';
             
             <ngd-markdown-block *ngSwitchCase="'markdown'" [block]="item"></ngd-markdown-block>
             <ngd-component-block *ngSwitchCase="'component'" [blockData]="item.blockData"></ngd-component-block>
+            <ngd-theme-block *ngSwitchCase="'theme'" [block]="item"></ngd-theme-block>
             
           </ng-container>
         </ng-container>

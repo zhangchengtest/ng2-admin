@@ -56,6 +56,15 @@
       font-weight: bold;
     }
 
+    .color-swatch > div {
+      display: inline-block;
+      border: 1px solid black;
+      width: 15px;
+      height: 15px;
+      margin-left: 10px;
+      border-radius: 2px;
+    }
+
     ngd-code-highlighter {
       display: none;
       .code-title {

@@ -34,6 +34,9 @@ import { NgdFooterComponent } from './components/footer/ngd-footer.component';
 import { NgdStylesBlockComponent } from './docs/page/blocks/basic-blocks/ngd-styles-block.component';
 import { NgdComponentBlockComponent } from './docs/page/blocks/ngd-component-block.component';
 import { NgdFragmentDirective } from './docs/utils/ngd-fragment';
+import { NgdThemeComponent } from './docs/page/blocks/ngd-theme-block.component';
+import { ObjValuesPipe } from './docs/utils/obj-values.pipe';
+import { NgdColorSwatchDirective } from './docs/utils/ngd-color-swatch.directive';
 
 
 @NgModule({
@@ -67,7 +70,10 @@ import { NgdFragmentDirective } from './docs/utils/ngd-fragment';
     NgdFooterComponent,
     NgdStylesBlockComponent,
     NgdComponentBlockComponent,
-    NgdFragmentDirective
+    NgdFragmentDirective,
+    NgdThemeComponent,
+    ObjValuesPipe,
+    NgdColorSwatchDirective
   ],
   providers: [
     DocsService,
