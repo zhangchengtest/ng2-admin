@@ -4,7 +4,7 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, Renderer2, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 import { NgaMenuService } from '@akveo/nga-theme';
@@ -23,7 +23,7 @@ import { Title } from '@angular/platform-browser';
           <ng-container [ngSwitch]="item.block">
             
             <ngd-markdown-block *ngSwitchCase="'markdown'" [block]="item"></ngd-markdown-block>
-            <ngd-component-block *ngSwitchCase="'component'" [classData]="item.classData"></ngd-component-block>
+            <ngd-component-block *ngSwitchCase="'component'" [blockData]="item.blockData"></ngd-component-block>
             
           </ng-container>
         </ng-container>

@@ -42,7 +42,7 @@ import { Component, Input } from '@angular/core';
     </table>
     <div *ngFor="let method of classMethods">
       <div *ngIf="method.examples.length > 0">
-        <ngd-examples-block  [classData]="method" [title]="'Examples of usage ' + method.name"></ngd-examples-block>
+        <ngd-examples-block  [blockData]="method" [title]="'Examples of usage ' + method.name"></ngd-examples-block>
       </div>
     </div>  
 `,
@@ -53,9 +53,9 @@ export class NgdMethodsBlockComponent {
   className: string;
 
   @Input() block: any;
-  @Input('classData')
-  set setProps(classData: any) {
-    this.classMethods = classData.methods;
-    this.className = classData.name;
+  @Input('blockData')
+  set setProps(blockData: any) {
+    this.classMethods = blockData.methods;
+    this.className = blockData.name;
   };
 }

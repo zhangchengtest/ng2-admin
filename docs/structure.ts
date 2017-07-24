@@ -49,45 +49,8 @@ export const STRUCTURE = [
           {
             type: 'block',
             block: 'component',
-            classData: 'NgaLayoutComponent',
+            blockData: 'NgaLayoutComponent',
           },
-          // {
-          //   type: 'block',
-          //   block: 'props',
-          //   classData: 'NgaLayoutComponent',
-          // },
-          // // {
-          // //   type: 'block',
-          // //   block: 'class-outputs',
-          // //   classData: 'NgaLayoutComponent',
-          // // },
-          // {
-          //   type: 'block',
-          //   block: 'examples',
-          //   classData: 'NgaLayoutComponent',
-          // },
-          // {
-          //   type: 'block',
-          //   block: 'methods',
-          //   classData: 'NgaLayoutComponent',
-          // },
-          // {
-          //   type: 'block',
-          //   block: 'styles',
-          //   classData: 'NgaLayoutComponent',
-          // },
-          // // we may have a couple of custom components like header, text, html (or do we?)
-          // {
-          //   type: 'type',
-          //   block: 'header',
-          //   text: 'Children components containers',
-          // },
-          // // tag: component will render all of the above (description, inputs, outputs, examples, runnable examples)
-          // {
-          //   type: 'block',
-          //   block: 'class-component',
-          //   classData: 'NgaLayoutColumnComponent',
-          // },
         ],
       },
       {
@@ -97,77 +60,55 @@ export const STRUCTURE = [
           {
             type: 'block',
             block: 'component',
-            classData: 'NgaSidebarComponent',
+            blockData: 'NgaSidebarComponent',
           },
           {
             type: 'block',
             block: 'component',
-            classData: 'NgaSidebarHeaderComponent',
+            blockData: 'NgaSidebarHeaderComponent',
           },
           {
             type: 'block',
             block: 'component',
-            classData: 'NgaSidebarFooterComponent',
+            blockData: 'NgaSidebarFooterComponent',
+            name: 'true'
           },
           {
             type: 'block',
             block: 'component',
-            classData: 'NgaSidebarService',
-          },
-
-
-          // {
-          //   type: 'block',
-          //   block: 'props',
-          //   classData: 'NgaSidebarComponent',
-          // },
-          // {
-          //   type: 'block',
-          //   block: 'methods',
-          //   classData: 'NgaSidebarComponent',
-          // },
-          // {
-          //   type: 'block',
-          //   block: 'examples',
-          //   classData: 'NgaSidebarComponent',
-          // },
-          // {
-          //   type: 'block',
-          //   block: 'styles',
-          //   classData: 'NgaSidebarComponent',
-          // },
-					//
-          // // we may have a couple of custom components like header, text, html (or do we?)
-          // {
-          //   type: 'block',
-          //   block: 'header',
-          //   text: 'Children components',
-          // },
-          // // tag: component will render all of the above (description, inputs, outputs, examples, runnable examples)
-          // {
-          //   type: 'block',
-          //   block: 'class-description',
-          //   classData: 'NgaSidebarHeaderComponent',
-          // },
-          // {
-          //   type: 'block',
-          //   block: 'class-description',
-          //   classData: 'NgaSidebarFooterComponent',
-          // },
-          // {
-          //   type: 'block',
-          //   block: 'class-description',
-          //   classData: 'NgaSidebarService',
-          // },
-          // {
-          //   type: 'block',
-          //   block: 'class-methods',
-          //   classData: 'NgaSidebarService',
-          // },
+            blockData: 'NgaSidebarService',
+          }
         ],
       },
 
 
     ],
   },
+  {
+    type: 'section',
+    name: 'Themes',
+    children: [
+      {
+        type: 'page',
+        name: 'NgaThemes',
+        children: [
+          {
+            type: 'block',
+            block: 'theme',
+            blockData: 'default',
+          },
+          {
+            type: 'block',
+            block: 'theme',
+            blockData: 'light',
+          },
+          {
+            type: 'block',
+            block: 'theme',
+            blockData: 'cosmic',
+          },
+        ],
+      }
+    ]
+  }
 ];

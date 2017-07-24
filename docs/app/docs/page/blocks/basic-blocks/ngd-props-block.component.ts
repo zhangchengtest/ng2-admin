@@ -61,11 +61,11 @@ export class NgdPropsBlockComponent {
   classInputs: any = [];
   className: string;
 
-  @Input('classData')
-  set setProps(classData: any) {
-    this.classInputs = classData.props.filter(item => item.kind === "input");
-    this.classOutputs = classData.props.filter(item => item.kind === "output");
-    this.className = classData.name;
+  @Input('blockData')
+  set setProps(blockData: any) {
+    this.classInputs = blockData.props.filter(item => item.kind === "input");
+    this.classOutputs = blockData.props.filter(item => item.kind === "output");
+    this.className = blockData.name;
   }
 
 }

@@ -30,12 +30,14 @@ export class DocsService {
     return this.prepareStructure(this.getStructure(), this.getParsedDocs());
   }
 
-
-
-  protected prepareStructure(structure, preparedDocs ) {
+  protected prepareStructure(structure, preparedDocs) {
     structure.map((item: any) => {
-      if (item.type === 'block' && typeof item.classData === 'string') {
-        item.classData = this.getClassData(item.classData, preparedDocs.classes);
+      if (item.type === 'block' && typeof item.blockData === 'string') {
+        if (item.block === 'theme') {
+          item.blockData = preparedDocs.themes[item.blockData]
+        } else {
+          item.blockData = preparedDocs.classes.find((data) => data.name === item.blockData );
+        }
       }
       if (item.children) {
         item.children = this.prepareStructure(item.children, preparedDocs);
@@ -44,27 +46,25 @@ export class DocsService {
     return structure;
   }
 
-  protected getClassData(name: string, items: any): Object {
-    return items.find((item) => item.name === name );
-  }
-
   protected prepareMenu(structure, parentLink?: string, prependMenu?: any): any {
 
     let menuItems = structure.map((item: any) => {
-      const menuItem: any = {};
-      const itemLink = `${parentLink ? parentLink : ''}/${item.name.replace(/\s/, '-').toLowerCase()}`;
-      if (item.type !== 'section') {
-        menuItem['link'] = itemLink;
-      }
+      if (item.name) {
+        const menuItem: any = {};
+        const itemLink = `${parentLink ? parentLink : ''}/${item.name.replace(/\s/, '-').toLowerCase()}`;
+        if (item.type !== 'section') {
+          menuItem['link'] = itemLink;
+        }
 
-      menuItem['data'] = item;
-      menuItem['pathMath'] = 'false';
-      menuItem['title'] = item.name;
+        menuItem['data'] = item;
+        menuItem['pathMath'] = 'false';
+        menuItem['title'] = item.name;
 
-      if (item.children && item.children[0] && item.children[0].type === 'page') {
-        menuItem['children'] = this.prepareMenu(item.children, itemLink);
+        if (item.children && item.children[0] && item.children[0].type === 'page') {
+          menuItem['children'] = this.prepareMenu(item.children, itemLink);
+        }
+        return menuItem;
       }
-      return menuItem;
     });
 
     if (prependMenu) {

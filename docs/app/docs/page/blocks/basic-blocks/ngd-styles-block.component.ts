@@ -36,10 +36,10 @@ export class NgdStylesBlockComponent {
   classStyles: any;
   className: string;
 
-  @Input('classData')
-  set setProps(classData: any) {
-    this.classStyles = classData.styles;
-    this.className = classData.name;
+  @Input('blockData')
+  set setProps(blockData: any) {
+    this.classStyles = blockData.styles;
+    this.className = blockData.name;
   };
 
 }
