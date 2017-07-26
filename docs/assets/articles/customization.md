@@ -1,111 +1,128 @@
-### Overview
-`react-native-ui-kitten` components have very flexible customization ability.
+---
+title: Changing Color Scheme
+author: vl
+sort: 900
+group: Customization
+template: article.jade
+---
 
-### rkType
+We tried to make the process of color scheme customization as easy as possible. 
 
-Most of the components in this framework contain *rkType* property.
-For those who familiar with web, you can think of it as a HTML *class* property.
-Basically the main idea is to split style definitions from jsx templates.
-Our components already have a set of predefined rkTypes. 
-Or you can configure *rkType*s in somewhere in your application and after that you're able to reuse that style in your components by just passing it as an input property.
-As well, there's always a possibility to override types for some specific component.
+By default ng2-admin has three built-in color profiles: ng2 (default blue scheme), mint and blur.
+This article will help you to create your own color profile.
+Let's say you want to make ng2-admin dark theme.
 
-For example, consider this code: 
+First we advise you to take some existing colorscheme file as a starting point. 
+For light themes we suggest taking `src/app/theme/sass/conf/colorScheme/_mint.scss` and for 
+dark `src/app/theme/sass/conf/colorScheme/_blue.scss`.
+As we want a dark theme, we're taking `blue`.
 
-```jsx
-import {RkButton} from 'react-native-ui-kitten';
+1) Copy `src/app/theme/sass/conf/colorScheme/_blue.scss` to `src/app/theme/sass/conf/colorScheme/_dark.scss`:
+<br><br>
 
-//... 
+2) Include your colorscheme file in `src/app/theme/sass/conf/conf.scss`.
 
-<RkButton rkType='outline small'>
-  Say Hello
-</RkButton>
+To do this, replace
+```scss
+@import 'colorSchemes/ng2';
+```
+
+with
+
+```scss
+@import 'colorSchemes/dark';
+```
+<br><br>
+
+3) Change the color scheme enabled:
+
+Open `src/app/theme/theme.config.ts`.
+Uncomment the following line
+
+```javascript
+  //this._baConfig.changeTheme({name: 'my-theme'});
+``` 
+
+and put your theme name, in our case it is `dark`
+
+```javascript
+  this._baConfig.changeTheme({name: 'dark'});
+``` 
+Beside notifying the system which scheme is currently enabled, this also puts a css class to a main element 
+of the page. Thus you can freely create theme-specific css selectors in your code without breakking other themes' styles.
+
+For example like this:
+```scss
+. dark .card-body {
+  background-color: white;
+}
+```
+<br><br>
+
+4) Change the colors:
+
+Now you can start changing the colors.
+For example, after playing a bit with different colors, we changed the 2 first main variables in `_dark.scss` file:
+```sass
+$body-bg: #636363;
+$bootstrap-panel-bg: rgba(#000000, 0.2);
 
 ```
 
-In this case `RkButton` will have two styles: *outline* (style that 
-draws rounded border for button) and *small* (one that reduces button size).
+After this is done, you need to setup javascript to use the **same colors**. These colors 
+are used for javascript charts and other components (maps, etc); 
+Let's completely change the JS colors to a new set.
+To do this, add the following code to the configuration block inside `src/app/theme/theme.config.ts`:
+```javascript
+  let colorScheme = {
+    primary: '#209e91',
+    info: '#2dacd1',
+    success: '#90b900',
+    warning: '#dfb81c',
+    danger: '#e85656',
+  };
+  this._baConfig.changeColors({
+    default: '#4e4e55',
+    defaultText: '#e2e2e2',
+    border: '#dddddd',
+    borderDark: '#aaaaaa',
 
-You're able to create your custom *rkType*s for specific components.
-Here is example with creating *rkType* for rkButton:
+    primary: colorScheme.primary,
+    info: colorScheme.info,
+    success: colorScheme.success,
+    warning: colorScheme.warning,
+    danger: colorScheme.danger,
 
-```jsx
-import {RkButton, RkTheme} from 'react-native-ui-kitten';
+    primaryLight: colorHelper.tint(colorScheme.primary, 30),
+    infoLight: colorHelper.tint(colorScheme.info, 30),
+    successLight: colorHelper.tint(colorScheme.success, 30),
+    warningLight: colorHelper.tint(colorScheme.warning, 30),
+    dangerLight: colorHelper.tint(colorScheme.danger, 30),
 
-let accent = '#ed1c4d';
+    primaryDark: colorHelper.shade(colorScheme.primary, 15),
+    infoDark: colorHelper.shade(colorScheme.info, 15),
+    successDark: colorHelper.shade(colorScheme.success, 15),
+    warningDark: colorHelper.shade(colorScheme.warning, 15),
+    dangerDark: colorHelper.shade(colorScheme.danger, 15),
 
-RkTheme.setType('RkButton', 'accent', {
-  backgroundColor: accent,
-  color: 'white'
-});
-
-//...
-
-<RkButton rkType='accent'>
-  Click me.
-</RkButton>
-```
-
-### Platform-dependent styles
-
-In some cases it may be necessary to write different styles depending on current platform. There is possibility to define 
-platform dependent value. Let's create `rkType` for `RkButton` which on *iOS* will have blue background color and green on *android*.
-
-```jsx
-import {RkTheme} from 'react-native-ui-kitten';
-
-//...
-
-RkTheme.setType('RkButton','different',{
-  backgroundColor: {
-    ios: 'blue',
-    android: 'green'
-  }
-});
-
-//... or using internal control components:
-
-RkTheme.setType('RkButton','different',{
-  container: {
-    backgroundColor: {
-      ios: 'blue',
-      android: 'green'
-    }
-  }
-});
-
-```
-
-### Default values
-Sometimes it very useful to set default style for all components in whole application without need to set explicitly `rkType`
-for each component. All *rk-components* have type which always applied. Name of this type is set in `RkComponent.defaultType` variable.
-All standard *rk-components* has defaultType `basic`. In order to change style for all components - just override this type.
-
-Let's change color and size for all `RkText` components in app:
-
-```jsx
-  RkTheme.setType('RkText', 'basic', {
-    fontSize: 12,
-    color: 'midnightblue'
+    dashboard: {
+      blueStone: '#005562',
+      surfieGreen: '#0e8174',
+      silverTree: '#6eba8c',
+      gossip: '#b9f2a1',
+      white: '#10c4b5',
+    },
   });
-```
+``` 
+Here we defined a list of main colors `colorScheme` and then made light and dark versions of those using `colorHelper` methods. 
+We also defined a couple of custom colors for dashboard charts.
 
-### Themes
 
-All base *rkTypes* depends on theme of application. *Theme* contains base values (colors, fontSizes etc) for all Rk-components.
-You can easily override values in theme or even define your own theme using *[RkTheme](#/docs/ui-components/layout#NgaLayoutComponent)*.
-But user-defined *rkType*s should also be able to respond theme changes.
-For this purpose can be used property functions instead of values.
-Let's create `rkType` for `RkText` which will depend on some value from theme.
+That's basically it! Right now your admin application should look like this:
 
-```jsx
-RkTheme.setType('RkText','primaryBackground',{
-  backgroundColor: theme => theme.colors.primary
-});
-```
+![](new-color-scheme.png)
 
-Variable `theme` here is instance of current theme. So in case theme was switched using `RkTheme.setTheme` function `rkType`
- create above will be also changed and all components with this type will be also updated.
-
-Sometimes there is necessity to use theme values for regular components. In this case you need to use `RkStyleSheet`.
-More detailed about it described here [LINK]
+For further reference, please look in
+- Colorscheme scss file (`src/app/theme/sass/conf/colorScheme/_ng2.scss`, `src/app/theme/sass/conf/colorScheme/_mint.scss` and `src/app/theme/sass/conf/colorScheme/_blur.scss`)
+- `src/app/theme/theme.configProvider.js` to understand which javascript colors can be changed
+- If you want to know how to change the theme to blur, read the [following article](/ng2-admin/articles/014-switch-to-blur-theme/)

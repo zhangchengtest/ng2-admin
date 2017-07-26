@@ -20,7 +20,7 @@ $nga-enabled-themes: (default);
 
 $nga-themes: nga-register-theme((
 
-  kitten-font: unquote('Righteous, cursive'),
+  title-font: unquote('Righteous, cursive'),
   layout-content-padding: 0 1rem,
   color-fg-active: rgba(255, 40, 36, 0.87),
   color-fg-inverse: white,

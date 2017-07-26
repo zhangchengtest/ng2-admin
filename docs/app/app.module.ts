@@ -17,7 +17,7 @@ import {
 } from '@akveo/nga-theme';
 import { NgdAppComponent } from './app.component';
 import { routes } from './app.routes';
-import { ReactHomepageComponent } from './homepage/homepage.component';
+import { NgdHomepageComponent } from './homepage/homepage.component';
 import { DocsService } from './docs/docs.service';
 import { NgdDocsComponent } from './docs/docs.component';
 import { NgdPageComponent } from './docs/page/page.component';
@@ -56,7 +56,7 @@ import { NgdColorSwatchDirective } from './docs/utils/ngd-color-swatch.directive
   ],
   declarations: [
     NgdAppComponent,
-    ReactHomepageComponent,
+    NgdHomepageComponent,
     NgdDocsComponent,
     NgdPageComponent,
     NgdMarkdownComponent,
@@ -73,11 +73,11 @@ import { NgdColorSwatchDirective } from './docs/utils/ngd-color-swatch.directive
     NgdFragmentDirective,
     NgdThemeComponent,
     ObjValuesPipe,
-    NgdColorSwatchDirective
+    NgdColorSwatchDirective,
   ],
   providers: [
     DocsService,
-    Title
+    Title,
   ],
   entryComponents: [
   ],

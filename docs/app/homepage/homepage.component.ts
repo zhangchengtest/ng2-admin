@@ -3,11 +3,11 @@ import { Observable } from 'rxjs/Rx';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'react-homepage',
+  selector: 'ngd-homepage',
   templateUrl: 'homepage.component.html',
   styleUrls: ['homepage.component.scss'],
 })
-export class ReactHomepageComponent implements AfterViewInit {
+export class NgdHomepageComponent implements AfterViewInit {
   constructor(private renderer: Renderer2,
               private titleServise: Title) {
     this.renderer.setProperty(document.body, 'scrollTop', 0);

@@ -5,7 +5,7 @@
  */
 
 import { Routes } from '@angular/router';
-import { ReactHomepageComponent } from './homepage/homepage.component';
+import { NgdHomepageComponent } from './homepage/homepage.component';
 import { NgdPageComponent } from './docs/page/page.component';
 import { NgdDocsComponent } from './docs/docs.component';
 
@@ -17,7 +17,7 @@ export const routes: Routes = [
   },
   {
     path: 'home',
-    component: ReactHomepageComponent,
+    component: NgdHomepageComponent,
   },
   {
     path: 'docs',
