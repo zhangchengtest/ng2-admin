@@ -32,6 +32,15 @@
       font-size: 1rem;
     }
 
+    .filter-warning {
+      color: nga-theme(color-warning);
+    }
+
+    .inheritance-icon {
+      display: block;
+      text-align: center;
+      color: nga-theme(color-primary);
+    }
     .block-subtitle {
       font-size: nga-theme(block-subtitle-font-size);
       font-weight: bold;

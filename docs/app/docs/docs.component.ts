@@ -4,7 +4,7 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, OnDestroy, ElementRef, Renderer2, OnInit } from '@angular/core';
+import { Component, OnDestroy, ElementRef, Renderer2, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute }  from '@angular/router';
 import { List } from 'immutable';
 import { Subscription } from 'rxjs/Subscription';
@@ -34,7 +34,7 @@ import { NgaMenuInternalService } from '@akveo/nga-theme/components/menu/menu.se
     </nga-layout>
   `,
 })
-export class NgdDocsComponent implements OnDestroy {
+export class NgdDocsComponent implements OnDestroy, AfterViewInit {
 
   structure: any;
   menuItems: List<NgaMenuItem> = List([]);
@@ -48,7 +48,6 @@ export class NgdDocsComponent implements OnDestroy {
 
     this.menuItems = this.service.getPreparedMenu();
     this.structure = this.service.getPreparedStructure();
-    console.log(this.menuItems);
     this.routerSubscription = this.router.events
       .subscribe((event) => {
         if (event['url'] === '/docs') {

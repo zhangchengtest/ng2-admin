@@ -86,7 +86,7 @@
   }
 
   exporter.getAncestors = function(prop, scopedThemeName, resultThemeName, resultProp, resultObj, THEMES) {
-    let scopedTheme = THEMES[scopedThemeName].data; // es6 destruct
+    let scopedTheme = THEMES[scopedThemeName].data;
     let scopedParent = THEMES[scopedThemeName].parent;
     let value = scopedTheme[prop];
     if (typeof value === "string" && scopedTheme[value]) {
