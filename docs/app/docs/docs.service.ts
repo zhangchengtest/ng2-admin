@@ -46,22 +46,31 @@ export class DocsService {
     return structure;
   }
 
-  protected prepareMenu(structure, parentLink?: string, prependMenu?: any): any {
+  protected prepareMenu(structure, parentLink?: string, prependMenu?: any, parentItem?: any): any {
 
     let menuItems = structure.map((item: any) => {
       if (item.name) {
         const menuItem: any = {};
-        const itemLink = `${parentLink ? parentLink : ''}/${item.name.replace(/\s/, '-').toLowerCase()}`;
+        const itemLink = item.type === 'block' ?
+          `${parentLink}`
+          : `${parentLink ? parentLink : ''}/${item.name.replace(/\s/, '-').toLowerCase()}`;
+
         if (item.type !== 'section') {
           menuItem['link'] = itemLink;
         }
 
-        menuItem['data'] = item;
+        (item.type === 'block') ? menuItem['data'] = parentItem : menuItem['data'] = item;
+        if (item.type === 'block') {
+          menuItem['fragment'] = item.name;
+        }
         menuItem['pathMath'] = 'false';
         menuItem['title'] = item.name;
 
         if (item.children && item.children[0] && item.children[0].type === 'page') {
           menuItem['children'] = this.prepareMenu(item.children, itemLink);
+        }
+        if (item.children && item.type === 'page' && item.isSubpages) {
+          menuItem['children'] = this.prepareMenu(item.children, itemLink, null, item);
         }
         return menuItem;
       }

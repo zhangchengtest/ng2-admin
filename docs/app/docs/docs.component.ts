@@ -4,16 +4,16 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnDestroy, ElementRef, Renderer2, OnInit } from '@angular/core';
 import { Router, ActivatedRoute }  from '@angular/router';
 import { List } from 'immutable';
 import { Subscription } from 'rxjs/Subscription';
 
 import { DocsService } from './docs.service';
-import { NgaMenuService, NgaMenuItem } from '@akveo/nga-theme';
-import { NgaMenuInternalService } from '@akveo/nga-theme/components/menu/menu.service';
+import { NgaMenuItem } from '@akveo/nga-theme';
 
 import 'rxjs/add/operator/filter';
+import { NgaMenuInternalService } from '@akveo/nga-theme/components/menu/menu.service';
 
 @Component({
   selector: 'ngd-docs',
@@ -48,7 +48,7 @@ export class NgdDocsComponent implements OnDestroy {
 
     this.menuItems = this.service.getPreparedMenu();
     this.structure = this.service.getPreparedStructure();
-
+    console.log(this.menuItems);
     this.routerSubscription = this.router.events
       .subscribe((event) => {
         if (event['url'] === '/docs') {
@@ -65,8 +65,10 @@ export class NgdDocsComponent implements OnDestroy {
       .subscribe((fr) => {
         if (fr) {
           let el = this.elementRef.nativeElement.querySelector(`#${fr}`);
-          el.scrollIntoView();
-          window.scrollBy(0, -80);
+          if (el) {
+            el.scrollIntoView();
+            window.scrollBy(0, -80);
+          }
         } else {
           window.scrollTo(0, 0);
         }

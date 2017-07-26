@@ -93,7 +93,7 @@ Let's change color and size for all `RkText` components in app:
 ### Themes
 
 All base *rkTypes* depends on theme of application. *Theme* contains base values (colors, fontSizes etc) for all Rk-components.
-You can easily override values in theme or even define your own theme using *[RkTheme](../theme)*.
+You can easily override values in theme or even define your own theme using *[RkTheme](#/docs/ui-components/layout#NgaLayoutComponent)*.
 But user-defined *rkType*s should also be able to respond theme changes.
 For this purpose can be used property functions instead of values.
 Let's create `rkType` for `RkText` which will depend on some value from theme.

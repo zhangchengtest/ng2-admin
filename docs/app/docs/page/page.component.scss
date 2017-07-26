@@ -15,8 +15,8 @@
       font-size: nga-theme(block-title-font-size);
       font-weight: bold;
       margin-bottom: 2rem;
-    }
 
+    }
 
     .fragment {
       opacity: 0;
@@ -24,8 +24,12 @@
       vertical-align: middle;
     }
 
-    .class-name:hover > .fragment, .block-title:hover > .fragment {
+    .class-name:hover > .fragment, .block-title:hover > .fragment, td:hover > .fragment {
       opacity: 1;
+    }
+
+    td > .fragment {
+      font-size: 1rem;
     }
 
     .block-subtitle {

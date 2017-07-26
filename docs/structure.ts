@@ -91,20 +91,24 @@ export const STRUCTURE = [
       {
         type: 'page',
         name: 'NgaThemes',
+        isSubpages: true,
         children: [
           {
             type: 'block',
             block: 'theme',
+            name: 'default',
             blockData: 'default',
           },
           {
             type: 'block',
             block: 'theme',
+            name: 'light',
             blockData: 'light',
           },
           {
             type: 'block',
             block: 'theme',
+            name: 'cosmic',
             blockData: 'cosmic',
           },
         ],
