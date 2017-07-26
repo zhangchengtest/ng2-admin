@@ -102,8 +102,8 @@ export class NgaMenuComponent implements OnInit, OnDestroy {
           this.navigateHome();
         }
       });
-
     this.getSelectedItemSubscription = this.menuInternalService.onGetSelectedItem()
+      .filter(data => !data.tag || data.tag === this.tag)
       .subscribe((data: { tag: string, listener: BehaviorSubject<{ tag: string, item: NgaMenuItem }> }) => {
 
         let selectedItem: NgaMenuItem;
@@ -119,7 +119,6 @@ export class NgaMenuComponent implements OnInit, OnDestroy {
         });
 
         this.clearStack();
-
         data.listener.next({ tag: this.tag, item: selectedItem });
       });
 
@@ -130,7 +129,6 @@ export class NgaMenuComponent implements OnInit, OnDestroy {
     });
 
     this.items = this.items.push(...this.menuInternalService.getItems().toJS());
-
     this.menuInternalService.prepareItems(this.items);
   }
 

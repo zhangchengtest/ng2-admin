@@ -5,6 +5,7 @@
 <a *ngIf="menuItem.link && !menuItem.url && !menuItem.children && !menuItem.group"
         [class.active]="menuItem.selected"
         [routerLink]="menuItem.link"
+        [fragment]="menuItem.fragment"
         [attr.target]="menuItem.target"
         [attr.title]="menuItem.title"
         (mouseenter)="onHoverItem(menuItem)"
