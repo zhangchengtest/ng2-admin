@@ -14,6 +14,7 @@ import { NgaMenuItem } from '@akveo/nga-theme';
 
 import 'rxjs/add/operator/filter';
 import { NgaMenuInternalService } from '@akveo/nga-theme/components/menu/menu.service';
+import { NgdFragmentService } from './utils/fragmanet.service';
 
 @Component({
   selector: 'ngd-docs',
@@ -44,7 +45,8 @@ export class NgdDocsComponent implements OnDestroy, AfterViewInit {
               private router: Router,
               private route: ActivatedRoute,
               private menuInternalService: NgaMenuInternalService,
-              private elementRef: ElementRef) {
+              private elementRef: ElementRef,
+              private fragmentService: NgdFragmentService) {
 
     this.menuItems = this.service.getPreparedMenu();
     this.structure = this.service.getPreparedStructure();
@@ -60,8 +62,10 @@ export class NgdDocsComponent implements OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     this.route.fragment
+      .merge(this.fragmentService.onFragmentClick())
       .delay(50)
       .subscribe((fr) => {
+        console.log(fr);
         if (fr) {
           let el = this.elementRef.nativeElement.querySelector(`#${fr}`);
           if (el) {

@@ -28,8 +28,16 @@
       opacity: 1;
     }
 
-    td > .fragment {
-      font-size: 1rem;
+    .table-fragment {
+      a {
+        opacity: 0;
+        font-size: 2rem;
+        vertical-align: middle;
+      }
+
+      &:hover a {
+        opacity: 1;
+      }
     }
 
     .filter-warning {

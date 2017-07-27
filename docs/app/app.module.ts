@@ -37,6 +37,7 @@ import { NgdFragmentDirective } from './docs/utils/ngd-fragment';
 import { NgdThemeComponent } from './docs/page/blocks/ngd-theme-block.component';
 import { ObjValuesPipe } from './docs/utils/obj-values.pipe';
 import { NgdColorSwatchDirective } from './docs/utils/ngd-color-swatch.directive';
+import { NgdFragmentService } from './docs/utils/fragmanet.service';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { NgdColorSwatchDirective } from './docs/utils/ngd-color-swatch.directive
   ],
   providers: [
     DocsService,
+    NgdFragmentService,
     Title,
   ],
   entryComponents: [
