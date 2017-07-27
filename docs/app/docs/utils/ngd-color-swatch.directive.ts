@@ -8,10 +8,7 @@ export class NgdColorSwatchDirective implements AfterViewInit {
               private renderer: Renderer2) { }
 
   ngAfterViewInit() {
-    if (this.el.nativeElement.innerHTML.search( /(#|rgba)/i ) !== -1 ) {
-      this.renderer.addClass(this.el.nativeElement, 'color-swatch');
-      let color = this.el.nativeElement.innerHTML;
-      this.el.nativeElement.innerHTML = `${color}<div style="background: ${color}"></div>`;
-    }
+    this.el.nativeElement.innerHTML =
+    this.el.nativeElement.innerHTML.replace(/(#[a-f0-9]{6}|rgba.*?\))/ig , "$&" + "<div class='color-swatch' style='background:"+ "$&" +"'></div>");
   }
 }
