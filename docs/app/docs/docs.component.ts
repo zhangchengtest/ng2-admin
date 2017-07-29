@@ -9,12 +9,11 @@ import { Router, ActivatedRoute }  from '@angular/router';
 import { List } from 'immutable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { DocsService } from './docs.service';
 import { NgaMenuItem } from '@akveo/nga-theme';
+import { NgaMenuInternalService } from '@akveo/nga-theme/components/menu/menu.service';
+import { DocsService } from './docs.service';
 
 import 'rxjs/add/operator/filter';
-import { NgaMenuInternalService } from '@akveo/nga-theme/components/menu/menu.service';
-import { NgdFragmentService } from './utils/fragmanet.service';
 
 @Component({
   selector: 'ngd-docs',
@@ -40,20 +39,22 @@ export class NgdDocsComponent implements OnDestroy, AfterViewInit {
   structure: any;
   menuItems: List<NgaMenuItem> = List([]);
   private routerSubscription: Subscription;
+  private fragmentSubscription: Subscription;
 
   constructor(private service: DocsService,
               private router: Router,
               private route: ActivatedRoute,
               private menuInternalService: NgaMenuInternalService,
               private elementRef: ElementRef,
-              private fragmentService: NgdFragmentService) {
+              private renderer: Renderer2) {
 
     this.menuItems = this.service.getPreparedMenu();
     this.structure = this.service.getPreparedStructure();
+
     this.routerSubscription = this.router.events
       .subscribe((event) => {
         if (event['url'] === '/docs') {
-          let firstMenuItem = this.menuItems.get(0).children.get(0);
+          const firstMenuItem = this.menuItems.get(0).children.get(0);
           this.menuInternalService.itemSelect(firstMenuItem);
           this.router.navigateByUrl(firstMenuItem.link, { replaceUrl: true });
         }
@@ -61,24 +62,30 @@ export class NgdDocsComponent implements OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.route.fragment
-      .merge(this.fragmentService.onFragmentClick())
-      .delay(50)
+    this.fragmentSubscription = this.route.fragment
+      .merge(this.service.onFragmentClick())
+      .delay(1)
       .subscribe((fr) => {
-        console.log(fr);
         if (fr) {
-          let el = this.elementRef.nativeElement.querySelector(`#${fr}`);
+          const el = this.elementRef.nativeElement.querySelector(`#${fr}`);
           if (el) {
             el.scrollIntoView();
-            window.scrollBy(0, -80);
+            if (new RegExp(/theme/i).test(fr)) {
+              window.scrollBy(0, -130);
+              this.renderer.addClass(el, 'highlighted-row');
+              setTimeout(() => this.renderer.removeClass(el, 'highlighted-row'), 1000);
+            } else {
+              window.scrollBy(0, -80);
+            }
           }
         } else {
           window.scrollTo(0, 0);
         }
-      })
+      });
   }
 
   ngOnDestroy() {
     this.routerSubscription.unsubscribe();
+    this.fragmentSubscription.unsubscribe();
   }
 }

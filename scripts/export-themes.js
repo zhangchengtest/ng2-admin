@@ -29,7 +29,6 @@
         break;
       case 'SassColor':
         if (1 === a.getA()) {
-          debugger;
           value = Colors.rgb2hex(a.getR(), a.getG(), a.getB());
         }
         else {
@@ -55,12 +54,12 @@
     constructor(name) {
       this.name = name;
       this.value = null;
-      this.ancestors = [];
-      this.descendants = [];
+      this.parents = [];
+      this.childs = [];
     };
   }
 
-  class ThemeNode {
+  class PropLink {
     constructor(theme, prop) {
       this.theme = theme;
       this.prop = prop;
@@ -77,7 +76,7 @@
       let theme = THEMES[themeName].data;
       for (let prop in theme) {
         result[themeName].data[prop] = result[themeName].data[prop] ? result[themeName].data[prop] : new Prop(prop);
-        result = exporter.getAncestors(prop, themeName, themeName, prop, result, THEMES);
+        result = exporter.getParent(prop, themeName, themeName, prop, result, THEMES);
       }
     }
     let output = {};
@@ -85,36 +84,37 @@
     return output;
   }
 
-  exporter.getAncestors = function(prop, scopedThemeName, resultThemeName, resultProp, resultObj, THEMES) {
+  exporter.getParent = function(prop, scopedThemeName, resultThemeName, resultProp, resultObj, THEMES) {
     let scopedTheme = THEMES[scopedThemeName].data;
     let scopedParent = THEMES[scopedThemeName].parent;
     let value = scopedTheme[prop];
+    if (resultProp === 'footer-height' && resultThemeName === 'light') debugger;
     if (typeof value === "string" && scopedTheme[value]) {
-      resultObj[resultThemeName].data[resultProp].ancestors ?
-        resultObj[resultThemeName].data[resultProp].ancestors.push(new ThemeNode(scopedThemeName, value))
-        : resultObj[resultThemeName].data[resultProp].ancestors = [new ThemeNode(scopedThemeName, value)];
-      resultObj = exporter.addDescendant(resultObj, scopedThemeName, value, resultThemeName, resultProp);
-      this.getAncestors(value, scopedThemeName, resultThemeName, resultProp, resultObj, THEMES);
+      if (resultObj[resultThemeName].data[resultProp].parents.length === 0) {
+        exporter.linkProps(resultObj, scopedThemeName, value, resultThemeName, prop);
+      } else resultObj[resultThemeName].data[resultProp].parents.push(new PropLink(scopedThemeName, value));
+      exporter.getParent(value, scopedThemeName, resultThemeName, resultProp, resultObj, THEMES);
     } else {
       resultObj[resultThemeName].data[resultProp].value = value;
       if (scopedParent && THEMES[scopedParent].data[prop] === value) {
-        resultObj[resultThemeName].data[resultProp].ancestors ?
-          resultObj[resultThemeName].data[resultProp].ancestors.push(new ThemeNode(scopedParent, prop))
-          : resultObj[resultThemeName].data[resultProp].ancestors = [new ThemeNode(scopedParent, prop)];
-        resultObj = this.addDescendant(resultObj, scopedParent, prop, resultThemeName, resultProp);
+        if (resultObj[resultThemeName].data[resultProp].parents.length === 0) {
+          exporter.linkProps(resultObj, scopedParent, prop, resultThemeName, prop)
+        } else resultObj[resultThemeName].data[resultProp].parents.push(new PropLink(scopedParent, prop));
       }
     }
     return resultObj;
   }
 
-  exporter.addDescendant = function(resultObj, targetTheme, targetProp, themeName, prop) {
-    if (!resultObj.hasOwnProperty(targetTheme)) {
-      resultObj[targetTheme].data = {};
-      resultObj[targetTheme].data[targetProp] = new Prop(targetProp);
-    } else if (!resultObj[targetTheme].data.hasOwnProperty(targetProp)) {
-      resultObj[targetTheme].data[targetProp] = new Prop(targetProp);
+
+  exporter.linkProps = function (resultObj, parentThemeName, parentPropName, childThemeName, childPropName) {
+    if (!resultObj.hasOwnProperty(parentThemeName)) {
+      resultObj[parentThemeName].data = {};
+      resultObj[parentThemeName].data[parentPropName] = new Prop(parentPropName);
+    } else if (!resultObj[parentThemeName].data.hasOwnProperty(parentPropName)) {
+      resultObj[parentThemeName].data[parentPropName] = new Prop(parentPropName);
     }
-    resultObj[targetTheme].data[targetProp].descendants.push(new ThemeNode(themeName, prop));
+    resultObj[childThemeName].data[childPropName].parents.push(new PropLink(parentThemeName, parentPropName));
+    resultObj[parentThemeName].data[parentPropName].childs.push(new PropLink(childThemeName, childPropName));
     return resultObj;
   }
 

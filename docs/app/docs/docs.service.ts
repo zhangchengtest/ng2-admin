@@ -8,11 +8,19 @@ import { Injectable } from '@angular/core';
 import { List } from 'immutable';
 import { NgaMenuItem } from '@akveo/nga-theme';
 
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
+
 import { STRUCTURE } from '../../structure';
+
 const PARSEDDOCS: any = require('../../output.json');
 
 @Injectable()
 export class DocsService {
+
+  private fragments$ = new Subject();
+  private positions$ = new Subject();
+  private filterings$ = new Subject();
 
   getStructure(): any {
     return STRUCTURE;
@@ -26,15 +34,40 @@ export class DocsService {
     return PARSEDDOCS;
   }
 
-  getPreparedStructure() {
+  getPreparedStructure(): any {
     return this.prepareStructure(this.getStructure(), this.getParsedDocs());
   }
 
-  protected prepareStructure(structure, preparedDocs) {
+  newFragment(fragment: string): void {
+    this.fragments$.next(fragment);
+  }
+
+  onFragmentClick(): Observable<string> {
+    return this.fragments$.share();
+  }
+
+  getThemesPositions(): Observable<{name, position, parentTheme}> {
+    return this.positions$.share();
+  }
+
+  registerThemePosition(theme): void {
+    this.positions$.next(theme);
+  }
+
+  filterData(term: string, themeName: string): void {
+    this.filterings$.next({ term, theme: themeName });
+  }
+
+  onFiltering(): Observable<{ term: string, theme: any}> {
+    return this.filterings$.share();
+  }
+
+
+  protected prepareStructure(structure: any , preparedDocs: any): any {
     structure.map((item: any) => {
       if (item.type === 'block' && typeof item.blockData === 'string') {
         if (item.block === 'theme') {
-          item.blockData = preparedDocs.themes[item.blockData]
+          item.blockData = preparedDocs.themes[item.blockData];
         } else {
           item.blockData = preparedDocs.classes.find((data) => data.name === item.blockData );
         }
@@ -54,11 +87,9 @@ export class DocsService {
         const itemLink = item.type === 'block' ?
           `${parentLink}`
           : `${parentLink ? parentLink : ''}/${item.name.replace(/\s/, '-').toLowerCase()}`;
-
         if (item.type !== 'section') {
           menuItem['link'] = itemLink;
         }
-
         (item.type === 'block') ? menuItem['data'] = parentItem : menuItem['data'] = item;
         if (item.type === 'block') {
           menuItem['fragment'] = item.name;

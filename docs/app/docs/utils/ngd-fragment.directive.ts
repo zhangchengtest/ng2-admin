@@ -2,8 +2,9 @@ import {
   Directive, Input, HostListener, ElementRef
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { convertToBoolProperty } from '../../../../src/framework/theme/components/helpers';
-import { NgdFragmentService } from './fragmanet.service';
+import { DocsService } from '../docs.service';
 
 @Directive({
   selector: '[ngdFragment]',
@@ -27,11 +28,11 @@ export class NgdFragmentDirective {
     this.table = convertToBoolProperty(val);
   }
   constructor(private route: ActivatedRoute,
-              private fragmentService: NgdFragmentService) {}
+              private docsService: DocsService) {}
 
   @HostListener('click') onClick() {
     if (this.route.snapshot.fragment === this.fragment) {
-      this.fragmentService.newFragment(this.fragment);
+      this.docsService.newFragment(this.fragment);
     }
   }
 }

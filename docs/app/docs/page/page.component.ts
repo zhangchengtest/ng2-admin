@@ -19,6 +19,7 @@ import { Title } from '@angular/platform-browser';
     <nga-card>
       <nga-card-header>{{ currentItem?.name }}</nga-card-header>
       <nga-card-body>
+        <ngd-themes-header *ngIf="currentItem?.name === 'NgaThemes'"></ngd-themes-header>
         <ng-container *ngFor="let item of currentItem?.children">
           <ng-container [ngSwitch]="item.block">
             
@@ -36,14 +37,14 @@ export class NgdPageComponent implements OnDestroy, OnInit {
 
   currentItem: any;
   private routerSubscription: Subscription;
-  private initialRouterSubscription: Subscription;
+  private initialSubscription: Subscription;
 
   constructor(private menuService: NgaMenuService,
               private router: Router,
-              private titleService: Title){ }
+              private titleService: Title) { }
 
   ngOnInit() {
-    this.initialRouterSubscription = this.menuService.getSelectedItem('leftMenu')
+    this.initialSubscription = this.menuService.getSelectedItem('leftMenu')
       .subscribe((event: {tag: string, item: any}) => {
         if (event && event.item && event.item.data) {
           this.currentItem = event.item.data;
@@ -63,7 +64,7 @@ export class NgdPageComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.initialRouterSubscription.unsubscribe();
+    this.initialSubscription.unsubscribe();
     this.routerSubscription.unsubscribe();
   }
 }

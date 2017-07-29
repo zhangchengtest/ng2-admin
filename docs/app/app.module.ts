@@ -33,11 +33,10 @@ import { NgdHeaderComponent } from './components/header/ngd-header.component';
 import { NgdFooterComponent } from './components/footer/ngd-footer.component';
 import { NgdStylesBlockComponent } from './docs/page/blocks/basic-blocks/ngd-styles-block.component';
 import { NgdComponentBlockComponent } from './docs/page/blocks/ngd-component-block.component';
-import { NgdFragmentDirective } from './docs/utils/ngd-fragment';
+import { NgdFragmentDirective } from './docs/utils/ngd-fragment.directive';
 import { NgdThemeComponent } from './docs/page/blocks/ngd-theme-block.component';
-import { ObjValuesPipe } from './docs/utils/obj-values.pipe';
 import { NgdColorSwatchDirective } from './docs/utils/ngd-color-swatch.directive';
-import { NgdFragmentService } from './docs/utils/fragmanet.service';
+import { NgdThemesHeaderComponent } from './docs/page/blocks/ngd-themes-header.component';
 
 
 @NgModule({
@@ -53,7 +52,6 @@ import { NgdFragmentService } from './docs/utils/fragmanet.service';
     NgaThemeModule.forRoot({ name: 'default' }),
     NgaSidebarModule.forRoot(),
     RouterModule.forRoot(routes, { useHash: true }),
-
   ],
   declarations: [
     NgdAppComponent,
@@ -73,12 +71,11 @@ import { NgdFragmentService } from './docs/utils/fragmanet.service';
     NgdComponentBlockComponent,
     NgdFragmentDirective,
     NgdThemeComponent,
-    ObjValuesPipe,
     NgdColorSwatchDirective,
+    NgdThemesHeaderComponent,
   ],
   providers: [
     DocsService,
-    NgdFragmentService,
     Title,
   ],
   entryComponents: [
