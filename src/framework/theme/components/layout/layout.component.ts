@@ -31,8 +31,9 @@ import { NgaSpinnerService } from '../../services/spinner.service';
  * A container component which determines a content position inside of the layout.
  * The layout could contain unlimited columns (not including the sidebars).
  *
- * By default the columns are ordered from the left to the right, by it's also possible to overwrite this behavior
- * by setting a `left` attribute to the column, moving it to the very first position:
+ * @example By default the columns are ordered from the left to the right,
+ * but it's also possible to overwrite this behavior by setting a `left` attribute to the column,
+ * moving it to the very first position:
  * ```
  * <nga-layout>
  *   <nga-layout-column>Second</nga-layout-column>
@@ -133,7 +134,7 @@ export class NgaLayoutFooterComponent {
  * The window scrollbars are disabled on the body and moved inside of the nga-layout, so that the scrollbars
  * won't mess with the fixed nga-header.
  *
- * A simple layout example:
+ * @example A simple layout example:
  * ```
  * <nga-layout>
  *   <nga-layout-header>Great Company</nga-layout-header>
@@ -149,7 +150,7 @@ export class NgaLayoutFooterComponent {
  * The children components are project into the flexible layout structure allowing to adjust the layout behavior
  * based on the settings provided.
  *
- * For example, it is possible to ask the layout to center the columns (notice: we added a `center` attribute
+ * @example For example, it is possible to ask the layout to center the columns (notice: we added a `center` attribute
  * to the layout:
  * ```
  * <nga-layout center>
@@ -203,6 +204,7 @@ export class NgaLayoutComponent implements OnDestroy, AfterViewInit {
 
   centerValue: boolean = false;
   @HostBinding('class.window-mode') windowModeValue: boolean = false;
+  @HostBinding('class.with-scroll') withScrollValue: boolean = false;
 
   /**
    * Defines whether the layout columns will be centered after some width
@@ -216,11 +218,31 @@ export class NgaLayoutComponent implements OnDestroy, AfterViewInit {
   /**
    * Defines whether the layout enters a 'window' mode, when the layout content (including sidebars and fixed header)
    * becomes centered by width with a margin from the top of the screen, like a floating window.
+   * Automatically enables `withScroll` mode, as in the window mode scroll must be inside the layout and cannot be on
+   * window. (TODO: check this)
    * @param {boolean} val
    */
   @Input()
   set windowMode(val: boolean) {
     this.windowModeValue = convertToBoolProperty(val);
+    this.withScroll = true;
+  }
+
+  /**
+   * Defines whether to move the scrollbars to layout or leave it at the body level.
+   * Automatically set to true when `windowMode` is enabled.
+   * @param {boolean} val
+   */
+  @Input()
+  set withScroll(val: boolean) {
+    this.withScrollValue = convertToBoolProperty(val);
+
+    // TODO: is this the best way of doing it? as we don't have access to body from theme styles
+    if (this.withScrollValue) {
+      document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+    } else {
+      document.getElementsByTagName('body')[0].style.overflow = 'initial';
+    }
   }
 
   @ViewChild('layoutTopDynamicArea', { read: ViewContainerRef }) veryTopRef: ViewContainerRef;
