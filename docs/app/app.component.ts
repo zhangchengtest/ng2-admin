@@ -11,7 +11,6 @@ import 'style-loader!./styles/styles.scss';
 
 @Component({
   selector: 'ngd-app-root',
-  styleUrls: ['./app.component.scss'],
   template: `
     <router-outlet></router-outlet>
   `,

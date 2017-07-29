@@ -21,6 +21,7 @@ $nga-enabled-themes: (default);
 $nga-themes: nga-register-theme((
 
   title-font: unquote('Righteous, cursive'),
+  color-bg: #fff,
   layout-content-padding: 0 1rem,
   color-fg-active: rgba(255, 40, 36, 0.87),
   color-fg-inverse: white,
@@ -30,8 +31,9 @@ $nga-themes: nga-register-theme((
   class-name-font-size: font-size-lg,
   code-snippets-bg: rgb(245, 246, 252),
   inline-code-color: color-fg-active,
-  content-width: 100%,//for fixed width just define it
+  content-width: 1312px,//for fixed width just define it
   section-padding: 2rem 0 5rem,
+  shadow: none,
 
   header-height: 80px,
   header-line-height: header-height,

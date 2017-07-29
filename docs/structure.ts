@@ -51,6 +51,16 @@ export const STRUCTURE = [
             block: 'component',
             blockData: 'NgaLayoutComponent',
           },
+          {
+            type: 'block',
+            block: 'component',
+            blockData: 'NgaLayoutHeaderComponent',
+          },
+          {
+            type: 'block',
+            block: 'component',
+            blockData: 'NgaLayoutFooterComponent',
+          },
         ],
       },
       {
