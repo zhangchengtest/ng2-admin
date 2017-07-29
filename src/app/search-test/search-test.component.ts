@@ -14,7 +14,7 @@ import { NgaSuperSearchService } from '@akveo/nga-theme';
     <nga-layout>
       <nga-layout-header fixed>
         <a class="navbar-brand" href="#">ngx-admin</a>
-        <nga-search type="rotate-layout" tag="header-search"></nga-search>  
+        <nga-search type="rotate-layout" tag="header-search"></nga-search>
       </nga-layout-header>
       <nga-layout-column>
         <nga-card>
@@ -71,7 +71,7 @@ export class NgaSearchTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.searchService.onSearchSubmit().subscribe((data: {term: string, tag: string }) => {
+    this.searchService.onSearchSubmit().subscribe((data: { term: string, tag: string }) => {
       console.info(`term: ${data.term}, from search: ${data.tag}`);
     });
   }

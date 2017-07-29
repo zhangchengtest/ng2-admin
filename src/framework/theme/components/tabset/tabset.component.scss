@@ -4,6 +4,25 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
+:host {
+  display: block;
+
+
+  &.full-width ul {
+    justify-content: space-around;
+  }
+
+  /deep/ nga-tab {
+    flex: 1;
+    overflow: auto;
+
+    display: none;
+    &.content-active {
+      display: block;
+    }
+  }
+}
+
 ul {
   display: flex;
   flex-direction: row;
@@ -35,17 +54,5 @@ ul {
         left: 0;
       }
     }
-  }
-}
-
-:host.full-width ul li {
-  width: 100%;
-}
-
-:host /deep/ nga-tab {
-  display: none;
-
-  &.content-active {
-    display: block;
   }
 }

@@ -1,0 +1,221 @@
+@function main-to-text-color($color, $count: 15%) {
+  @return tint($color, $count);
+}
+
+@function text-heading() {
+  @return nga-theme(color-fg-heading);
+}
+
+@function text-body() {
+  @return nga-theme(color-fg-text);
+}
+
+@function text-hint() {
+  @return nga-theme(color-fg);
+}
+
+@function text-primary() {
+  @return main-to-text-color(nga-theme(color-primary));
+}
+
+@function text-warning() {
+  @return main-to-text-color(nga-theme(color-warning));
+}
+
+@function text-success() {
+  @return main-to-text-color(nga-theme(color-success));
+}
+
+@function text-info() {
+  @return main-to-text-color(nga-theme(color-info));
+}
+
+@function text-danger() {
+  @return main-to-text-color(nga-theme(color-danger));
+}
+
+@function text-white() {
+  @return nga-theme(color-white);
+}
+
+@mixin nga-alert-variant($body-color) {
+  background-color: nga-theme(layout-bg);
+  border: none;
+  color: $body-color;
+
+  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: $body-color!important;
+  }
+
+  hr {
+    border-top-color: darken($body-color, 10%);
+  }
+  .alert-link {
+    color: $body-color;
+    text-decoration: none;
+    font-weight: nga-theme(font-weight-normal);
+    border-bottom: 1px dashed $body-color;
+
+    @include hover-focus {
+      border-bottom: 1px solid $body-color;
+    }
+  }
+}
+
+@mixin nga-typography {
+
+  .font-secondary {
+    font-family: nga-theme(font-secondary);
+
+    .header .name {
+      font-size: 4.5rem;
+    }
+  }
+
+  .font-main {
+    font-family: nga-theme(font-main);
+
+    .header .name {
+      font-size: 2.5rem;
+    }
+  }
+
+  .font-w-light {
+    font-weight: nga-theme(font-weight-light);
+  }
+
+  .font-w-regular {
+    font-weight: nga-theme(font-weight-normal);
+  }
+
+  .font-w-bold {
+    font-weight: nga-theme(font-weight-bold);
+  }
+
+  .text-primary {
+    color: text-primary() !important;
+  }
+  .text-warning {
+    color: text-warning() !important;
+  }
+  .text-success {
+    color: text-success() !important;
+  }
+  .text-info {
+    color: text-info() !important;
+  }
+  .text-danger {
+    color: text-danger() !important;
+  }
+  .text-heading {
+    color: text-heading() !important;
+  }
+  .text-body {
+    color: text-body() !important;
+  }
+  .text-hint {
+    color: text-hint() !important;
+  }
+  .text-white {
+    color: text-white() !important;
+  }
+
+  .bg-primary {
+    background-color: text-primary() !important;
+  }
+  .bg-warning {
+    background-color: text-warning() !important;
+  }
+  .bg-success {
+    background-color: text-success() !important;
+  }
+  .bg-info {
+    background-color: text-info() !important;
+  }
+  .bg-danger {
+    background-color: text-danger() !important;
+  }
+  .bg-heading {
+    background-color: text-heading() !important;
+  }
+  .bg-body {
+    background-color: text-body() !important;
+  }
+  .bg-hint {
+    background-color: text-hint() !important;
+  }
+  .bg-white {
+    background-color: text-white() !important;
+  }
+  .text-indent {
+    text-indent: 2rem;
+  }
+
+  .blockquote {
+    font-size: nga-theme(font-size);
+    border-left: 0.25rem solid nga-theme(color-fg-highlight);
+    color: nga-theme(color-fg-text);
+  }
+  .blockquote-reverse {
+    font-size: nga-theme(font-size);
+    border-right: 0.25rem solid nga-theme(color-fg-highlight);
+    color: nga-theme(color-fg-text);
+  }
+  .blockquote-footer {
+    color: nga-theme(color-fg);
+    font-style: italic;
+    font-size: 100%;
+  }
+
+  mark, .mark {
+    padding: 0.05em;
+    background-color: text-primary();
+    color: text-white();
+  }
+
+  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: nga-theme(font-secondary);
+    color: nga-theme(color-fg-heading);
+    font-weight: nga-theme(font-weight-bolder);
+  }
+
+  strong, b {
+    font-weight: nga-theme(font-weight-bold);
+  }
+
+  a {
+    color: nga-theme(link-color-active);
+
+    @include hover-focus {
+      color: nga-theme(link-color-hover);
+    }
+  }
+
+  ol,ul {
+    padding-left: 1.25rem;
+  }
+
+  .alert {
+    border: none!important;
+  }
+
+  .alert-success {
+    @include nga-alert-variant(text-success());
+  }
+  .alert-info {
+    @include nga-alert-variant(text-info());
+  }
+  .alert-warning {
+    @include nga-alert-variant(text-warning());
+  }
+  .alert-danger {
+    @include nga-alert-variant(text-danger());
+  }
+  .alert-primary {
+    @include nga-alert-variant(text-primary());
+  }
+  .alert-hint {
+    @include nga-alert-variant(text-hint());
+  }
+
+}

@@ -4,192 +4,242 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-@import './hero-buttons';
+@import './default-buttons';
+
+@mixin btn-group-separator($color) {
+  background-color: shade($color, 20%);
+}
+
+@mixin btn-group-primary-separator() {
+  @include btn-group-separator(nga-theme(color-primary));
+}
+
+@mixin btn-group-success-separator() {
+  @include btn-group-separator(nga-theme(color-success));
+}
+
+@mixin btn-group-warning-separator() {
+  @include btn-group-separator(nga-theme(color-warning));
+}
+
+@mixin btn-group-info-separator() {
+  @include btn-group-separator(nga-theme(color-info));
+}
+
+@mixin btn-group-danger-separator() {
+  @include btn-group-separator(nga-theme(color-danger));
+}
+
+@mixin btn-group-secondary-separator() {
+  @include btn-group-separator(nga-theme(color-primary));
+}
+
+
+@mixin dropdown-separator($color) {
+  border-left: 1px solid shade($color, 14%);
+}
+
+@mixin dropdown-primary-separator() {
+  @include dropdown-separator(nga-theme(btn-primary-bg));
+}
+
+@mixin dropdown-success-separator() {
+  @include dropdown-separator(nga-theme(btn-success-bg));
+}
+
+@mixin dropdown-warning-separator() {
+  @include dropdown-separator(nga-theme(btn-warning-bg));
+}
+
+@mixin dropdown-info-separator() {
+  @include dropdown-separator(nga-theme(btn-info-bg));
+}
+
+@mixin dropdown-danger-separator() {
+  @include dropdown-separator(nga-theme(btn-danger-bg));
+}
+
+@mixin dropdown-secondary-separator() {
+  @include dropdown-separator(nga-theme(btn-secondary-bg));
+}
+
 
 @mixin nga-b-button-group-theme() {
 
-  .btn + .dropdown-toggle,
-  .btn-sm + .dropdown-toggle,
-  .btn-lg + .dropdown-toggle {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .btn-group.dropdown > [class*='btn-outline-']:first-child:not(:last-child):not(.dropdown-toggle) {
-    border-right-color: transparent;
-  }
-
-  .btn-group > [class*='btn-outline-'] + .dropdown-toggle {
-    border-left-color: transparent;
-    margin-left: -4px;
-    padding-left: calc(1rem + 4px);
-  }
-
-  .btn-group.btn-group-hidden > .btn {
-    background-color: transparent;
-  }
-
-  .btn-group.btn-group-block {
-    width: 100%;
-
-    .btn:not(.btn-group-icon) {
-      width: 100%;
-    }
-  }
-
-  .btn-group.btn-group-dropdown-divider > .btn:first-child:not(:last-child):not(.dropdown-toggle),
-  .btn-group.btn-group-divider > .btn:not(:last-child),
-  .btn-group > .btn:not(:last-child).btn-group-divider {
+  .btn-group:not(.btn-toggle-group):not(.btn-divided-group) > .btn + .btn {
     &.btn-primary {
-      @include btn-group-primary-divider();
-    }
-
-    &.btn-warning {
-      @include btn-group-warning-divider();
+      @include dropdown-primary-separator();
     }
 
     &.btn-success {
-      @include btn-group-success-divider();
+      @include dropdown-success-separator();
+    }
+
+    &.btn-warning {
+      @include dropdown-warning-separator();
     }
 
     &.btn-info {
-      @include btn-group-info-divider();
+      @include dropdown-info-separator();
     }
 
     &.btn-danger {
-      @include btn-group-danger-divider();
+      @include dropdown-danger-separator();
     }
 
     &.btn-secondary {
-      @include btn-group-secondary-divider();
+      @include dropdown-secondary-separator();
     }
   }
 
-  .btn-group > .btn.btn-group-icon {
+  .btn-group-icon {
     font-size: 1.5rem;
     padding: 0 1rem;
   }
 
-  .btn-group.btn-group-pagination > .btn {
-    padding-left: 1.125rem;
-    padding-right: 1.125rem;
-  }
+  .btn-toggle-group,
+  .btn-divided-group {
+    .btn:not(.active) {
+      background-color: shade(nga-theme(color-bg), 10%);
+    }
 
-  .btn-group.btn-group-divided {
+    .btn:active,
     .btn.active {
       &.btn-primary,
       &.btn-outline-primary {
-        @include btn-primary-glow();
-      }
-
-      &.btn-warning,
-      &.btn-outline-warning {
-        @include btn-warning-glow();
+        background-color: nga-theme(btn-primary-bg);
       }
 
       &.btn-success,
       &.btn-outline-success {
-        @include btn-success-glow();
+        background-color: nga-theme(btn-success-bg);
+      }
+
+      &.btn-warning,
+      &.btn-outline-warning {
+        background-color: nga-theme(btn-warning-bg);
       }
 
       &.btn-info,
       &.btn-outline-info {
-        @include btn-info-glow();
+        background-color: nga-theme(btn-info-bg);
       }
 
       &.btn-danger,
       &.btn-outline-danger {
-        @include btn-danger-glow();
+        background-color: nga-theme(btn-danger-bg);
       }
 
       &.btn-secondary,
       &.btn-outline-secondary {
-        @include btn-secondary-glow();
+        border-color: nga-theme(btn-secondary-border);
+      }
+    }
+
+    .btn:hover,
+    .btn.hover {
+      &.btn-primary,
+      &.btn-outline-primary {
+        @include btn-primary-hover();
+      }
+
+      &.btn-success,
+      &.btn-outline-success {
+        @include btn-success-hover();
+      }
+
+      &.btn-warning,
+      &.btn-outline-warning {
+        @include btn-warning-hover();
+      }
+
+      &.btn-info,
+      &.btn-outline-info {
+        @include btn-info-hover();
+      }
+
+      &.btn-danger,
+      &.btn-outline-danger {
+        @include btn-danger-hover();
+      }
+
+      &.btn-secondary,
+      &.btn-outline-secondary {
+        @include btn-secondary-hover();
       }
     }
   }
 
-  .btn-group.btn-group-divided > .btn {
-    border-radius: nga-theme(btn-border-radius);
+  .btn-toggle-group {
+    .btn {
+      position: relative;
+    }
+
+    .btn:first-child {
+      border-right: none;
+    }
+
+    .btn:last-child {
+      border-left: none;
+      margin-left: 0;
+    }
+
+    .btn:not(:first-child):not(:last-child) {
+      border-left: none;
+      border-right: none;
+    }
+
+    .btn:not(.active):not(:hover) + .btn:not(.active):not(:hover) {
+      &::before {
+        content: '';
+        position: absolute;
+        background-color: #312c66;
+        width: 1px;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
+    }
   }
 
-  .btn-group.btn-group-divided > .btn:not(.active) {
-    border-color: #342e73;
+  .btn-outline-toggle-group {
+    .btn:not(.active) {
+      background-color: transparent;
+    }
+
+    .btn:not(.active):not(:hover) + .btn:not(.active):not(:hover) {
+      &::before {
+        background-color: nga-theme(separator);
+      }
+    }
   }
 
-  .btn-group.btn-group-divided > .btn:not(:last-child) {
-    margin-right: 0.5rem;
+  .btn-divided-group {
+    .btn:not(:first-child) {
+      margin-left: 0.5rem;
+      border-radius: nga-theme(btn-border-radius);
+    }
+
+    .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+      border-radius: nga-theme(btn-border-radius);
+    }
+
+    .btn:not(:last-child):not(.dropdown-toggle) {
+      border-radius: nga-theme(btn-border-radius);
+    }
   }
 
-  .btn-group.btn-group-divided-hidden .btn:not(.active) {
-    background-color: transparent;
+  .btn-outline-divided-group {
+    .btn:not(.active) {
+      background-color: transparent;
+    }
   }
 
-  .btn-group.btn-group-divided-hidden .btn:not(:last-child) {
-    margin-right: 1rem;
+  .btn-group-full-width {
+    width: 100%;
+
+    .btn:not(.btn-fixed) {
+      width: 100%;
+    }
   }
-
-  .btn-group.btn-group-divided-hidden .btn:first-child:not(:last-child):not(.dropdown-toggle),
-  .btn-group.btn-group-divided .btn:first-child:not(:last-child):not(.dropdown-toggle),
-  .btn-group.btn-group-divided-hidden .btn:not(:first-child):not(:last-child):not(.dropdown-toggle),
-  .btn-group.btn-group-divided .btn:not(:first-child):not(:last-child):not(.dropdown-toggle),
-  .btn-group.btn-group-divided .btn,
-  .btn-group.btn-group-divided-hidden .btn {
-    border-radius: nga-theme(btn-border-radius);
-  }
-}
-
-
-// Divider
-@mixin btn-group-divider($color) {
-  border-right-color: shade($color, 14%);
-}
-
-@mixin btn-group-primary-divider() {
-  @include btn-group-divider(nga-theme(btn-primary-bg));
-}
-
-@mixin btn-group-warning-divider() {
-  @include btn-group-divider(nga-theme(btn-warning-bg));
-}
-
-@mixin btn-group-success-divider() {
-  @include btn-group-divider(nga-theme(btn-success-bg));
-}
-
-@mixin btn-group-info-divider() {
-  @include btn-group-divider(nga-theme(btn-info-bg));
-}
-
-@mixin btn-group-danger-divider() {
-  @include btn-group-divider(nga-theme(btn-danger-bg));
-}
-
-@mixin btn-group-secondary-divider() {
-  @include btn-group-divider(nga-theme(btn-secondary-border));
-}
-
-// Glow
-@mixin btn-primary-glow() {
-  box-shadow: btn-hero-primary-glow();
-}
-
-@mixin btn-warning-glow() {
-  box-shadow: btn-hero-warning-glow();
-}
-
-@mixin btn-success-glow() {
-  box-shadow: btn-hero-success-glow();
-}
-
-@mixin btn-info-glow() {
-  box-shadow: btn-hero-info-glow();
-}
-
-@mixin btn-danger-glow() {
-  box-shadow: btn-hero-danger-glow();
-}
-
-@mixin btn-secondary-glow() {
-  box-shadow: btn-hero-secondary-glow();
 }

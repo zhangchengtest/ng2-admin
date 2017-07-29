@@ -9,12 +9,12 @@
     @include btn-hero-primary();
   }
 
-  .btn.btn-hero-warning {
-    @include btn-hero-warning();
-  }
-
   .btn.btn-hero-success {
     @include btn-hero-success();
+  }
+
+  .btn.btn-hero-warning {
+    @include btn-hero-warning();
   }
 
   .btn.btn-hero-info {
@@ -38,16 +38,8 @@
   @include btn-hero-primary-hover();
   @include btn-hero-primary-active();
   @include btn-hero-primary-border();
-}
-
-@mixin btn-hero-warning() {
-  @include btn-hero-warning-gradient();
-  @include btn-hero-warning-bevel-glow-shadow();
-  @include btn-hero-text();
-  @include btn-hero-warning-focus();
-  @include btn-hero-warning-hover();
-  @include btn-hero-warning-active();
-  @include btn-hero-warning-border();
+  @include btn-hero-disabled();
+  @include btn-hero-line-height();
 }
 
 @mixin btn-hero-success() {
@@ -58,6 +50,20 @@
   @include btn-hero-success-hover();
   @include btn-hero-success-active();
   @include btn-hero-success-border();
+  @include btn-hero-disabled();
+  @include btn-hero-line-height();
+}
+
+@mixin btn-hero-warning() {
+  @include btn-hero-warning-gradient();
+  @include btn-hero-warning-bevel-glow-shadow();
+  @include btn-hero-text();
+  @include btn-hero-warning-focus();
+  @include btn-hero-warning-hover();
+  @include btn-hero-warning-active();
+  @include btn-hero-warning-border();
+  @include btn-hero-disabled();
+  @include btn-hero-line-height();
 }
 
 @mixin btn-hero-info() {
@@ -68,6 +74,8 @@
   @include btn-hero-info-hover();
   @include btn-hero-info-active();
   @include btn-hero-info-border();
+  @include btn-hero-disabled();
+  @include btn-hero-line-height();
 }
 
 @mixin btn-hero-danger() {
@@ -78,6 +86,8 @@
   @include btn-hero-danger-hover();
   @include btn-hero-danger-active();
   @include btn-hero-danger-border();
+  @include btn-hero-disabled();
+  @include btn-hero-line-height();
 }
 
 @mixin btn-hero-secondary() {
@@ -88,6 +98,7 @@
   @include btn-hero-secondary-hover();
   @include btn-hero-secondary-active();
   @include btn-hero-secondary-border();
+  @include btn-hero-disabled();
 }
 
 @function btn-hero-gradient-left($color, $degrees: 20deg) {
@@ -100,7 +111,7 @@
 }
 
 @function btn-hero-glow($color) {
-  @return 0 2px 12px 0 $color;
+  @return 0 2px 8px 0 $color;
 }
 
 @function btn-hero-shadow() {
@@ -112,12 +123,12 @@
   @return btn-hero-gradient-left(nga-theme(btn-primary-bg));
 }
 
-@function btn-hero-warning-left-color() {
-  @return btn-hero-gradient-left(nga-theme(btn-warning-bg));
-}
-
 @function btn-hero-success-left-color() {
   @return btn-hero-gradient-left(nga-theme(btn-success-bg));
+}
+
+@function btn-hero-warning-left-color() {
+  @return btn-hero-gradient-left(nga-theme(btn-warning-bg));
 }
 
 @function btn-hero-info-left-color() {
@@ -137,12 +148,12 @@
   @return mix(btn-hero-primary-left-color(), nga-theme(btn-primary-bg));
 }
 
-@function btn-hero-warning-middle-color() {
-  @return mix(btn-hero-warning-left-color(), nga-theme(btn-warning-bg));
-}
-
 @function btn-hero-success-middle-color() {
   @return mix(btn-hero-success-left-color(), nga-theme(btn-success-bg));
+}
+
+@function btn-hero-warning-middle-color() {
+  @return mix(btn-hero-warning-left-color(), nga-theme(btn-warning-bg));
 }
 
 @function btn-hero-info-middle-color() {
@@ -156,6 +167,94 @@
 @function btn-hero-secondary-middle-color() {
   @return mix(btn-hero-secondary-left-color(), nga-theme(btn-secondary-border));
 }
+
+// light gradients
+
+@function btn-hero-light-gradient($color-left, $color-right) {
+  $color-left: tint($color-left, 14%);
+  $color-right: tint($color-right, 14%);
+
+  @return linear-gradient(to right, $color-left, $color-right);
+}
+
+@function btn-hero-primary-light-gradient() {
+  $color-right: nga-theme(btn-primary-bg);
+  $color-left: btn-hero-primary-left-color();
+
+  @return btn-hero-light-gradient($color-left, $color-right);
+}
+
+@function btn-hero-success-light-gradient() {
+  $color-right: nga-theme(btn-success-bg);
+  $color-left: btn-hero-success-left-color();
+
+  @return btn-hero-light-gradient($color-left, $color-right);
+}
+
+@function btn-hero-warning-light-gradient() {
+  $color-right: nga-theme(btn-warning-bg);
+  $color-left: btn-hero-warning-left-color();
+
+  @return btn-hero-light-gradient($color-left, $color-right);
+}
+
+@function btn-hero-info-light-gradient() {
+  $color-right: nga-theme(btn-info-bg);
+  $color-left: btn-hero-info-left-color();
+
+  @return btn-hero-light-gradient($color-left, $color-right);
+}
+
+@function btn-hero-danger-light-gradient() {
+  $color-right: nga-theme(btn-danger-bg);
+  $color-left: btn-hero-danger-left-color();
+
+  @return btn-hero-light-gradient($color-left, $color-right);
+}
+
+// dark gradients
+
+@function btn-hero-dark-gradient($color-left, $color-right) {
+  $color-left: shade($color-left, 14%);
+  $color-right: shade($color-right, 14%);
+
+  @return linear-gradient(to right, $color-left, $color-right);
+}
+
+@function btn-hero-primary-dark-gradient() {
+  $color-right: nga-theme(btn-primary-bg);
+  $color-left: btn-hero-primary-left-color();
+
+  @return btn-hero-dark-gradient($color-left, $color-right);
+}
+
+@function btn-hero-success-dark-gradient() {
+  $color-right: nga-theme(btn-success-bg);
+  $color-left: btn-hero-success-left-color();
+
+  @return btn-hero-dark-gradient($color-left, $color-right);
+}
+
+@function btn-hero-warning-dark-gradient() {
+  $color-right: nga-theme(btn-warning-bg);
+  $color-left: btn-hero-warning-left-color();
+
+  @return btn-hero-dark-gradient($color-left, $color-right);
+}
+
+@function btn-hero-info-dark-gradient() {
+  $color-right: nga-theme(btn-info-bg);
+  $color-left: btn-hero-info-left-color();
+
+  @return btn-hero-dark-gradient($color-left, $color-right);
+}
+
+@function btn-hero-danger-dark-gradient() {
+  $color-right: nga-theme(btn-danger-bg);
+  $color-left: btn-hero-danger-left-color();
+
+  @return btn-hero-dark-gradient($color-left, $color-right);
+}
 // End functions
 
 // Help mixins
@@ -163,37 +262,26 @@
   text-shadow: 0 1px 3px nga-theme(btn-hero-text-shadow);
 }
 
-@mixin btn-hero-hover($color-left, $color-right) {
-  $color-left: tint($color-left, 14%);
-  $color-right: tint($color-right, 14%);
-
+@mixin btn-hero-hover($light-gradient) {
   &:hover,
   .hover {
-    @include nga-right-gradient($color-left, $color-right);
+    background-image: $light-gradient;
   }
 }
 
-@mixin btn-hero-focus($color-left, $color-right) {
-  $color-left: shade($color-left, 14%);
-  $color-right: shade($color-right, 14%);
-
+@mixin btn-hero-focus($dark-gradient) {
   &:focus,
   .focus {
-    @include nga-right-gradient($color-left, $color-right);
-
+    background-image: $dark-gradient;
     box-shadow: none;
     border-color: transparent;
   }
 }
 
-@mixin btn-hero-active($color-left, $color-right) {
-  $color-left: shade($color-left, 14%);
-  $color-right: shade($color-right, 14%);
-
+@mixin btn-hero-active($dark-gradient) {
   &:active,
   .active {
-    @include nga-right-gradient($color-left, $color-right);
-
+    background-image: $dark-gradient;
     box-shadow: none;
     border-color: transparent;
   }
@@ -209,16 +297,16 @@
   @include nga-right-gradient($color-left, $color-right);
 }
 
-@mixin btn-hero-warning-gradient() {
-  $color-right: nga-theme(btn-warning-bg);
-  $color-left: btn-hero-warning-left-color();
+@mixin btn-hero-success-gradient() {
+  $color-right: nga-theme(btn-success-bg);
+  $color-left: btn-hero-success-left-color();
 
   @include nga-right-gradient($color-left, $color-right);
 }
 
-@mixin btn-hero-success-gradient() {
-  $color-right: nga-theme(btn-success-bg);
-  $color-left: btn-hero-success-left-color();
+@mixin btn-hero-warning-gradient() {
+  $color-right: nga-theme(btn-warning-bg);
+  $color-left: btn-hero-warning-left-color();
 
   @include nga-right-gradient($color-left, $color-right);
 }
@@ -247,12 +335,12 @@
   @return btn-hero-bevel(btn-hero-primary-middle-color());
 }
 
-@function btn-hero-warning-bevel() {
-  @return btn-hero-bevel(btn-hero-warning-middle-color());
-}
-
 @function btn-hero-success-bevel() {
   @return btn-hero-bevel(btn-hero-success-middle-color());
+}
+
+@function btn-hero-warning-bevel() {
+  @return btn-hero-bevel(btn-hero-warning-middle-color());
 }
 
 @function btn-hero-info-bevel() {
@@ -273,12 +361,12 @@
   @return btn-hero-glow(btn-hero-primary-middle-color());
 }
 
-@function btn-hero-warning-glow() {
-  @return btn-hero-glow(btn-hero-warning-middle-color());
-}
-
 @function btn-hero-success-glow() {
   @return btn-hero-glow(btn-hero-success-middle-color());
+}
+
+@function btn-hero-warning-glow() {
+  @return btn-hero-glow(btn-hero-warning-middle-color());
 }
 
 @function btn-hero-info-glow() {
@@ -303,17 +391,17 @@
   box-shadow: $bevel, $glow, $shadow;
 }
 
-@mixin btn-hero-warning-bevel-glow-shadow() {
-  $bevel: btn-hero-warning-bevel();
-  $glow: btn-hero-warning-glow();
+@mixin btn-hero-success-bevel-glow-shadow() {
+  $bevel: btn-hero-success-bevel();
+  $glow: btn-hero-success-glow();
   $shadow: btn-hero-shadow();
 
   box-shadow: $bevel, $glow, $shadow;
 }
 
-@mixin btn-hero-success-bevel-glow-shadow() {
-  $bevel: btn-hero-success-bevel();
-  $glow: btn-hero-success-glow();
+@mixin btn-hero-warning-bevel-glow-shadow() {
+  $bevel: btn-hero-warning-bevel();
+  $glow: btn-hero-warning-glow();
   $shadow: btn-hero-shadow();
 
   box-shadow: $bevel, $glow, $shadow;
@@ -349,11 +437,11 @@
   border: none;
 }
 
-@mixin btn-hero-warning-border() {
+@mixin btn-hero-success-border() {
   border: none;
 }
 
-@mixin btn-hero-success-border() {
+@mixin btn-hero-warning-border() {
   border: none;
 }
 
@@ -372,38 +460,23 @@
 
 // Hover
 @mixin btn-hero-primary-hover() {
-  $color-right: nga-theme(btn-primary-bg);
-  $color-left: btn-hero-primary-left-color();
-
-  @include btn-hero-hover($color-left, $color-right);
-}
-
-@mixin btn-hero-warning-hover() {
-  $color-right: nga-theme(btn-warning-bg);
-  $color-left: btn-hero-warning-left-color();
-
-  @include btn-hero-hover($color-left, $color-right);
+  @include btn-hero-hover(btn-hero-primary-light-gradient());
 }
 
 @mixin btn-hero-success-hover() {
-  $color-right: nga-theme(btn-success-bg);
-  $color-left: btn-hero-success-left-color();
+  @include btn-hero-hover(btn-hero-success-light-gradient());
+}
 
-  @include btn-hero-hover($color-left, $color-right);
+@mixin btn-hero-warning-hover() {
+  @include btn-hero-hover(btn-hero-warning-light-gradient());
 }
 
 @mixin btn-hero-info-hover() {
-  $color-right: nga-theme(btn-info-bg);
-  $color-left: btn-hero-info-left-color();
-
-  @include btn-hero-hover($color-left, $color-right);
+  @include btn-hero-hover(btn-hero-info-light-gradient());
 }
 
 @mixin btn-hero-danger-hover() {
-  $color-right: nga-theme(btn-danger-bg);
-  $color-left: btn-hero-danger-left-color();
-
-  @include btn-hero-hover($color-left, $color-right);
+  @include btn-hero-hover(btn-hero-danger-light-gradient());
 }
 
 @mixin btn-hero-secondary-hover() {
@@ -415,38 +488,23 @@
 
 // Focus
 @mixin btn-hero-primary-focus() {
-  $color-right: nga-theme(btn-primary-bg);
-  $color-left: btn-hero-primary-left-color();
-
-  @include btn-hero-focus($color-left, $color-right);
-}
-
-@mixin btn-hero-warning-focus() {
-  $color-right: nga-theme(btn-warning-bg);
-  $color-left: btn-hero-warning-left-color();
-
-  @include btn-hero-focus($color-left, $color-right);
+  @include btn-hero-focus(btn-hero-primary-dark-gradient());
 }
 
 @mixin btn-hero-success-focus() {
-  $color-right: nga-theme(btn-success-bg);
-  $color-left: btn-hero-success-left-color();
+  @include btn-hero-focus(btn-hero-success-dark-gradient());
+}
 
-  @include btn-hero-focus($color-left, $color-right);
+@mixin btn-hero-warning-focus() {
+  @include btn-hero-focus(btn-hero-warning-dark-gradient());
 }
 
 @mixin btn-hero-info-focus() {
-  $color-right: nga-theme(btn-info-bg);
-  $color-left: btn-hero-info-left-color();
-
-  @include btn-hero-focus($color-left, $color-right);
+  @include btn-hero-focus(btn-hero-info-dark-gradient());
 }
 
 @mixin btn-hero-danger-focus() {
-  $color-right: nga-theme(btn-danger-bg);
-  $color-left: btn-hero-danger-left-color();
-
-  @include btn-hero-focus($color-left, $color-right);
+  @include btn-hero-focus(btn-hero-danger-dark-gradient());
 }
 
 @mixin btn-hero-secondary-focus() {
@@ -462,38 +520,23 @@
 
 // Active
 @mixin btn-hero-primary-active() {
-  $color-right: nga-theme(btn-primary-bg);
-  $color-left: btn-hero-primary-left-color();
-
-  @include btn-hero-active($color-left, $color-right);
-}
-
-@mixin btn-hero-warning-active() {
-  $color-right: nga-theme(btn-warning-bg);
-  $color-left: btn-hero-warning-left-color();
-
-  @include btn-hero-active($color-left, $color-right);
+  @include btn-hero-active(btn-hero-primary-dark-gradient());
 }
 
 @mixin btn-hero-success-active() {
-  $color-right: nga-theme(btn-success-bg);
-  $color-left: btn-hero-success-left-color();
+  @include btn-hero-active(btn-hero-success-dark-gradient());
+}
 
-  @include btn-hero-active($color-left, $color-right);
+@mixin btn-hero-warning-active() {
+  @include btn-hero-active(btn-hero-warning-dark-gradient());
 }
 
 @mixin btn-hero-info-active() {
-  $color-right: nga-theme(btn-info-bg);
-  $color-left: btn-hero-info-left-color();
-
-  @include btn-hero-active($color-left, $color-right);
+  @include btn-hero-active(btn-hero-info-dark-gradient());
 }
 
 @mixin btn-hero-danger-active() {
-  $color-right: nga-theme(btn-danger-bg);
-  $color-left: btn-hero-danger-left-color();
-
-  @include btn-hero-active($color-left, $color-right);
+  @include btn-hero-active(btn-hero-danger-dark-gradient());
 }
 
 @mixin btn-hero-secondary-active() {
@@ -504,5 +547,57 @@
     border-color: shade($color, 14%);
     box-shadow: none;
     background: none;
+  }
+}
+
+
+// Disabled
+@mixin btn-hero-disabled() {
+  &:disabled {
+    opacity: nga-theme(btn-disabled-opacity);
+    box-shadow: none;
+  }
+}
+
+// Line height
+@function btn-hero-line-height($font-size) {
+  @return calc((#{$font-size} * 1.25) + 4px);
+}
+
+@function btn-hero-line-height-lg() {
+  @return btn-hero-line-height(nga-theme(btn-font-size-lg));
+}
+
+@function btn-hero-line-height-md() {
+  @return btn-hero-line-height(nga-theme(btn-font-size-md));
+}
+
+@function btn-hero-line-height-sm() {
+  @return btn-hero-line-height(nga-theme(btn-font-size-sm));
+}
+
+@function btn-hero-line-height-tn() {
+  @return btn-hero-line-height(nga-theme(btn-font-size-tn));
+}
+
+
+@mixin btn-hero-line-height() {
+
+  line-height: btn-hero-line-height-md();
+
+  &.btn.btn-lg {
+    line-height: btn-hero-line-height-lg();
+  }
+
+  &.btn.btn-md {
+    line-height: btn-hero-line-height-md();
+  }
+
+  &.btn.btn-sm {
+    line-height: btn-hero-line-height-sm();
+  }
+
+  &.btn.btn-tn {
+    line-height: btn-hero-line-height-tn();
   }
 }
