@@ -12,7 +12,7 @@ import { Component, Input } from '@angular/core';
   template: `    
     <div  class="inputs block-container" *ngIf="classInputs.length > 0">
       <p class="block-title"><a [routerLink]="" fragment="{{className}}Inputs" ngdFragment> <i class="ion-link"></i></a> Inputs</p>
-      <table  class="table table-striped">
+      <table  class="table">
        <thead>
          <tr>
            <td>Name</td>

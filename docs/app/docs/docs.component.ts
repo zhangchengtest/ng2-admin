@@ -24,9 +24,7 @@ import 'rxjs/add/operator/filter';
         <ngd-header></ngd-header>
       </nga-layout-header>
       <nga-sidebar>
-        <nga-sidebar-content>
-          <nga-menu [items]="menuItems" tag="leftMenu"></nga-menu>
-        </nga-sidebar-content>
+        <nga-menu [items]="menuItems" tag="leftMenu"></nga-menu>
       </nga-sidebar>
       <nga-layout-column>
         <router-outlet></router-outlet>

@@ -35,7 +35,7 @@ import { NgdStylesBlockComponent } from './docs/page/blocks/basic-blocks/ngd-sty
 import { NgdComponentBlockComponent } from './docs/page/blocks/ngd-component-block.component';
 import { NgdFragmentDirective } from './docs/utils/ngd-fragment.directive';
 import { NgdThemeComponent } from './docs/page/blocks/ngd-theme-block.component';
-import { NgdColorSwatchDirective } from './docs/utils/ngd-color-swatch.directive';
+import { NgdSassPropValueDirective } from './docs/utils/ngd-color-swatch.directive';
 import { NgdThemesHeaderComponent } from './docs/page/blocks/ngd-themes-header.component';
 
 
@@ -71,7 +71,7 @@ import { NgdThemesHeaderComponent } from './docs/page/blocks/ngd-themes-header.c
     NgdComponentBlockComponent,
     NgdFragmentDirective,
     NgdThemeComponent,
-    NgdColorSwatchDirective,
+    NgdSassPropValueDirective,
     NgdThemesHeaderComponent,
   ],
   providers: [

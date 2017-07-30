@@ -59,6 +59,36 @@
     overflow: hidden;
     background: nga-theme(color-bg);
     transition: height 0.3s ease-out;
+
+    a, a:hover {
+      color: nga-theme(color-fg);
+      font-weight: bold;
+      padding: 0.375rem 1rem;
+    }
+    & > ul > li {
+      padding: 0.25rem 0;
+      & > a:first-child {
+        &:not([ng-reflect-router-link]) {
+          pointer-events: none;
+        }
+      }
+    }
+    i {
+      display: none;
+    }
+    .menu-collapsed, .menu-expanded {
+      visibility: visible;
+      opacity: 1;
+      height: 100%;
+      a {
+        padding-left: 1rem;
+        font-weight: normal;
+        &.active {
+          font-weight: bold;
+          color: nga-theme(color-fg-active);
+        }
+      }
+    }
   }
 
   @media screen and (max-width: 1500px) and (min-width: 900px) {

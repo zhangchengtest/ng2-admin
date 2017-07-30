@@ -18,7 +18,7 @@ import { DocsService } from '../../docs.service';
       </div>
     </div>
   </div>
-  <table class="table table-striped">
+  <table class="table">
     <thead>
       <tr>
         <td>Name</td>
@@ -31,7 +31,7 @@ import { DocsService } from '../../docs.service';
         <td>
           <a [routerLink]="" fragment="{{themeName}}Theme-{{prop.name}}">{{ prop.name }}</a> 
         </td>
-        <td ngdColorSwatch>{{ prop.value }}</td>
+        <td ngdSassValue>{{ prop.value }}</td>
         <td class="theme-parents-cell">
           <a [routerLink]="" fragment="{{prop.parents[0]?.theme}}Theme-{{prop.parents[0]?.prop}}" remoteLink ngdFragment>
             {{ prop.parents[0]?.prop }}

@@ -20,20 +20,20 @@ import { Component, Input } from '@angular/core';
       </thead>
       <tbody>
         <tr *ngFor="let method of classMethods">
-          <td>{{ method.name }}</td>
+          <td>{{ method.name }} <br><i *ngIf="method.isStatic">static method</i></td>
           <td>
           <div class="method-signature">
-            <div><i>parameters:</i>
+            <div *ngIf="method.params.length > 0"><i>parameters:</i>
               <span *ngFor="let param of method.params; let last = last">
                 {{param.name}}: <code>{{param.type}}</code><span *ngIf="!last">,</span>
               </span> 
             </div>
-            <div>
+            <div *ngIf="method.type.length > 0 && method.type[0] !== 'void'">
              <i>return type:</i> 
               <code>{{ method.type.join(",\\n") }}</code>
             </div>
           </div>
-          <div ngdDescription>
+          <div *ngIf="method.shortDescription || method.description" ngdDescription>
             {{method.shortDescription}} <br> {{ method.description }} 
           </div>
           </td>

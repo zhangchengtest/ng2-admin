@@ -21,24 +21,34 @@ $nga-enabled-themes: (default);
 $nga-themes: nga-register-theme((
 
   title-font: unquote('Righteous, cursive'),
-  color-bg: #fff,
   layout-content-padding: 0 1rem,
-  color-fg-active: rgba(255, 40, 36, 0.87),
   color-fg-inverse: white,
+  color-fg-active: color-primary,
   block-title-font-size: font-size-lg,
   block-subtitle-font-size: font-size,
   block-margin: 3rem,
   class-name-font-size: font-size-lg,
-  code-snippets-bg: rgb(245, 246, 252),
+  code-snippets-bg: color-bg-active,
   inline-code-color: color-fg-active,
   content-width: 1312px,//for fixed width just define it
   section-padding: 2rem 0 5rem,
+
   shadow: none,
+  color-bg: #fff,
+  layout-bg: color-bg,
+  color-fg-heading: color-fg,
+  menu-font-size: font-size-xlg,
+  menu-submenu-active-fg: color-fg-active,
+  menu-active-bg: color-bg,
+  menu-submenu-active-bg: color-bg,
+  card-separator: transparent,
+  card-header-font-size: 2rem,
+  card-padding: 0.5rem 2rem,
 
   header-height: 80px,
   header-line-height: header-height,
   header-padding: 0,
-  layout-padding: 0, //layout-column padding actualy, content padding
+  layout-padding: 1rem 0, //layout-column padding actualy, content padding
   color-fg: rgba(0, 0, 0, 0.87),
 
 ), default, default);

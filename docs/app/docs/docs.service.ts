@@ -62,6 +62,21 @@ export class DocsService {
     return this.filterings$.share();
   }
 
+  mapThemedValues(classStyles: any): any {
+    return classStyles.map(item => {
+      item.styles.map(prop => {
+        prop.themedValues = [];
+        for (let themeName in PARSEDDOCS.themes) {
+          prop.themedValues.push({
+            theme: PARSEDDOCS.themes[themeName].name,
+            value: PARSEDDOCS.themes[themeName].data[prop.name].value,
+          });
+        }
+        return prop;
+      });
+      return item;
+    })
+  }
 
   protected prepareStructure(structure: any , preparedDocs: any): any {
     structure.map((item: any) => {

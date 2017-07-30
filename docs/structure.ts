@@ -59,8 +59,14 @@ export const STRUCTURE = [
           {
             type: 'block',
             block: 'component',
+            blockData: 'NgaLayoutColumnComponent',
+          },
+          {
+            type: 'block',
+            block: 'component',
             blockData: 'NgaLayoutFooterComponent',
           },
+
         ],
       },
       {
@@ -90,8 +96,45 @@ export const STRUCTURE = [
           }
         ],
       },
-
-
+      {
+        type: 'page',
+        name: 'UserComponent',
+        children: [
+          {
+            type: 'block',
+            block: 'component',
+            blockData: 'NgaUserComponent',
+          }
+        ],
+      }
+    ],
+  },
+  {
+    type: 'section',
+    name: 'Services',
+    children: [
+      {
+        type: 'page',
+        name: 'MediaBreakpoints',
+        children: [
+          {
+            type: 'block',
+            block: 'component',
+            blockData: 'NgaMediaBreakpointsService',
+          },
+        ],
+      },
+      {
+        type: 'page',
+        name: 'JSThemesRegistry',
+        children: [
+          {
+            type: 'block',
+            block: 'component',
+            blockData: 'NgaJSThemesRegistry',
+          },
+        ],
+      },
     ],
   },
   {
