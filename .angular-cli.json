@@ -73,7 +73,7 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "../node_modules/ionicons/dist/css/ionicons.css",
+        "../node_modules/ionicons/scss/ionicons.scss",
         "../node_modules/prismjs/themes/prism.css",
         "../node_modules/socicon/css/socicon.css"
       ],
