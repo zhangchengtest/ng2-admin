@@ -75,7 +75,7 @@
         "styles.scss",
         "../node_modules/prismjs/themes/prism.css",
         "../node_modules/socicon/css/socicon.css",
-        "../node_modules/ionicons/scss/ionicons.scss"
+        "../node_modules/ionicons/dist/scss/ionicons.scss"
       ],
       "scripts": [
         "../node_modules/prismjs/prism.js"
