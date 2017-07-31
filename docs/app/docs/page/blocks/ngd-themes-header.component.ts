@@ -15,8 +15,8 @@ import { DocsService } from '../../docs.service';
         <span class="block-title"> Theme {{themeName}}</span>
           <span *ngIf="parentTheme">inherited from {{parentTheme}} theme</span>
         <div class="theme-filter">
-          <input #searchInput (keyup)="searchTerms$.next(searchInput.value)">
-          <p *ngIf="isWarning" class="filter-warning">Nothing found</p>
+          <input #searchInput [(ngModel)]="searchInputValue" (keyup)="searchTerms$.next(searchInput.value)">
+          <span *ngIf="isWarning" class="filter-warning">Nothing found</span>
         </div>
       </div>
     </div>
@@ -26,16 +26,16 @@ export class NgdThemesHeaderComponent implements OnInit, OnDestroy {
 
   themeName: string;
   parentTheme: string;
-  isWarning: boolean = false;//TODO: implement sharing warning and typed search value with static headers
+  isWarning: boolean = false;
   themesPositions: any = [];
-
+  searchInputValue: string;
   searchTerms$ = new Subject();
 
   private scrollSubscription: Subscription;
   private searchTermsSubscription: Subscription;
   private themesSubscription: Subscription;
 
-  @HostBinding('class.transparent') isTransparent: boolean = false;//TODO: make it transparent in the bottom of the tables
+  @HostBinding('class.transparent') isTransparent: boolean = true;
 
   constructor(private docsService: DocsService,
               @Inject(DOCUMENT) private document: Document) {  }
@@ -49,7 +49,7 @@ export class NgdThemesHeaderComponent implements OnInit, OnDestroy {
       });
 
     this.scrollSubscription = Observable.fromEvent(window, 'scroll')
-      .debounceTime(200)
+      .delay(1)
       .subscribe(event => this.setCurrentTheme(this.document.body.scrollTop));
 
     this.searchTermsSubscription = this.searchTerms$
@@ -59,12 +59,18 @@ export class NgdThemesHeaderComponent implements OnInit, OnDestroy {
   }
 
   setCurrentTheme(scrollPosition) {
-    if (scrollPosition === 0) {
+    const aboveThemes = this.themesPositions.filter(theme => ((theme.position - scrollPosition - 90) < 0));
+    const belowThemes = this.themesPositions.filter(theme => !aboveThemes.includes(theme));
+    if (aboveThemes.length === 0 ||
+      ((Math.min.apply(null, belowThemes.map(theme => theme.position)) - scrollPosition - 90) < 100 )) {
       this.isTransparent = true;
     } else {
-      let scrolled = this.themesPositions.filter(theme => ((theme.position - scrollPosition - 80) < 0));
-      ({ name: this.themeName, parentTheme: this.parentTheme } =
-        scrolled.find(item => item.position === Math.max.apply(null, scrolled.map(theme => theme.position))));
+      ({
+        name: this.themeName,
+        parentTheme: this.parentTheme,
+        isWarning: this.isWarning,
+        searchInputValue: this.searchInputValue,
+      } = aboveThemes.find(item => item.position === Math.max.apply(null, aboveThemes.map(theme => theme.position))));
       this.isTransparent = false;
     }
   }

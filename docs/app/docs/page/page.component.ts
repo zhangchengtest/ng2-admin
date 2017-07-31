@@ -19,14 +19,14 @@ import { Title } from '@angular/platform-browser';
     <nga-card>
       <nga-card-header>{{ currentItem?.name }}</nga-card-header>
       <nga-card-body>
-        <!--<ngd-themes-header *ngIf="currentItem?.name === 'NgaThemes'"></ngd-themes-header>-->
+        <ngd-themes-header *ngIf="currentItem?.name === 'NgaThemes'"></ngd-themes-header>
         <ng-container *ngFor="let item of currentItem?.children">
           <ng-container [ngSwitch]="item.block">
-            
+
             <ngd-markdown-block *ngSwitchCase="'markdown'" [block]="item"></ngd-markdown-block>
             <ngd-component-block *ngSwitchCase="'component'" [blockData]="item.blockData"></ngd-component-block>
             <ngd-theme-block *ngSwitchCase="'theme'" [block]="item"></ngd-theme-block>
-            
+
           </ng-container>
         </ng-container>
        </nga-card-body>

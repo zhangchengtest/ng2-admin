@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef, HostListener, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, HostListener, OnDestroy, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
@@ -13,8 +13,8 @@ import { DocsService } from '../../docs.service';
       <span class="block-title"><a [routerLink]="" fragment="{{themeName}}" ngdFragment> <i class="ion-link"></i></a> Theme {{themeName}}</span>
         <span *ngIf="parentTheme">inherited from {{parentTheme}} theme</span>
       <div class="theme-filter">
-        <input #searchInput (keyup)="searchTerms$.next(searchInput.value)">
-        <p *ngIf="isWarning" class="filter-warning">Nothing found</p>
+        <input #searchInput [(ngModel)]="searchInputValue" (keyup)="searchTerms$.next(searchInput.value)">
+        <span *ngIf="isWarning" class="filter-warning">Nothing found</span>
       </div>
     </div>
   </div>
@@ -53,12 +53,12 @@ import { DocsService } from '../../docs.service';
 </div>
 `,
 })
-export class NgdThemeComponent implements OnInit, OnDestroy {
+export class NgdThemeComponent implements OnInit, OnDestroy, AfterViewInit {
   themeContent: any;
   themeName: string;
   filteredContent: any;
   parentTheme: string;
-  searchFieldValue: string;
+  searchInputValue: string;
   isWarning: boolean = false;
 
   private searchTerms$  = new Subject();
@@ -74,18 +74,14 @@ export class NgdThemeComponent implements OnInit, OnDestroy {
     this.parentTheme = block.blockData.parent;
   }
 
-  constructor(private route: ActivatedRoute,
-              private el: ElementRef,
+  constructor(private el: ElementRef,
+              private route: ActivatedRoute,
               private docsService: DocsService) { }
 
   ngOnInit() {
     this.fragmentSubscription = this.route.fragment
-      .subscribe(fr => {
-        this.searchTerms$.next('');
-      });
-
-    this.docsService.registerThemePosition({ name: this.themeName, position: this.el.nativeElement.offsetTop,
-      parentTheme: this.parentTheme });
+      .filter(fr => fr && fr.substr(0, fr.indexOf('Theme')) === this.themeName)
+      .subscribe(fr => this.docsService.filterData('', this.themeName));
 
     this.themesSubscription = this.docsService.onFiltering()
       .subscribe(event => {
@@ -100,31 +96,49 @@ export class NgdThemeComponent implements OnInit, OnDestroy {
             this.filteredContent = this.themeContent;
             this.isWarning = true;
           }
+          this.searchInputValue = event.term;
           this.el.nativeElement.scrollIntoView();
           window.scrollBy(0, -80);
         }
         setTimeout(() => {
           this.docsService.registerThemePosition({
-            name: this.themeName, position:
-            this.el.nativeElement.offsetTop,
+            name: this.themeName,
+            position: this.el.nativeElement.offsetTop,
             parentTheme: this.parentTheme,
+            isWarning: this.isWarning,
+            searchInputValue: this.searchInputValue,
           });
-        }, 100);
+        });
       });
 
     this.searchTermsSubscription = this.searchTerms$
       .debounceTime(400)
       .distinctUntilChanged()
-      .subscribe((term: string) => this.docsService.filterData(term, this.themeName));
+      .subscribe((term: string) => {
+        this.docsService.filterData(term, this.themeName);
+      });
   }
 
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.docsService.registerThemePosition({
       name: this.themeName,
       position: this.el.nativeElement.offsetTop,
       parentTheme: this.parentTheme,
+      isWarning: this.isWarning,
+      searchInputValue: this.searchInputValue,
     });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() =>
+    this.docsService.registerThemePosition({
+      name: this.themeName,
+      position: this.el.nativeElement.offsetTop,
+      parentTheme: this.parentTheme,
+      isWarning: this.isWarning,
+      searchInputValue: this.searchInputValue,
+    }));
   }
 
   ngOnDestroy() {

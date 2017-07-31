@@ -46,7 +46,7 @@ export class DocsService {
     return this.fragments$.share();
   }
 
-  getThemesPositions(): Observable<{name, position, parentTheme}> {
+  getThemesPositions(): Observable<{ name, position, parentTheme, isWarning, searchInputVAlue }> {
     return this.positions$.share();
   }
 
@@ -102,14 +102,14 @@ export class DocsService {
         const itemLink = item.type === 'block' ?
           `${parentLink}`
           : `${parentLink ? parentLink : ''}/${item.name.replace(/\s/, '-').toLowerCase()}`;
-        if (item.type !== 'section') {
+        if (item.type !== 'section' || !item.isSubpages) {
           menuItem['link'] = itemLink;
         }
         (item.type === 'block') ? menuItem['data'] = parentItem : menuItem['data'] = item;
         if (item.type === 'block') {
           menuItem['fragment'] = item.name;
         }
-        menuItem['pathMath'] = 'false';
+        menuItem['pathMath'] = 'full';
         menuItem['title'] = item.name;
 
         if (item.children && item.children[0] && item.children[0].type === 'page') {
