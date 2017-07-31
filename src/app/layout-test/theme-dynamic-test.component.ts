@@ -30,9 +30,7 @@ export class NgaDynamicToAddComponent {
       </nga-layout-header>
 
       <nga-sidebar right>
-        <nga-sidebar-content>
           Sidebar content
-        </nga-sidebar-content>
       </nga-sidebar>
 
       <nga-layout-column>
