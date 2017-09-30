@@ -13,3 +13,5 @@ export * from './baPictureUploader';
 export * from './baCheckbox';
 export * from './baMultiCheckbox';
 export * from './baFileUploader';
+export * from './modals';
+export * from './modals/default-modal';

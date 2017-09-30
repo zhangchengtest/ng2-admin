@@ -1,9 +1,33 @@
 <div class="widgets">
 
-  <div class="row">
-    <ba-card cardTitle="Basic Example" baCardClass="with-scroll" class="smart-table-container">
-      <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
-    </ba-card>
-  </div>
+    <div class="col-lg-6 col-md-12">
+      <ba-card  baCardClass=" table-panel">
+       
+       <div class="horizontal-scroll">
+		  <table class="table table-condensed">
+		    <thead>
+		    <tr>
+		      <th class="table-id">#</th>
+		      <th>机器编号</th>
+		      
+		      <th>操作</th>
+		    </tr>
+		    </thead>
+		    <tbody>
+		    <tr *ngFor="let item of peopleTableData">
+		      <td class="table-id">{{ item.id }}</td>
+		      <td>{{ item.machineCode }}</td>
+	 
+		     
+		      <td>
+		        <button ngClass="{status-button btn btn-xs btn-{{ item.status }}">删除</button>
+		      </td>
+		    </tr>
+		    </tbody>
+		  </table>
+		</div>
 
+      </ba-card>
+    </div>
+    
 </div>

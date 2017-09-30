@@ -28,6 +28,7 @@ import {
   BaPageTop,
   BaPictureUploader,
   BaSidebar,
+  DefaultModal,
   BaFileUploader
 } from './components';
 
@@ -72,6 +73,7 @@ const NGA_COMPONENTS = [
   BaPageTop,
   BaPictureUploader,
   BaSidebar,
+  DefaultModal,
   BaFileUploader
 ];
 
@@ -114,10 +116,14 @@ const NGA_VALIDATORS = [
     AppTranslationModule,
     NgUploaderModule
   ],
+ 
   exports: [
     ...NGA_PIPES,
     ...NGA_DIRECTIVES,
     ...NGA_COMPONENTS
+  ],
+   entryComponents: [
+    DefaultModal
   ]
 })
 export class NgaModule {

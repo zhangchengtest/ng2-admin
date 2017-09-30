@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { SmartTablesService } from './smartTables.service';
-import { LocalDataSource } from 'ng2-smart-table';
+import { PrintMachineService } from '../../../../_services/index';
 
 @Component({
   selector: 'smart-tables',
@@ -10,64 +9,22 @@ import { LocalDataSource } from 'ng2-smart-table';
 })
 export class SmartTables {
 
-  query: string = '';
+  peopleTableData:Array<any>;
 
-  settings = {
-    add: {
-      addButtonContent: '<i class="ion-ios-plus-outline"></i>',
-      createButtonContent: '<i class="ion-checkmark"></i>',
-      cancelButtonContent: '<i class="ion-close"></i>',
-    },
-    edit: {
-      editButtonContent: '<i class="ion-edit"></i>',
-      saveButtonContent: '<i class="ion-checkmark"></i>',
-      cancelButtonContent: '<i class="ion-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="ion-trash-a"></i>',
-      confirmDelete: true
-    },
-    columns: {
-      id: {
-        title: 'ID',
-        type: 'number'
-      },
-      firstName: {
-        title: 'First Name',
-        type: 'string'
-      },
-      lastName: {
-        title: 'Last Name',
-        type: 'string'
-      },
-      username: {
-        title: 'Username',
-        type: 'string'
-      },
-      email: {
-        title: 'E-mail',
-        type: 'string'
-      },
-      age: {
-        title: 'Age',
-        type: 'number'
-      }
-    }
-  };
+  constructor(
+    private printMachineService: PrintMachineService
+  ) {
 
-  source: LocalDataSource = new LocalDataSource();
-
-  constructor(protected service: SmartTablesService) {
-    this.service.getData().then((data) => {
-      this.source.load(data);
-    });
-  }
-
-  onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
-    }
+   printMachineService.list().subscribe(
+                data => {
+                    console.log(data);
+                    this.peopleTableData = data;
+                },
+                error => {
+                
+                  console.log(error);
+                
+           
+      });
   }
 }

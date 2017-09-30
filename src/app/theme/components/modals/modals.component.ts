@@ -3,7 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DefaultModal } from './default-modal/default-modal.component';
 
 import { Subscription } from 'rxjs/Subscription';
-import { AlertService } from '../../../../_services/index';
+import { AlertService } from '../../../_services/index';
 
 @Component({
   selector: 'modals',
@@ -16,7 +16,7 @@ export class Modals {
     message: any;
 
   constructor(private modalService: NgbModal,private alertService: AlertService) {
-      
+     
 
   }
 

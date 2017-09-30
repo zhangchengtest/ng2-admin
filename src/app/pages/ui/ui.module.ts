@@ -54,6 +54,9 @@ import { DefaultModal } from './components/modals/default-modal/default-modal.co
     GroupButtons,
     DefaultModal
   ],
+  exports: [
+   Modals
+  ],
   entryComponents: [
     DefaultModal
   ],

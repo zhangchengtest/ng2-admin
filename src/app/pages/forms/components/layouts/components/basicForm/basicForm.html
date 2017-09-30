@@ -1,14 +1,26 @@
-<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+<form  [formGroup]="form" (ngSubmit)="save(form.value)" class="form-horizontal" >
+  <div class="form-group" [ngClass]="{'has-error': (!restaurantName.valid && restaurantName.touched), 'has-success': (restaurantName.valid && restaurantName.touched)}" >
+    <label for="restaurantName">店铺名称</label>
+    <input [formControl]="restaurantName" class="form-control" placeholder="店铺名称" name="restaurantName"  >
   </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <div class="checkbox">
-    <ba-checkbox [(ngModel)]="isChecked" [label]="'Check me out'" [ngModelOptions]="{standalone: true}"></ba-checkbox>
-  </div>
-  <button type="submit" class="btn btn-danger">Submit</button>
+ <div class="form-group" class="form-group" [ngClass]="{'has-error': (!printMachineId.valid && printMachineId.touched), 'has-success': (printMachineId.valid && printMachineId.touched)}" >
+  <label for="exampleSelect1">打印机</label>
+  <select class="form-control" id="exampleSelect1" name="printMachineId" [formControl]="printMachineId" >
+    <option value=""></option>
+    <option *ngFor="let item of machines" value="{{ item.id }}">{{ item.machineCode }}</option>
+    
+  </select>
+</div>
+
+<div class="form-group">
+  <label for="exampleSelect2">打印联数</label>
+  <select class="form-control" id="exampleSelect2" id="printCount" name="printCount" [formControl]="printCount" >
+    <option value="1">1</option>
+    <option value="2">2</option>
+   
+  </select>
+</div>
+
+  
+  <button type="submit" [disabled]="!form.valid" class="btn btn-danger">提交</button>
 </form>

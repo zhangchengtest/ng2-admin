@@ -27,4 +27,9 @@ export class BaPageTop {
   public scrolledChanged(isScrolled) {
     this.isScrolled = isScrolled;
   }
+
+  public logout() {
+    console.log("out");
+    localStorage.removeItem('currentUser')
+  }
 }

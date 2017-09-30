@@ -8,7 +8,7 @@ $hover: 24;
   cursor: pointer;
   border-radius: 5px;
   transition: all 0.1s ease;
-  padding: 0.344rem 1rem;
+
   font-size: 0.9rem;
 }
 
@@ -68,16 +68,6 @@ button.btn.btn-primary {
   @include buttonColor($primary, $primary);
   &:active, &:target {
     background-color: $primary-dark;
-  }
-}
-
-button.btn.btn-default {
-  border-width: 1px;
-  color: $content-text;
-  @include buttonColor(transparent, $border);
-  &:active, &:target {
-    background-color: rgba(0, 0, 0, 0.2);
-    color: $default-text;
   }
 }
 

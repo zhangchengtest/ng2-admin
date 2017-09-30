@@ -1,0 +1,10 @@
+<div class="modal-content">
+  <div [ngClass]="{ 'modal-header': message, 'bg-success': message === 'success', 'bg-danger': message === 'error' }">
+    <i class="ion-checkmark modal-icon"></i> 
+  </div>
+  <div class="modal-body text-center">{{modalContent}}</div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="closeModal()">确定</button>
+  </div>
+</div>
+

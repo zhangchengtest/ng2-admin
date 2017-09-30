@@ -1,33 +1,29 @@
+
 <div class="widgets">
 
-  <div class="row">
-    <div class="col-md-6">
-      <ba-card cardTitle="Standard Fields" baCardClass="with-scroll">
-        <standard-inputs></standard-inputs>
-      </ba-card>
 
-      <ba-card cardTitle="Input Groups" baCardClass="with-scroll">
-        <group-inputs></group-inputs>
-      </ba-card>
 
-      <ba-card cardTitle="Selects" baCardClass="with-scroll">
-        <select-inputs></select-inputs>
-      </ba-card>
-    </div>
-
-    <div class="col-md-6">
-      <ba-card cardTitle="Validation States" baCardClass="with-scroll">
-        <validation-inputs></validation-inputs>
-      </ba-card>
-
-      <ba-card cardTitle="Checkboxes & Radios" baCardClass="with-scroll">
-        <checkbox-inputs></checkbox-inputs>
-      </ba-card>
-
-      <ba-card cardTitle="Rating" baCardClass="with-scroll">
-        <rating-inputs></rating-inputs>
-      </ba-card>
-    </div>
+ 
+    <div class="col-md-12">
+     
+        <ba-card cardTitle="" >
+          
+          <form (ngSubmit)="f.form.valid && login()" #f="ngForm" >
+  <div class="form-group">
+    <label for="machineCode">机器号</label>
+    <input type="email" class="form-control" id="machineCode" placeholder="机器号" name="machineCode" [(ngModel)]="model.machineCode" >
   </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">密钥</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密钥" name="password" [(ngModel)]="model.password">
+  </div>
+  
+  <button type="submit" class="btn btn-danger">提交</button>
+</form>
 
+
+        </ba-card>
+      </div>
+ 
+     
 </div>
