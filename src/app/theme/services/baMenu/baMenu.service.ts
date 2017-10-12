@@ -121,7 +121,13 @@ export class BaMenuService {
   }
 
   protected _selectItem(object:any):any {
-    object.selected = this._router.isActive(this._router.createUrlTree(object.route.paths), object.pathMatch === 'full');
+     let a = false;
+     if(object.inner_path === this._router.url){
+       a = true;
+     }
+     
+     console.log(a);
+    object.selected = this._router.isActive(this._router.createUrlTree(object.route.paths), object.pathMatch === 'full') || a ;
     return object;
   }
 }

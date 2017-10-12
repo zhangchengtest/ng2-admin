@@ -63,6 +63,7 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'general.menu.restaurants',
+                inner_path: '/pages/tables/datatables'
               }
             }
           },

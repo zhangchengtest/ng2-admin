@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 import { Overlay, DialogRef } from 'ngx-modialog';
 import { Modal } from 'ngx-modialog/plugins/bootstrap';
-
+import { Router, ActivatedRoute } from '@angular/router';
 import {BasicTablesService} from '../../basicTables.service';
 import { RestaurantService } from '../../../../../../_services/index';
 
@@ -15,7 +15,7 @@ export class CondensedTable {
   peopleTableData:Array<any>;
 
   constructor(private _basicTablesService: BasicTablesService,
-  	private restaurantService: RestaurantService, private modal: Modal
+  	private restaurantService: RestaurantService, private router: Router, private modal: Modal
   ) {
 
    restaurantService.list().subscribe(
@@ -72,5 +72,9 @@ export class CondensedTable {
            } );
        });
     
+  }
+
+  detail(id: string, name: string): void {
+    this.router.navigate(['/pages/tables/datatables']);
   }
 }
