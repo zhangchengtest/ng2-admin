@@ -126,7 +126,6 @@ export class BaMenuService {
        a = true;
      }
      
-     console.log(a);
     object.selected = this._router.isActive(this._router.createUrlTree(object.route.paths), object.pathMatch === 'full') || a ;
     return object;
   }

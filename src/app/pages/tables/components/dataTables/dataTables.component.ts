@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { DataTablesService } from './dataTables.service';
+import {Component} from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router, ActivatedRoute } from '@angular/router';
+import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
+import { DefaultModal } from '../../../../theme/components/modals/default-modal/default-modal.component';
+import { Modal } from 'ngx-modialog/plugins/bootstrap';
+
+import { RestaurantService, PrintMachineService} from '../../../../_services/index';
 
 @Component({
   selector: 'data-tables',
@@ -8,24 +14,132 @@ import { DataTablesService } from './dataTables.service';
 })
 export class DataTables {
 
-    data;
-    filterQuery = "";
-    rowsOnPage = 10;
-    sortBy = "email";
-    sortOrder = "asc";
+  model: any = {};
+  public restaurantId: string;
+  
+  machines:Array<any>;
+  public form:FormGroup;
+  public restaurantName:AbstractControl;
+  public printMachineId:AbstractControl;
+  public printCount:AbstractControl;
 
-    constructor(private service: DataTablesService) {
-    this.service.getData().then((data) => {
-      this.data = data;
+  constructor(fb:FormBuilder, public activeRoute:ActivatedRoute,
+  private modalService: NgbModal,
+  private restaurantService: RestaurantService, private router: Router,  private printMachineService: PrintMachineService,
+  private modal: Modal) {
+     this.form = fb.group({
+      'restaurantName': ['', Validators.compose([Validators.required])],
+      'printMachineId': ['', Validators.compose([Validators.required])],
+      'printCount': ['', Validators.compose([Validators.required])]
     });
+
+    this.restaurantName = this.form.controls['restaurantName'];
+    this.printMachineId = this.form.controls['printMachineId'];
+    this.printCount = this.form.controls['printCount'];
+  
+    
+      printMachineService.list().subscribe(
+                data => {
+                    console.log(data);
+                    this.machines = data;
+                },
+                error => {
+                
+                  console.log(error);
+                  });
   }
 
-    toInt(num: string) {
-        return +num;
+   ngOnInit(){
+        this.activeRoute.queryParams.subscribe(params => {
+        this.restaurantId = params['id'];
+        console.log(this.restaurantId);
+        this.restaurantService.detail(this.restaurantId).subscribe(
+                data => {
+                    console.log(data);
+                    this.restaurantName.setValue(data.restaurant.restaurantName);
+                    this.printMachineId.setValue(data.restaurant.printMachineId);
+                    this.printCount.setValue(data.restaurant.printCount);
+                },
+                error => {
+                
+                  console.log(error);
+                  });
+
+    });
     }
 
-    sortByWordLength = (a: any) => {
-        return a.city.length;
-    }
+  onDeleteConfirm(id: string, name: string): void {
+   const dialogRef = this.modal.confirm()
+    .size('sm')
+    .titleHtml(``).
+   cancelBtn(`取消`).
+    okBtn(`确定`)
+
+    .body(`确定删除`+ name)
+        .open();
+
+     dialogRef
+       .then( dialogRef => {
+           dialogRef.result.then( 
+           result => {
+           console.log(`${result}`);
+            
+            this.restaurantService.delete(id).subscribe(
+                data => {
+                    console.log(data);
+                    this.restaurantService.list().subscribe(
+                      data => {
+                          console.log(data);
+                          this.router.navigate(['/pages/tables/basictables']);
+                      },
+                      error => {
+                      
+                        console.log(error);
+                
+           
+                   });
+                },
+                error => {
+                
+                  console.log(error);
+                 });
+
+           }, () => {
+             console.log('not hehe');
+           } );
+       });
+    
+  }
+
+
+  update(values:Object) {
+    console.log(this.model.printCount);
+    if (this.form.valid) {
+      this.restaurantService.update(this.restaurantId, this.restaurantName.value, this.printMachineId.value, this.printCount.value)
+              .subscribe(
+                  data => {
+                      console.log(data);
+                      if(data.success){
+                          const activeModal = this.modalService.open(DefaultModal, {size: 'sm'});
+                        activeModal.componentInstance.message = 'success';
+                          activeModal.componentInstance.modalContent = '保存成功';
+                         
+                      }else{
+                        const activeModal = this.modalService.open(DefaultModal, {size: 'sm'});
+                        activeModal.componentInstance.message = 'error';
+                          activeModal.componentInstance.modalContent = '保存失败';
+                      }
+                  },
+                  error => {
+                  
+                    console.log(error);
+                    const activeModal = this.modalService.open(DefaultModal, {size: 'sm'});
+                      activeModal.componentInstance.message = 'error';
+                      activeModal.componentInstance.modalContent = '保存失败';
+             
+        });
+      }
+    
+  }
   
 }

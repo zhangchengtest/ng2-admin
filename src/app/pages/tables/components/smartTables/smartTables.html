@@ -20,7 +20,7 @@
 	 
 		     
 		      <td>
-		        <button ngClass="{status-button btn btn-xs btn-{{ item.status }}">删除</button>
+		          <button class="status-button btn btn-xs btn-danger" (click) = "onDeleteConfirm(item.id,item.machineCode)" >删除</button>
 		      </td>
 		    </tr>
 		    </tbody>
