@@ -141,5 +141,35 @@ export class DataTables {
       }
     
   }
+
+   updateStatus(values:Object) {
+    if (this.form.valid) {
+      this.restaurantService.updateStatus(this.restaurantId, "2")
+              .subscribe(
+                  data => {
+                      console.log(data);
+                      if(data.success){
+                          location.href="https://wmcrm.baidu.com/crm?qt=apishopbindpage&source=F9F74AF78FFAA6FF3D464402FE7B5E3B35CB113ED612F2B1";
+                      }else{
+                        const activeModal = this.modalService.open(DefaultModal, {size: 'sm'});
+                        activeModal.componentInstance.message = 'error';
+                          activeModal.componentInstance.modalContent = '绑定失败';
+                      }
+                  },
+                  error => {
+                  
+                    console.log(error);
+                    const activeModal = this.modalService.open(DefaultModal, {size: 'sm'});
+                      activeModal.componentInstance.message = 'error';
+                      activeModal.componentInstance.modalContent = '绑定失败';
+             
+        });
+      }
+    
+  }
+
+   goback() {
+    this.router.navigate(['/pages/tables/basictables']);
+  }
   
 }

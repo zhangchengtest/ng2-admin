@@ -81,6 +81,20 @@ export class RestaurantService {
             });
     }
 
+     updateStatus(restaurantId: string, status: string) {
+         let data =  localStorage.getItem('currentUser');
+         let ownerId = JSON.parse(data).token;
+         console.log("he"+ restaurantId);
+        return this.http.post('/api/restaurant/update', JSON.stringify({ id: restaurantId, ownerId: ownerId,  status: status}),this.opts)
+            .map((response: Response) => {
+                // login successful if there's a jwt token in the response
+                let data = response.json();
+                
+               
+                return data;
+            });
+    }
+
 
     
 }

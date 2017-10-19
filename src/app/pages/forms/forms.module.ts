@@ -12,12 +12,7 @@ import { Forms } from './forms.component';
 import { Inputs } from './components/inputs';
 import { Layouts } from './components/layouts';
 
-import { StandardInputs } from './components/inputs/components/standardInputs';
-import { ValidationInputs } from './components/inputs/components/validationInputs';
-import { GroupInputs } from './components/inputs/components/groupInputs';
-import { CheckboxInputs } from './components/inputs/components/checkboxInputs';
-import { Rating } from './components/inputs/components/ratinginputs';
-import { SelectInputs } from './components/inputs/components/selectInputs';
+
 
 import { InlineForm } from './components/layouts/components/inlineForm';
 import { BlockForm } from './components/layouts/components/blockForm';
@@ -42,12 +37,7 @@ import { UiModule } from '../ui/ui.module';
     Layouts,
     Inputs,
     Forms,
-    StandardInputs,
-    ValidationInputs,
-    GroupInputs,
-    CheckboxInputs,
-    Rating,
-    SelectInputs,
+    
     InlineForm,
     BlockForm,
     HorizontalForm,

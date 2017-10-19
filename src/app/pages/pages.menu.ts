@@ -19,7 +19,7 @@ export const PAGES_MENU = [
         path: 'forms',
         data: {
           menu: {
-            title: 'general.menu.bind',
+            title: 'general.menu.add_restaurant',
             icon: 'ion-compose',
             selected: false,
             expanded: false,

@@ -4,7 +4,7 @@
     <tr>
       <th class="table-id">#</th>
       <th>店铺名</th>
-     
+     <th>状态</th>
       <th>操作</th>
     </tr>
     </thead>
@@ -12,6 +12,10 @@
     <tr *ngFor="let item of peopleTableData">
       <td class="table-id">{{ item.id }}</td>
       <td>{{ item.restaurantName }}</td>
+
+     <td *ngIf="item.status == 1">已绑定</td>
+     <td *ngIf="item.status == 0">待绑定</td>
+     <td *ngIf="item.status == 2">待审核</td>
      
       <td>
         <button class="status-button btn btn-xs btn-danger" (click) = "detail(item.id,item.restaurantName)" >详细</button>

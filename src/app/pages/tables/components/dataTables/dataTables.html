@@ -1,3 +1,8 @@
+ <div class="form-group" style="width:30%">
+  <button type="button"  class="btn btn-primary " (click) = "goback(restaurantId, restaurantName.value)" style="width:100%">返回列表</button>
+  </div>
+
+
 <form  [formGroup]="form" (ngSubmit)="update(form.value)" class="form-horizontal" >
   <input type="hidden" name="restaurantId" value="{{ restaurantId }}" />
   <div class="form-group" [ngClass]="{'has-error': (!restaurantName.valid && restaurantName.touched), 'has-success': (restaurantName.valid && restaurantName.touched)}" >
@@ -29,4 +34,8 @@
    <div class="form-group" style="width:100%">
   <button type="button"  class="btn btn-danger " (click) = "onDeleteConfirm(restaurantId, restaurantName.value)" style="width:100%">删除</button>
    </div>
+
+  <div class="form-group" style="width:100%">
+  <button type="button"  class="btn btn-primary " (click) = "updateStatus(restaurantId, restaurantName.value)" style="width:100%">绑定百度</button>
+  </div>
 </form>
