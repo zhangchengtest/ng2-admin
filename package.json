@@ -16,7 +16,7 @@
     "ng": "ng",
     "rimraf": "rimraf",
     "changelog": "standard-changelog",
-    "start": "ng serve --proxy-config proxy.conf.json --host 192.168.31.14 --disable-host-check",
+    "start": "ng serve --proxy-config proxy.conf.json --host 127.0.0.1 --disable-host-check",
     "start:hmr": "ng serve --hmr",
     "start:aot": "ng serve --aot",
     "start:prod": "ng serve --prod",
