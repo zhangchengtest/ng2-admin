@@ -29,7 +29,6 @@ import {
   BaPictureUploader,
   BaSidebar,
   DefaultModal,
-  Modals,
   BaFileUploader
 } from './components';
 
@@ -75,7 +74,6 @@ const NGA_COMPONENTS = [
   BaPictureUploader,
   BaSidebar,
   DefaultModal,
-  Modals,
   BaFileUploader
 ];
 
