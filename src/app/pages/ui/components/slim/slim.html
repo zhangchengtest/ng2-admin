@@ -1,28 +1,26 @@
-<div class="widgets">
-  <div class="row">
-    <div class="col-md-12">
-      <ba-card cardTitle="Slim loading bar" class="slim-loading-bar-block">
-        <button class="btn btn-default" (click)="setProgres30()">Set progress equals 30</button>
-        <br>
-        <button class="btn btn-default" (click)="incrementProgress()">Increment progress</button>
-        <br>
-        <button class="btn btn-default" (click)="startProgress()">Start progress</button>
-        <br>
-        <button class="btn btn-default" (click)="completeProgress()">Complete progress</button>
-        <br>
-        <button class="btn btn-default" (click)="stopProgress()">Stop progress</button>
-        <br>
-        <button class="btn btn-default" (click)="resetProgress()">Reset progress</button>
-        <br>
-        <button class="btn btn-default" (click)="changeProgressTo4px()">Change height to 4px</button>
-        <br>
-        <button class="btn btn-default" (click)="changeProgressTo2px()">Change height to 2px</button>
-        <br>
-        <button class="btn btn-default" (click)="changeProgressToWhite()">Change color to white</button>
-        <br>
-        <button class="btn btn-default" (click)="changeProgressToGreen()">Change color to green</button>
-      </ba-card>
-    </div>
+ <div class="form-group" style="width:30%">
+  <button type="button"  class="btn btn-primary " (click) = "goback()" style="width:100%">返回列表</button>
   </div>
+
+
+<form  [formGroup]="form" (ngSubmit)="update(form.value)" class="form-horizontal" >
+  <input type="hidden" name="partnerRestaurantId" value="{{ partnerRestaurantId }}" />
+  <div class="form-group" >
+    <label for="restaurantName">伙伴名称</label>
+    <input class="form-control" disabled="true" value="{{ partnerRestaurantName }}"  name="partnerRestaurantName"  >
+  </div>
+ <div class="form-group" class="form-group" [ngClass]="{'has-error': (!restaurantId.valid && restaurantId.touched), 'has-success': (restaurantId.valid && restaurantId.touched)}" >
+  <label for="exampleSelect1">店铺名称</label>
+  <select class="form-control" id="exampleSelect1" name="restaurantId" [formControl]="restaurantId" >
+    <option value=""></option>
+    <option *ngFor="let item of machines" value="{{ item.id }}">{{ item.restaurantName }}</option>
+    
+  </select>
 </div>
-<ng2-slim-loading-bar></ng2-slim-loading-bar>
+
+
+  <div class="form-group" style="width:100%">
+  <button type="submit" [disabled]="!form.valid" class="btn btn-primary " style="width:100%">提交</button>
+  </div>
+
+</form>

@@ -14,6 +14,28 @@ export const PAGES_MENU = [
           }
         }
       },
+      {
+        path: 'ui',
+        data: {
+          menu: {
+            title: 'general.menu.partner',
+            icon: 'ion-android-laptop',
+            selected: false,
+            expanded: false,
+            order: 300,
+          }
+        },
+        children: [
+          {
+            path: 'typography',
+            data: {
+              menu: {
+                title: 'general.menu.partner',
+              }
+            }
+          }
+        ]
+      },
       
       {
         path: 'forms',

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { routing }       from './ui.routing';
 import { Ui } from './ui.component';
@@ -23,6 +24,7 @@ import { LargeButtons } from './components/buttons/components/largeButtons';
 import { DropdownButtons } from './components/buttons/components/dropdownButtons';
 import { GroupButtons } from './components/buttons/components/groupButtons';
 import { IconsService } from './components/icons/icons.service';
+import { PartnerService } from './components/typography/partner.service';
 import { DefaultModal } from './components/modals/default-modal/default-modal.component';
 
 
@@ -33,6 +35,7 @@ import { DefaultModal } from './components/modals/default-modal/default-modal.co
     NgaModule,
     NgbDropdownModule,
     NgbModalModule,
+    ReactiveFormsModule,
     SlimLoadingBarModule.forRoot(),
     routing
   ],
@@ -61,7 +64,8 @@ import { DefaultModal } from './components/modals/default-modal/default-modal.co
     DefaultModal
   ],
   providers: [
-    IconsService
+    IconsService,
+    PartnerService
   ]
 })
 export class UiModule {
