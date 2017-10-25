@@ -23,6 +23,7 @@ export const PAGES_MENU = [
             selected: false,
             expanded: false,
             order: 300,
+            owner: 'admin'
           }
         },
         children: [
@@ -31,6 +32,7 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'general.menu.partner',
+                owner: 'admin'
               }
             }
           }

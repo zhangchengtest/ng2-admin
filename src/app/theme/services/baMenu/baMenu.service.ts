@@ -71,7 +71,26 @@ export class BaMenuService {
   protected _convertArrayToItems(routes:any[], parent?:any):any[] {
     let items = [];
     routes.forEach((route) => {
-      items.push(this._convertObjectToItem(route, parent));
+
+        let data =  localStorage.getItem('currentUser');
+         let roleId = JSON.parse(data).roleId;
+         console.log("roleId : "+ roleId);
+       if(roleId != '999') {
+          if(route.data && route.data.menu) {
+            if(route.data.menu.owner === 'admin'){
+                console.log('admin');
+            } else {
+              items.push(this._convertObjectToItem(route, parent));
+            }
+          } else {
+            items.push(this._convertObjectToItem(route, parent));
+          }
+       }else {
+            items.push(this._convertObjectToItem(route, parent));
+       }
+      
+
+
     });
     return items;
   }
