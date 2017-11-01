@@ -71,7 +71,7 @@ export const PAGES_MENU = [
       },
 
       {
-        path: 'tables',
+        path: 'restaurant',
         data: {
           menu: {
             title: 'general.menu.restaurant',
@@ -83,7 +83,7 @@ export const PAGES_MENU = [
         },
         children: [
           {
-            path: 'basictables',
+            path: 'restaurantList',
             data: {
               menu: {
                 title: 'general.menu.restaurants',
