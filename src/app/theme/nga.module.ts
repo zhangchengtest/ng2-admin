@@ -14,13 +14,11 @@ import {
 } from './theme.configProvider';
 
 import {
-  BaAmChart,
   BaBackTop,
   BaCard,
   BaChartistChart,
   BaCheckbox,
   BaContentTop,
-  BaFullCalendar,
   BaMenuItem,
   BaMenu,
   BaMsgCenter,
@@ -59,13 +57,11 @@ import {
 } from './validators';
 
 const NGA_COMPONENTS = [
-  BaAmChart,
   BaBackTop,
   BaCard,
   BaChartistChart,
   BaCheckbox,
   BaContentTop,
-  BaFullCalendar,
   BaMenuItem,
   BaMenu,
   BaMsgCenter,

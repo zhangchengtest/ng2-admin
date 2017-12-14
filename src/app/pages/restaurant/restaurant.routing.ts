@@ -4,7 +4,6 @@ import { Restaurant } from './restaurant.component';
 import { RestaurantList } from './components/restaurantList/restaurantList.component';
 import { SmartTables } from './components/smartTables/smartTables.component';
 import { DataTables } from './components/dataTables/dataTables.component';
-import { HotTablesComponent } from './components/hotTables/hotTables.component';
 
 // noinspection TypeScriptValidateTypes
 const routes: Routes = [
@@ -15,7 +14,6 @@ const routes: Routes = [
       { path: 'restaurantList', component: RestaurantList },
       { path: 'smarttables', component: SmartTables },
       { path: 'datatables', component: DataTables },
-      { path: 'hottables', component: HotTablesComponent }
     ]
   }
 ];
