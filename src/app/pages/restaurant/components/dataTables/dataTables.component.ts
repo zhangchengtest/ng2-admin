@@ -168,6 +168,14 @@ export class DataTables {
     
   }
 
+
+   bindMeituan(id: string, name: string) {
+    if (this.form.valid) {
+      location.href="https://open-erp.meituan.com/storemap?developerId=100330&businessId=2&ePoiId="+ id +"&signKey=c4nsbmn6x1k1db3e&ePoiName="+name;
+    }
+    
+  }
+
    goback() {
     this.router.navigate(['/pages/restaurant/restaurantList']);
   }

@@ -7,24 +7,21 @@
     <div class="col-lg-6 col-md-12">
       
         <div class="horizontal-scroll">
-		  <table class="table table-condensed">
+		  <table class="table table-condensed" [mfData]="peopleTableData" #mf="mfDataTable" [mfRowsOnPage]="10">
 		    <thead>
 		    <tr>
 		      <th class="table-id">#</th>
 		      <th>店铺名</th>
-		     <th>状态</th>
+		     <th>绑定状态</th>
 		      <th>操作</th>
 		    </tr>
 		    </thead>
 		    <tbody>
-		    <tr *ngFor="let item of peopleTableData">
+		    <tr *ngFor="let item of mf.data">
 		      <td class="table-id">{{ item.id }}</td>
 		      <td>{{ item.restaurantName }}</td>
 
-		     <td *ngIf="item.status == 1">已绑定</td>
-		     <td *ngIf="item.status == 3">待绑定</td>
-		     <td *ngIf="item.status == 2">待审核</td>
-		     
+		     <td>{{ item.partners }}</td>
 		      <td>
 		        <button class="status-button btn btn-xs btn-danger" (click) = "detail(item.id,item.restaurantName)" >详细</button>
 
@@ -33,6 +30,13 @@
 		      </td>
 		    </tr>
 		    </tbody>
+		    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <mfBootstrapPaginator ></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+            </tfoot>
 		  </table>
 		</div>
 
