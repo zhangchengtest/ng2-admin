@@ -41,6 +41,19 @@ export class PrintMachineService {
             });
     }
 
+    print(id: string) {
+         let data =  localStorage.getItem('currentUser');
+         let ownerId = JSON.parse(data).token;
+        return this.http.post('/api/print_machine/print', JSON.stringify({ ownerId: ownerId, id: id}),this.opts)
+            .map((response: Response) => {
+                // login successful if there's a jwt token in the response
+                let data = response.json();
+                
+               
+                return data;
+            });
+    }
+
 
     save(machineCode: string, password: string) {
          console.log("hello man2");

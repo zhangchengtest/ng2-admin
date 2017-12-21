@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import { Modal } from 'ngx-modialog/plugins/bootstrap';
 import { PrintMachineService } from '../../../../_services/index';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DefaultModal } from '../../../../theme/components/modals/default-modal/default-modal.component';
 
 @Component({
   selector: 'smart-tables',
@@ -11,7 +13,7 @@ export class SmartTables {
 
   peopleTableData:Array<any>;
 
-  constructor(private modal: Modal,
+  constructor(private modal: Modal, private modalService: NgbModal,
     private printMachineService: PrintMachineService
   ) {
 
@@ -68,6 +70,21 @@ export class SmartTables {
              console.log('not hehe');
            } );
        });
+    
+  }
+
+    onPrint(id: string, name: string): void {
+         this.printMachineService.print(id).subscribe(
+                data => {
+                    console.log(data);
+                    const activeModal = this.modalService.open(DefaultModal, {size: 'sm'});
+                        activeModal.componentInstance.message = 'error';
+                          activeModal.componentInstance.modalContent = JSON.stringify(data);
+                },
+                error => {
+                
+                  console.log(error);
+                 });
     
   }
 }
