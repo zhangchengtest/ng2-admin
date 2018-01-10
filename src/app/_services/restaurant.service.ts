@@ -95,6 +95,19 @@ export class RestaurantService {
             });
     }
 
+     bindELM() {
+         let data =  localStorage.getItem('currentUser');
+         let ownerId = JSON.parse(data).token;
+        return this.http.post('/api/restaurant/elm/tobind', JSON.stringify({ ownerId: ownerId}),this.opts)
+            .map((response: Response) => {
+                // login successful if there's a jwt token in the response
+                let data = response.json();
+                
+               
+                return data;
+            });
+    }
+
 
     
 }

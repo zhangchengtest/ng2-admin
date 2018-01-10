@@ -142,7 +142,7 @@ export class DataTables {
     
   }
 
-   updateStatus(values:Object) {
+   bindBaidu(values:Object) {
     if (this.form.valid) {
       this.restaurantService.updateStatus(this.restaurantId, "2")
               .subscribe(
@@ -173,6 +173,26 @@ export class DataTables {
     if (this.form.valid) {
       location.href="https://open-erp.meituan.com/storemap?developerId=100330&businessId=2&ePoiId="+ id +"&signKey=c4nsbmn6x1k1db3e&ePoiName="+name;
     }
+    
+  }
+
+  bindELM(values:Object) {
+     if (this.form.valid) {
+      this.restaurantService.bindELM()
+              .subscribe(
+                  data => {
+                      console.log(data);
+                      location.href=data.authUrl;
+                  },
+                  error => {
+                  
+                    console.log(error);
+                    const activeModal = this.modalService.open(DefaultModal, {size: 'sm'});
+                      activeModal.componentInstance.message = 'error';
+                      activeModal.componentInstance.modalContent = '绑定失败';
+             
+        });
+      }
     
   }
 
