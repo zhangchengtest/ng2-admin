@@ -22,6 +22,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard]},
       { path: 'ui', loadChildren: './ui/ui.module#UiModule' },
+      { path: 'partner', loadChildren: './partner/partner.module#PartnerModule' },
       { path: 'forms', loadChildren: './forms/forms.module#FormsModule' },
       { path: 'restaurant', loadChildren: './restaurant/restaurant.module#RestaurantModule' }
     ]

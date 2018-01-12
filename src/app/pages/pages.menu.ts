@@ -15,7 +15,7 @@ export const PAGES_MENU = [
         }
       },
       {
-        path: 'ui',
+        path: 'partner',
         data: {
           menu: {
             title: 'general.menu.partner',
@@ -28,7 +28,7 @@ export const PAGES_MENU = [
         },
         children: [
           {
-            path: 'typography',
+            path: 'list',
             data: {
               menu: {
                 title: 'general.menu.partner',
